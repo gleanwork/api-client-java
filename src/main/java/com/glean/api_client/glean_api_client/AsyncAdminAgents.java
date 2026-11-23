@@ -12,6 +12,7 @@ import com.glean.api_client.glean_api_client.models.operations.async.PlatformAdm
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformAdminAgentsListResponse;
 import com.glean.api_client.glean_api_client.operations.PlatformAdminAgentsList;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import java.lang.Long;
 import java.lang.String;
 import java.util.List;
@@ -68,7 +69,9 @@ public class AsyncAdminAgents {
      * @return {@code CompletableFuture<PlatformAdminAgentsListResponse>} - The async response
      */
     public CompletableFuture<PlatformAdminAgentsListResponse> listDirect() {
-        return list(Optional.empty(), Optional.empty(), Optional.empty());
+        return list(
+                Optional.empty(), Optional.empty(), Optional.empty(),
+                Optional.empty());
     }
 
     /**
@@ -90,6 +93,31 @@ public class AsyncAdminAgents {
     public CompletableFuture<PlatformAdminAgentsListResponse> list(
             Optional<Long> pageSize, Optional<String> cursor,
             Optional<? extends List<PlatformAdminAgentFilter>> filters) {
+        return list(
+                pageSize, cursor, filters,
+                Optional.empty());
+    }
+
+    /**
+     * List all agents
+     * 
+     * <p>List every agent in the workspace, ordered by name and then by agent_id. Each agent has the same
+     * shape that Get agent returns. Unlike agent search, the list does not depend on who an agent is
+     * shared with, so it includes private and disabled agents.
+     * 
+     * <p>Deleted agents are left out. Use the agent_id with other Platform APIs, for example as a usage limit
+     * target. The caller must be able to read all agents, administer agents, or read workspace billing.
+     * 
+     * @param pageSize Maximum number of agents to return. Defaults to 50. Maximum is 100.
+     * @param cursor Opaque pagination cursor from a previous response. Send the same filters that the previous request used.
+     *         
+     * @param filters 
+     * @param options additional options
+     * @return {@code CompletableFuture<PlatformAdminAgentsListResponse>} - The async response
+     */
+    public CompletableFuture<PlatformAdminAgentsListResponse> list(
+            Optional<Long> pageSize, Optional<String> cursor,
+            Optional<? extends List<PlatformAdminAgentFilter>> filters, Optional<Options> options) {
         PlatformAdminAgentsListRequest request =
             PlatformAdminAgentsListRequest
                 .builder()
@@ -98,7 +126,7 @@ public class AsyncAdminAgents {
                 .filters(filters)
                 .build();
         AsyncRequestOperation<PlatformAdminAgentsListRequest, PlatformAdminAgentsListResponse> operation
-              = new PlatformAdminAgentsList.Async(sdkConfiguration, _headers);
+              = new PlatformAdminAgentsList.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

@@ -10,11 +10,15 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.GetDocumentStatusRequest;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Getdocumentstatus;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.time.Duration;
+import java.util.Optional;
 
 public class PostApiIndexV1GetdocumentstatusRequestBuilder {
 
     private GetDocumentStatusRequest request;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -27,11 +31,26 @@ public class PostApiIndexV1GetdocumentstatusRequestBuilder {
         this.request = request;
         return this;
     }
+                
+    public PostApiIndexV1GetdocumentstatusRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public PostApiIndexV1GetdocumentstatusRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
     public PostApiIndexV1GetdocumentstatusResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<GetDocumentStatusRequest, PostApiIndexV1GetdocumentstatusResponse> operation
-              = new PostApiIndexV1Getdocumentstatus.Sync(sdkConfiguration, _headers);
+              = new PostApiIndexV1Getdocumentstatus.Sync(sdkConfiguration, options, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

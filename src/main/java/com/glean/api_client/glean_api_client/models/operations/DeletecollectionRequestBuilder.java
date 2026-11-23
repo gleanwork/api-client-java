@@ -10,14 +10,17 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.DeleteCollectionRequest;
 import com.glean.api_client.glean_api_client.operations.Deletecollection;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 
 public class DeletecollectionRequestBuilder {
 
     private Optional<String> locale = Optional.empty();
     private DeleteCollectionRequest deleteCollectionRequest;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -42,6 +45,18 @@ public class DeletecollectionRequestBuilder {
         this.deleteCollectionRequest = deleteCollectionRequest;
         return this;
     }
+                
+    public DeletecollectionRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public DeletecollectionRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private DeletecollectionRequest buildRequest() {
@@ -53,9 +68,12 @@ public class DeletecollectionRequestBuilder {
     }
 
     public DeletecollectionResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<DeletecollectionRequest, DeletecollectionResponse> operation
-              = new Deletecollection.Sync(sdkConfiguration, _headers);
+              = new Deletecollection.Sync(sdkConfiguration, options, _headers);
         DeletecollectionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

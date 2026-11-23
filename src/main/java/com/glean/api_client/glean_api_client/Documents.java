@@ -20,6 +20,7 @@ import com.glean.api_client.glean_api_client.operations.PlatformDocumentsBatch;
 import com.glean.api_client.glean_api_client.operations.PlatformDocumentsGet;
 import com.glean.api_client.glean_api_client.operations.PlatformDocumentsGetByUrl;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -83,7 +84,7 @@ public class Documents {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformDocumentsGetByUrlResponse getByUrl(String url) {
-        return getByUrl(url, Optional.empty());
+        return getByUrl(url, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -107,6 +108,33 @@ public class Documents {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformDocumentsGetByUrlResponse getByUrl(String url, Optional<? extends List<PlatformDocumentInclude>> include) {
+        return getByUrl(url, include, Optional.empty());
+    }
+
+    /**
+     * Get document by URL
+     * 
+     * <p>Retrieve one permission-visible indexed document by URL. The url is the lookup key that Platform
+     * search returns. Many URLs can resolve to one document.
+     * 
+     * <p>The response is a single document, not a list. The returned url is the permalink and may differ from
+     * the submitted URL. Gmail and Outlook search results and chat citations carry caller-specific IDs
+     * that get document by ID cannot resolve, so retrieve them by URL here.
+     * 
+     * <p>A Gmail or Outlook URL that Platform search returned can still return 404, as it can with legacy
+     * getdocuments. Retrieving search results is best-effort parity with legacy getdocuments. Federated
+     * results and go-link shortcut documents are not retrievable in this release.
+     * 
+     * @param url URL of the document to retrieve.
+     * @param include Optional field groups to add to each found document. Each value only adds fields; it does not change which documents are returned.
+     *         
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformDocumentsGetByUrlResponse getByUrl(
+            String url, Optional<? extends List<PlatformDocumentInclude>> include,
+            Optional<Options> options) {
         PlatformDocumentsGetByUrlRequest request =
             PlatformDocumentsGetByUrlRequest
                 .builder()
@@ -114,7 +142,7 @@ public class Documents {
                 .include(include)
                 .build();
         RequestOperation<PlatformDocumentsGetByUrlRequest, PlatformDocumentsGetByUrlResponse> operation
-              = new PlatformDocumentsGetByUrl.Sync(sdkConfiguration, _headers);
+              = new PlatformDocumentsGetByUrl.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -148,7 +176,7 @@ public class Documents {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformDocumentsGetResponse getById(String documentId) {
-        return getById(documentId, Optional.empty());
+        return getById(documentId, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -168,6 +196,29 @@ public class Documents {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformDocumentsGetResponse getById(String documentId, Optional<? extends List<PlatformDocumentInclude>> include) {
+        return getById(documentId, include, Optional.empty());
+    }
+
+    /**
+     * Get document by ID
+     * 
+     * <p>Retrieve one permission-visible indexed document by its Glean store ID. Gmail and Outlook search
+     * results and chat citations can carry caller-specific IDs that this operation cannot resolve. Try get
+     * document by URL for those documents.
+     * 
+     * <p>URL lookup does not resolve every Gmail or Outlook result.
+     * 
+     * @param documentId Indexed Glean store ID. For a Gmail or Outlook citation with a caller-specific ID, try get document by URL instead.
+     *         
+     * @param include Optional field groups to add to each found document. Each value only adds fields; it does not change which documents are returned.
+     *         
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformDocumentsGetResponse getById(
+            String documentId, Optional<? extends List<PlatformDocumentInclude>> include,
+            Optional<Options> options) {
         PlatformDocumentsGetRequest request =
             PlatformDocumentsGetRequest
                 .builder()
@@ -175,7 +226,7 @@ public class Documents {
                 .include(include)
                 .build();
         RequestOperation<PlatformDocumentsGetRequest, PlatformDocumentsGetResponse> operation
-              = new PlatformDocumentsGet.Sync(sdkConfiguration, _headers);
+              = new PlatformDocumentsGet.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -216,8 +267,30 @@ public class Documents {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformDocumentsBatchResponse batch(PlatformDocumentsBatchRequest request) {
+        return batch(request, Optional.empty());
+    }
+
+    /**
+     * Batch get documents
+     * 
+     * <p>Retrieve up to 100 permission-visible indexed documents by URL or document_id. Found items are in
+     * results. Complete misses are warnings correlated by index.
+     * 
+     * <p>Incomplete store work fails the whole request. Retrieving search results is best-effort parity with
+     * legacy getdocuments. Gmail and Outlook caller-specific citation IDs are not accepted as document_id
+     * selectors.
+     * 
+     * <p>Use URL selectors for them. A Gmail or Outlook URL can still return a resource_not_found warning.
+     * Federated results and go-link shortcut documents are not retrievable in this release.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformDocumentsBatchResponse batch(PlatformDocumentsBatchRequest request, Optional<Options> options) {
         RequestOperation<PlatformDocumentsBatchRequest, PlatformDocumentsBatchResponse> operation
-              = new PlatformDocumentsBatch.Sync(sdkConfiguration, _headers);
+              = new PlatformDocumentsBatch.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

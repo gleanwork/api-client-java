@@ -11,7 +11,9 @@ import com.glean.api_client.glean_api_client.models.operations.async.PostApiInde
 import com.glean.api_client.glean_api_client.models.operations.async.PostApiIndexV1DebugDatasourceStatusResponse;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1DebugDatasourceStatus;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import java.lang.String;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
@@ -36,10 +38,9 @@ public class AsyncDatasource {
 
 
     /**
-     * Beta: Get datasource status
+     * Get datasource status
      * 
-     * <p>Gather information about the datasource's overall status. Currently in beta, might undergo breaking
-     * changes without prior notice.
+     * <p>Gather information about the datasource's overall status.
      * 
      * <p>Tip: Refer to the [Troubleshooting
      * tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
@@ -51,10 +52,9 @@ public class AsyncDatasource {
     }
 
     /**
-     * Beta: Get datasource status
+     * Get datasource status
      * 
-     * <p>Gather information about the datasource's overall status. Currently in beta, might undergo breaking
-     * changes without prior notice.
+     * <p>Gather information about the datasource's overall status.
      * 
      * <p>Tip: Refer to the [Troubleshooting
      * tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
@@ -63,13 +63,29 @@ public class AsyncDatasource {
      * @return {@code CompletableFuture<PostApiIndexV1DebugDatasourceStatusResponse>} - The async response
      */
     public CompletableFuture<PostApiIndexV1DebugDatasourceStatusResponse> status(String datasource) {
+        return status(datasource, Optional.empty());
+    }
+
+    /**
+     * Get datasource status
+     * 
+     * <p>Gather information about the datasource's overall status.
+     * 
+     * <p>Tip: Refer to the [Troubleshooting
+     * tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
+     * 
+     * @param datasource The datasource to get debug status for.
+     * @param options additional options
+     * @return {@code CompletableFuture<PostApiIndexV1DebugDatasourceStatusResponse>} - The async response
+     */
+    public CompletableFuture<PostApiIndexV1DebugDatasourceStatusResponse> status(String datasource, Optional<Options> options) {
         PostApiIndexV1DebugDatasourceStatusRequest request =
             PostApiIndexV1DebugDatasourceStatusRequest
                 .builder()
                 .datasource(datasource)
                 .build();
         AsyncRequestOperation<PostApiIndexV1DebugDatasourceStatusRequest, PostApiIndexV1DebugDatasourceStatusResponse> operation
-              = new PostApiIndexV1DebugDatasourceStatus.Async(sdkConfiguration, _headers);
+              = new PostApiIndexV1DebugDatasourceStatus.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

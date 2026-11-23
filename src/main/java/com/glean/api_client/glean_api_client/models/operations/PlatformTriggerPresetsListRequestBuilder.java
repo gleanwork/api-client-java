@@ -11,9 +11,11 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.operations.PlatformTriggerPresetsList;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.LazySingletonValue;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 
 public class PlatformTriggerPresetsListRequestBuilder {
@@ -24,6 +26,7 @@ public class PlatformTriggerPresetsListRequestBuilder {
                             "50",
                             new TypeReference<Optional<Long>>() {});
     private Optional<String> cursor = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -66,6 +69,18 @@ public class PlatformTriggerPresetsListRequestBuilder {
         this.cursor = cursor;
         return this;
     }
+                
+    public PlatformTriggerPresetsListRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public PlatformTriggerPresetsListRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private PlatformTriggerPresetsListRequest buildRequest() {
@@ -81,9 +96,12 @@ public class PlatformTriggerPresetsListRequestBuilder {
     }
 
     public PlatformTriggerPresetsListResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<PlatformTriggerPresetsListRequest, PlatformTriggerPresetsListResponse> operation
-              = new PlatformTriggerPresetsList.Sync(sdkConfiguration, _headers);
+              = new PlatformTriggerPresetsList.Sync(sdkConfiguration, options, _headers);
         PlatformTriggerPresetsListRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

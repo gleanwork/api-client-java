@@ -10,9 +10,11 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.operations.PostRestApiIndexSubmissionsDatasourceInstanceTypeRequest;
 import com.glean.api_client.glean_api_client.operations.PostRestApiIndexSubmissionsDatasourceInstanceType;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Object;
 import java.lang.String;
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -24,6 +26,7 @@ public class PostRestApiIndexSubmissionsDatasourceInstanceTypeRequestBuilder {
     private String type;
     private Map<String, Object> requestBody = new HashMap<>();
     private Optional<String> serverURL = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -60,6 +63,18 @@ public class PostRestApiIndexSubmissionsDatasourceInstanceTypeRequestBuilder {
         this.serverURL = serverURL;
         return this;
     }
+                
+    public PostRestApiIndexSubmissionsDatasourceInstanceTypeRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public PostRestApiIndexSubmissionsDatasourceInstanceTypeRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private PostRestApiIndexSubmissionsDatasourceInstanceTypeRequest buildRequest() {
@@ -72,9 +87,14 @@ public class PostRestApiIndexSubmissionsDatasourceInstanceTypeRequestBuilder {
     }
 
     public CompletableFuture<PostRestApiIndexSubmissionsDatasourceInstanceTypeResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<PostRestApiIndexSubmissionsDatasourceInstanceTypeRequest, PostRestApiIndexSubmissionsDatasourceInstanceTypeResponse> operation
-              = new PostRestApiIndexSubmissionsDatasourceInstanceType.Async(sdkConfiguration, serverURL, _headers);
+              = new PostRestApiIndexSubmissionsDatasourceInstanceType.Async(
+                                    sdkConfiguration, serverURL, options,
+                                    _headers);
         PostRestApiIndexSubmissionsDatasourceInstanceTypeRequest request = buildRequest();
 
         return operation.doRequest(request)

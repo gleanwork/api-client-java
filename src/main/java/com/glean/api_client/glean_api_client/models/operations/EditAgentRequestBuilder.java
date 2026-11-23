@@ -10,9 +10,11 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.EditWorkflowRequest;
 import com.glean.api_client.glean_api_client.operations.EditAgent;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 
 public class EditAgentRequestBuilder {
@@ -21,6 +23,7 @@ public class EditAgentRequestBuilder {
     private Optional<Long> timezoneOffset = Optional.empty();
     private String agentId;
     private EditWorkflowRequest editWorkflowRequest;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -63,6 +66,18 @@ public class EditAgentRequestBuilder {
         this.editWorkflowRequest = editWorkflowRequest;
         return this;
     }
+                
+    public EditAgentRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public EditAgentRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private EditAgentRequest buildRequest() {
@@ -76,9 +91,12 @@ public class EditAgentRequestBuilder {
     }
 
     public EditAgentResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<EditAgentRequest, EditAgentResponse> operation
-              = new EditAgent.Sync(sdkConfiguration, _headers);
+              = new EditAgent.Sync(sdkConfiguration, options, _headers);
         EditAgentRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

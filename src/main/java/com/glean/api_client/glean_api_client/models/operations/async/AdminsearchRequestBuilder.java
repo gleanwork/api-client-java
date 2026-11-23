@@ -11,8 +11,10 @@ import com.glean.api_client.glean_api_client.models.components.SearchRequest;
 import com.glean.api_client.glean_api_client.models.operations.AdminsearchRequest;
 import com.glean.api_client.glean_api_client.operations.Adminsearch;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -20,6 +22,7 @@ public class AdminsearchRequestBuilder {
 
     private Optional<String> locale = Optional.empty();
     private SearchRequest searchRequest;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -44,6 +47,18 @@ public class AdminsearchRequestBuilder {
         this.searchRequest = searchRequest;
         return this;
     }
+                
+    public AdminsearchRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public AdminsearchRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private AdminsearchRequest buildRequest() {
@@ -55,9 +70,12 @@ public class AdminsearchRequestBuilder {
     }
 
     public CompletableFuture<AdminsearchResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<AdminsearchRequest, AdminsearchResponse> operation
-              = new Adminsearch.Async(sdkConfiguration, _headers);
+              = new Adminsearch.Async(sdkConfiguration, options, _headers);
         AdminsearchRequest request = buildRequest();
 
         return operation.doRequest(request)

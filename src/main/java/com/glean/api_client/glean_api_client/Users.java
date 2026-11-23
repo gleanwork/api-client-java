@@ -17,6 +17,7 @@ import com.glean.api_client.glean_api_client.models.operations.PlatformUsersList
 import com.glean.api_client.glean_api_client.operations.PlatformUsersGet;
 import com.glean.api_client.glean_api_client.operations.PlatformUsersList;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import java.lang.Long;
 import java.lang.String;
 import java.util.List;
@@ -71,7 +72,7 @@ public class Users {
      */
     public PlatformUsersListResponse listDirect() {
         return list(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -95,6 +96,33 @@ public class Users {
     public PlatformUsersListResponse list(
             Optional<Long> pageSize, Optional<String> cursor,
             Optional<? extends List<PlatformUserFilter>> filters, Optional<? extends List<PlatformUserInclude>> include) {
+        return list(pageSize, cursor, filters,
+            include, Optional.empty());
+    }
+
+    /**
+     * List users
+     * 
+     * <p>List the users in the Glean directory, ordered by display_name and then by user_id. The list
+     * includes the same people as the Glean People directory. Filter by name, email, manager_id, or
+     * department_id to find specific users.
+     * 
+     * <p>Use the returned user_id values with other Platform APIs, for example as usage limit targets.
+     * 
+     * @param pageSize Maximum number of users to return. Defaults to 50. Maximum is 100.
+     * @param cursor Opaque pagination cursor from a previous response. Send the same filters that the previous request used.
+     *         
+     * @param filters 
+     * @param include Optional fields to add to each user. Each value only adds fields; it does not change which users are returned.
+     *         
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformUsersListResponse list(
+            Optional<Long> pageSize, Optional<String> cursor,
+            Optional<? extends List<PlatformUserFilter>> filters, Optional<? extends List<PlatformUserInclude>> include,
+            Optional<Options> options) {
         PlatformUsersListRequest request =
             PlatformUsersListRequest
                 .builder()
@@ -104,7 +132,7 @@ public class Users {
                 .include(include)
                 .build();
         RequestOperation<PlatformUsersListRequest, PlatformUsersListResponse> operation
-              = new PlatformUsersList.Sync(sdkConfiguration, _headers);
+              = new PlatformUsersList.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -137,7 +165,7 @@ public class Users {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformUsersGetResponse get(String userId) {
-        return get(userId, Optional.empty());
+        return get(userId, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -156,6 +184,28 @@ public class Users {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformUsersGetResponse get(String userId, Optional<? extends List<PlatformUserInclude>> include) {
+        return get(userId, include, Optional.empty());
+    }
+
+    /**
+     * Get user
+     * 
+     * <p>Get one user in the Glean directory by user_id. The user can be any person that the list returns. A
+     * user_id that is not in the directory returns 404 resource_not_found.
+     * 
+     * <p>This includes a deleted user and a person that the People directory does not show. An alias ID of a
+     * merged person returns the person's canonical user_id.
+     * 
+     * @param userId Canonical Glean user ID, as the list returns it.
+     * @param include Optional fields to add to the user. Each value only adds fields.
+     *         
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformUsersGetResponse get(
+            String userId, Optional<? extends List<PlatformUserInclude>> include,
+            Optional<Options> options) {
         PlatformUsersGetRequest request =
             PlatformUsersGetRequest
                 .builder()
@@ -163,7 +213,7 @@ public class Users {
                 .include(include)
                 .build();
         RequestOperation<PlatformUsersGetRequest, PlatformUsersGetResponse> operation
-              = new PlatformUsersGet.Sync(sdkConfiguration, _headers);
+              = new PlatformUsersGet.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
