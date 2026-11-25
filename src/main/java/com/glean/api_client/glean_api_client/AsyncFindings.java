@@ -23,7 +23,9 @@ import com.glean.api_client.glean_api_client.operations.Deletefindingsexport;
 import com.glean.api_client.glean_api_client.operations.Downloadfindingsexport;
 import com.glean.api_client.glean_api_client.operations.Listfindingsexports;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import java.lang.String;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
@@ -67,8 +69,21 @@ public class AsyncFindings {
      * @return {@code CompletableFuture<CreatefindingsexportResponse>} - The async response
      */
     public CompletableFuture<CreatefindingsexportResponse> create(DlpExportFindingsRequest request) {
+        return create(request, Optional.empty());
+    }
+
+    /**
+     * Creates findings export
+     * 
+     * <p>Creates a new DLP findings export job.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return {@code CompletableFuture<CreatefindingsexportResponse>} - The async response
+     */
+    public CompletableFuture<CreatefindingsexportResponse> create(DlpExportFindingsRequest request, Optional<Options> options) {
         AsyncRequestOperation<DlpExportFindingsRequest, CreatefindingsexportResponse> operation
-              = new Createfindingsexport.Async(sdkConfiguration, _headers);
+              = new Createfindingsexport.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -93,8 +108,20 @@ public class AsyncFindings {
      * @return {@code CompletableFuture<ListfindingsexportsResponse>} - The async response
      */
     public CompletableFuture<ListfindingsexportsResponse> listDirect() {
+        return list(Optional.empty());
+    }
+
+    /**
+     * Lists findings exports
+     * 
+     * <p>Lists all DLP findings exports.
+     * 
+     * @param options additional options
+     * @return {@code CompletableFuture<ListfindingsexportsResponse>} - The async response
+     */
+    public CompletableFuture<ListfindingsexportsResponse> list(Optional<Options> options) {
         AsyncRequestlessOperation<ListfindingsexportsResponse> operation
-            = new Listfindingsexports.Async(sdkConfiguration, _headers);
+            = new Listfindingsexports.Async(sdkConfiguration, options, _headers);
         return operation.doRequest()
             .thenCompose(operation::handleResponse);
     }
@@ -120,13 +147,26 @@ public class AsyncFindings {
      * @return {@code CompletableFuture<DownloadfindingsexportResponse>} - The async response
      */
     public CompletableFuture<DownloadfindingsexportResponse> download(String id) {
+        return download(id, Optional.empty());
+    }
+
+    /**
+     * Downloads findings export
+     * 
+     * <p>Downloads a DLP findings export as a CSV file.
+     * 
+     * @param id The ID of the export to download.
+     * @param options additional options
+     * @return {@code CompletableFuture<DownloadfindingsexportResponse>} - The async response
+     */
+    public CompletableFuture<DownloadfindingsexportResponse> download(String id, Optional<Options> options) {
         DownloadfindingsexportRequest request =
             DownloadfindingsexportRequest
                 .builder()
                 .id(id)
                 .build();
         AsyncRequestOperation<DownloadfindingsexportRequest, DownloadfindingsexportResponse> operation
-              = new Downloadfindingsexport.Async(sdkConfiguration, _headers);
+              = new Downloadfindingsexport.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -152,13 +192,26 @@ public class AsyncFindings {
      * @return {@code CompletableFuture<DeletefindingsexportResponse>} - The async response
      */
     public CompletableFuture<DeletefindingsexportResponse> delete(long id) {
+        return delete(id, Optional.empty());
+    }
+
+    /**
+     * Deletes findings export
+     * 
+     * <p>Deletes a DLP findings export.
+     * 
+     * @param id The ID of the export to delete.
+     * @param options additional options
+     * @return {@code CompletableFuture<DeletefindingsexportResponse>} - The async response
+     */
+    public CompletableFuture<DeletefindingsexportResponse> delete(long id, Optional<Options> options) {
         DeletefindingsexportRequest request =
             DeletefindingsexportRequest
                 .builder()
                 .id(id)
                 .build();
         AsyncRequestOperation<DeletefindingsexportRequest, DeletefindingsexportResponse> operation
-              = new Deletefindingsexport.Async(sdkConfiguration, _headers);
+              = new Deletefindingsexport.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

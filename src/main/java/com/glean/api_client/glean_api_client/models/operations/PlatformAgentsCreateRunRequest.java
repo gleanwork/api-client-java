@@ -6,7 +6,6 @@ package com.glean.api_client.glean_api_client.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.glean.api_client.glean_api_client.models.components.PlatformAgentRunCreateRequest;
 import com.glean.api_client.glean_api_client.utils.SpeakeasyMetadata;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
@@ -22,16 +21,16 @@ public class PlatformAgentsCreateRunRequest {
 
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private PlatformAgentRunCreateRequest platformAgentRunCreateRequest;
+    private PlatformAgentsCreateRunRequestBody requestBody;
 
     @JsonCreator
     public PlatformAgentsCreateRunRequest(
             String agentId,
-            PlatformAgentRunCreateRequest platformAgentRunCreateRequest) {
+            PlatformAgentsCreateRunRequestBody requestBody) {
         Utils.checkNotNull(agentId, "agentId");
-        Utils.checkNotNull(platformAgentRunCreateRequest, "platformAgentRunCreateRequest");
+        Utils.checkNotNull(requestBody, "requestBody");
         this.agentId = agentId;
-        this.platformAgentRunCreateRequest = platformAgentRunCreateRequest;
+        this.requestBody = requestBody;
     }
 
     /**
@@ -43,8 +42,8 @@ public class PlatformAgentsCreateRunRequest {
     }
 
     @JsonIgnore
-    public PlatformAgentRunCreateRequest platformAgentRunCreateRequest() {
-        return platformAgentRunCreateRequest;
+    public PlatformAgentsCreateRunRequestBody requestBody() {
+        return requestBody;
     }
 
     public static Builder builder() {
@@ -61,9 +60,9 @@ public class PlatformAgentsCreateRunRequest {
         return this;
     }
 
-    public PlatformAgentsCreateRunRequest withPlatformAgentRunCreateRequest(PlatformAgentRunCreateRequest platformAgentRunCreateRequest) {
-        Utils.checkNotNull(platformAgentRunCreateRequest, "platformAgentRunCreateRequest");
-        this.platformAgentRunCreateRequest = platformAgentRunCreateRequest;
+    public PlatformAgentsCreateRunRequest withRequestBody(PlatformAgentsCreateRunRequestBody requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = requestBody;
         return this;
     }
 
@@ -78,20 +77,20 @@ public class PlatformAgentsCreateRunRequest {
         PlatformAgentsCreateRunRequest other = (PlatformAgentsCreateRunRequest) o;
         return 
             Utils.enhancedDeepEquals(this.agentId, other.agentId) &&
-            Utils.enhancedDeepEquals(this.platformAgentRunCreateRequest, other.platformAgentRunCreateRequest);
+            Utils.enhancedDeepEquals(this.requestBody, other.requestBody);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            agentId, platformAgentRunCreateRequest);
+            agentId, requestBody);
     }
     
     @Override
     public String toString() {
         return Utils.toString(PlatformAgentsCreateRunRequest.class,
                 "agentId", agentId,
-                "platformAgentRunCreateRequest", platformAgentRunCreateRequest);
+                "requestBody", requestBody);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -99,7 +98,7 @@ public class PlatformAgentsCreateRunRequest {
 
         private String agentId;
 
-        private PlatformAgentRunCreateRequest platformAgentRunCreateRequest;
+        private PlatformAgentsCreateRunRequestBody requestBody;
 
         private Builder() {
           // force use of static builder() method
@@ -116,16 +115,16 @@ public class PlatformAgentsCreateRunRequest {
         }
 
 
-        public Builder platformAgentRunCreateRequest(PlatformAgentRunCreateRequest platformAgentRunCreateRequest) {
-            Utils.checkNotNull(platformAgentRunCreateRequest, "platformAgentRunCreateRequest");
-            this.platformAgentRunCreateRequest = platformAgentRunCreateRequest;
+        public Builder requestBody(PlatformAgentsCreateRunRequestBody requestBody) {
+            Utils.checkNotNull(requestBody, "requestBody");
+            this.requestBody = requestBody;
             return this;
         }
 
         public PlatformAgentsCreateRunRequest build() {
 
             return new PlatformAgentsCreateRunRequest(
-                agentId, platformAgentRunCreateRequest);
+                agentId, requestBody);
         }
 
     }

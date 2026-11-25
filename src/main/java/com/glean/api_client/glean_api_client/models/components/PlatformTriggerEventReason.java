@@ -42,6 +42,7 @@ public class PlatformTriggerEventReason {
     public static final PlatformTriggerEventReason WEBHOOK_CREATED = new PlatformTriggerEventReason("WEBHOOK_CREATED");
     public static final PlatformTriggerEventReason CLOSED = new PlatformTriggerEventReason("CLOSED");
     public static final PlatformTriggerEventReason COMMENT_ADDED = new PlatformTriggerEventReason("COMMENT_ADDED");
+    public static final PlatformTriggerEventReason COMMENT_RESOLVED = new PlatformTriggerEventReason("COMMENT_RESOLVED");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -131,6 +132,7 @@ public class PlatformTriggerEventReason {
         map.put("WEBHOOK_CREATED", WEBHOOK_CREATED);
         map.put("CLOSED", CLOSED);
         map.put("COMMENT_ADDED", COMMENT_ADDED);
+        map.put("COMMENT_RESOLVED", COMMENT_RESOLVED);
         return map;
     }
 
@@ -152,6 +154,7 @@ public class PlatformTriggerEventReason {
         map.put("WEBHOOK_CREATED", PlatformTriggerEventReasonEnum.WEBHOOK_CREATED);
         map.put("CLOSED", PlatformTriggerEventReasonEnum.CLOSED);
         map.put("COMMENT_ADDED", PlatformTriggerEventReasonEnum.COMMENT_ADDED);
+        map.put("COMMENT_RESOLVED", PlatformTriggerEventReasonEnum.COMMENT_RESOLVED);
         return map;
     }
     
@@ -173,7 +176,8 @@ public class PlatformTriggerEventReason {
         WEBHOOK_UPDATED("WEBHOOK_UPDATED"),
         WEBHOOK_CREATED("WEBHOOK_CREATED"),
         CLOSED("CLOSED"),
-        COMMENT_ADDED("COMMENT_ADDED"),;
+        COMMENT_ADDED("COMMENT_ADDED"),
+        COMMENT_RESOLVED("COMMENT_RESOLVED"),;
 
         private final String value;
 

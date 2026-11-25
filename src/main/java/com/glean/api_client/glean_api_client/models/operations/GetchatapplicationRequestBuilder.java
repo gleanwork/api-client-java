@@ -10,9 +10,11 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.GetChatApplicationRequest;
 import com.glean.api_client.glean_api_client.operations.Getchatapplication;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 
 public class GetchatapplicationRequestBuilder {
@@ -20,6 +22,7 @@ public class GetchatapplicationRequestBuilder {
     private Optional<String> locale = Optional.empty();
     private Optional<Long> timezoneOffset = Optional.empty();
     private GetChatApplicationRequest getChatApplicationRequest;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -56,6 +59,18 @@ public class GetchatapplicationRequestBuilder {
         this.getChatApplicationRequest = getChatApplicationRequest;
         return this;
     }
+                
+    public GetchatapplicationRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public GetchatapplicationRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private GetchatapplicationRequest buildRequest() {
@@ -68,9 +83,12 @@ public class GetchatapplicationRequestBuilder {
     }
 
     public GetchatapplicationResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<GetchatapplicationRequest, GetchatapplicationResponse> operation
-              = new Getchatapplication.Sync(sdkConfiguration, _headers);
+              = new Getchatapplication.Sync(sdkConfiguration, options, _headers);
         GetchatapplicationRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

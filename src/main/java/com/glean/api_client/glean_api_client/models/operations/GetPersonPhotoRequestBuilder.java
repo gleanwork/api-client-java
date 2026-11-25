@@ -9,14 +9,17 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.operations.GetPersonPhoto;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 
 public class GetPersonPhotoRequestBuilder {
 
     private String personId;
     private Optional<String> ds = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -41,6 +44,18 @@ public class GetPersonPhotoRequestBuilder {
         this.ds = ds;
         return this;
     }
+                
+    public GetPersonPhotoRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public GetPersonPhotoRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private GetPersonPhotoRequest buildRequest() {
@@ -52,9 +67,12 @@ public class GetPersonPhotoRequestBuilder {
     }
 
     public GetPersonPhotoResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<GetPersonPhotoRequest, GetPersonPhotoResponse> operation
-              = new GetPersonPhoto.Sync(sdkConfiguration, _headers);
+              = new GetPersonPhoto.Sync(sdkConfiguration, options, _headers);
         GetPersonPhotoRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

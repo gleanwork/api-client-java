@@ -7,18 +7,22 @@ package com.glean.api_client.glean_api_client.models.operations.async;
 import static com.glean.api_client.glean_api_client.operations.Operations.AsyncRequestOperation;
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
-import com.glean.api_client.glean_api_client.models.components.PlatformAgentRunCreateRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsCreateRunRequest;
+import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsCreateRunRequestBody;
 import com.glean.api_client.glean_api_client.operations.PlatformAgentsCreateRun;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class PlatformAgentsCreateRunRequestBuilder {
 
     private String agentId;
-    private PlatformAgentRunCreateRequest platformAgentRunCreateRequest;
+    private PlatformAgentsCreateRunRequestBody requestBody;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -32,9 +36,21 @@ public class PlatformAgentsCreateRunRequestBuilder {
         return this;
     }
 
-    public PlatformAgentsCreateRunRequestBuilder platformAgentRunCreateRequest(PlatformAgentRunCreateRequest platformAgentRunCreateRequest) {
-        Utils.checkNotNull(platformAgentRunCreateRequest, "platformAgentRunCreateRequest");
-        this.platformAgentRunCreateRequest = platformAgentRunCreateRequest;
+    public PlatformAgentsCreateRunRequestBuilder requestBody(PlatformAgentsCreateRunRequestBody requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = requestBody;
+        return this;
+    }
+                
+    public PlatformAgentsCreateRunRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public PlatformAgentsCreateRunRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
         return this;
     }
 
@@ -42,15 +58,18 @@ public class PlatformAgentsCreateRunRequestBuilder {
     private PlatformAgentsCreateRunRequest buildRequest() {
 
         PlatformAgentsCreateRunRequest request = new PlatformAgentsCreateRunRequest(agentId,
-            platformAgentRunCreateRequest);
+            requestBody);
 
         return request;
     }
 
     public CompletableFuture<PlatformAgentsCreateRunResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<PlatformAgentsCreateRunRequest, PlatformAgentsCreateRunResponse> operation
-              = new PlatformAgentsCreateRun.Async(sdkConfiguration, _headers);
+              = new PlatformAgentsCreateRun.Async(sdkConfiguration, options, _headers);
         PlatformAgentsCreateRunRequest request = buildRequest();
 
         return operation.doRequest(request)

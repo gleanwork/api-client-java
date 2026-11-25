@@ -11,8 +11,10 @@ import com.glean.api_client.glean_api_client.models.components.PlatformUserInclu
 import com.glean.api_client.glean_api_client.models.operations.PlatformUsersGetRequest;
 import com.glean.api_client.glean_api_client.operations.PlatformUsersGet;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -21,6 +23,7 @@ public class PlatformUsersGetRequestBuilder {
 
     private String userId;
     private Optional<? extends List<PlatformUserInclude>> include = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -45,6 +48,18 @@ public class PlatformUsersGetRequestBuilder {
         this.include = include;
         return this;
     }
+                
+    public PlatformUsersGetRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public PlatformUsersGetRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private PlatformUsersGetRequest buildRequest() {
@@ -56,9 +71,12 @@ public class PlatformUsersGetRequestBuilder {
     }
 
     public CompletableFuture<PlatformUsersGetResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<PlatformUsersGetRequest, PlatformUsersGetResponse> operation
-              = new PlatformUsersGet.Async(sdkConfiguration, _headers);
+              = new PlatformUsersGet.Async(sdkConfiguration, options, _headers);
         PlatformUsersGetRequest request = buildRequest();
 
         return operation.doRequest(request)

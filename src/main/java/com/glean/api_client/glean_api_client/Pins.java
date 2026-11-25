@@ -30,6 +30,7 @@ import com.glean.api_client.glean_api_client.operations.Getpin;
 import com.glean.api_client.glean_api_client.operations.Listpins;
 import com.glean.api_client.glean_api_client.operations.Pin;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import java.lang.String;
 import java.util.Optional;
 
@@ -74,7 +75,7 @@ public class Pins {
      * @throws RuntimeException subclass if the API call fails
      */
     public EditpinResponse update(EditPinRequest editPinRequest) {
-        return update(Optional.empty(), editPinRequest);
+        return update(Optional.empty(), editPinRequest, Optional.empty());
     }
 
     /**
@@ -88,6 +89,23 @@ public class Pins {
      * @throws RuntimeException subclass if the API call fails
      */
     public EditpinResponse update(Optional<String> locale, EditPinRequest editPinRequest) {
+        return update(locale, editPinRequest, Optional.empty());
+    }
+
+    /**
+     * Update pin
+     * 
+     * <p>Update an existing user-generated pin.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param editPinRequest 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public EditpinResponse update(
+            Optional<String> locale, EditPinRequest editPinRequest,
+            Optional<Options> options) {
         EditpinRequest request =
             EditpinRequest
                 .builder()
@@ -95,7 +113,7 @@ public class Pins {
                 .editPinRequest(editPinRequest)
                 .build();
         RequestOperation<EditpinRequest, EditpinResponse> operation
-              = new Editpin.Sync(sdkConfiguration, _headers);
+              = new Editpin.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -120,7 +138,7 @@ public class Pins {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetpinResponse retrieve(GetPinRequest getPinRequest) {
-        return retrieve(Optional.empty(), getPinRequest);
+        return retrieve(Optional.empty(), getPinRequest, Optional.empty());
     }
 
     /**
@@ -134,6 +152,23 @@ public class Pins {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetpinResponse retrieve(Optional<String> locale, GetPinRequest getPinRequest) {
+        return retrieve(locale, getPinRequest, Optional.empty());
+    }
+
+    /**
+     * Read pin
+     * 
+     * <p>Read pin details given its ID.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param getPinRequest 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetpinResponse retrieve(
+            Optional<String> locale, GetPinRequest getPinRequest,
+            Optional<Options> options) {
         GetpinRequest request =
             GetpinRequest
                 .builder()
@@ -141,7 +176,7 @@ public class Pins {
                 .getPinRequest(getPinRequest)
                 .build();
         RequestOperation<GetpinRequest, GetpinResponse> operation
-              = new Getpin.Sync(sdkConfiguration, _headers);
+              = new Getpin.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -166,7 +201,7 @@ public class Pins {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListpinsResponse list(ListpinsRequestBody requestBody) {
-        return list(Optional.empty(), requestBody);
+        return list(Optional.empty(), requestBody, Optional.empty());
     }
 
     /**
@@ -180,6 +215,23 @@ public class Pins {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListpinsResponse list(Optional<String> locale, ListpinsRequestBody requestBody) {
+        return list(locale, requestBody, Optional.empty());
+    }
+
+    /**
+     * List pins
+     * 
+     * <p>Lists all pins.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param requestBody List pins request
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ListpinsResponse list(
+            Optional<String> locale, ListpinsRequestBody requestBody,
+            Optional<Options> options) {
         ListpinsRequest request =
             ListpinsRequest
                 .builder()
@@ -187,7 +239,7 @@ public class Pins {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<ListpinsRequest, ListpinsResponse> operation
-              = new Listpins.Sync(sdkConfiguration, _headers);
+              = new Listpins.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -212,7 +264,7 @@ public class Pins {
      * @throws RuntimeException subclass if the API call fails
      */
     public PinResponse create(PinRequest pinRequest) {
-        return create(Optional.empty(), pinRequest);
+        return create(Optional.empty(), pinRequest, Optional.empty());
     }
 
     /**
@@ -226,6 +278,23 @@ public class Pins {
      * @throws RuntimeException subclass if the API call fails
      */
     public PinResponse create(Optional<String> locale, PinRequest pinRequest) {
+        return create(locale, pinRequest, Optional.empty());
+    }
+
+    /**
+     * Create pin
+     * 
+     * <p>Pin a document as a result for a given search query.Pin results that are known to be a good match.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param pinRequest 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PinResponse create(
+            Optional<String> locale, PinRequest pinRequest,
+            Optional<Options> options) {
         com.glean.api_client.glean_api_client.models.operations.PinRequest request =
             com.glean.api_client.glean_api_client.models.operations.PinRequest
                 .builder()
@@ -233,7 +302,7 @@ public class Pins {
                 .pinRequest(pinRequest)
                 .build();
         RequestOperation<com.glean.api_client.glean_api_client.models.operations.PinRequest, PinResponse> operation
-              = new Pin.Sync(sdkConfiguration, _headers);
+              = new Pin.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -258,7 +327,7 @@ public class Pins {
      * @throws RuntimeException subclass if the API call fails
      */
     public UnpinResponse remove(Unpin unpin) {
-        return remove(Optional.empty(), unpin);
+        return remove(Optional.empty(), unpin, Optional.empty());
     }
 
     /**
@@ -272,6 +341,23 @@ public class Pins {
      * @throws RuntimeException subclass if the API call fails
      */
     public UnpinResponse remove(Optional<String> locale, Unpin unpin) {
+        return remove(locale, unpin, Optional.empty());
+    }
+
+    /**
+     * Delete pin
+     * 
+     * <p>Unpin a previously pinned result.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param unpin 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public UnpinResponse remove(
+            Optional<String> locale, Unpin unpin,
+            Optional<Options> options) {
         UnpinRequest request =
             UnpinRequest
                 .builder()
@@ -279,7 +365,7 @@ public class Pins {
                 .unpin(unpin)
                 .build();
         RequestOperation<UnpinRequest, UnpinResponse> operation
-              = new com.glean.api_client.glean_api_client.operations.Unpin.Sync(sdkConfiguration, _headers);
+              = new com.glean.api_client.glean_api_client.operations.Unpin.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

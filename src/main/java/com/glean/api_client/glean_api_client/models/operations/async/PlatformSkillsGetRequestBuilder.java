@@ -10,13 +10,17 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsGetRequest;
 import com.glean.api_client.glean_api_client.operations.PlatformSkillsGet;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class PlatformSkillsGetRequestBuilder {
 
     private String skillId;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -29,6 +33,18 @@ public class PlatformSkillsGetRequestBuilder {
         this.skillId = skillId;
         return this;
     }
+                
+    public PlatformSkillsGetRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public PlatformSkillsGetRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private PlatformSkillsGetRequest buildRequest() {
@@ -39,9 +55,12 @@ public class PlatformSkillsGetRequestBuilder {
     }
 
     public CompletableFuture<PlatformSkillsGetResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<PlatformSkillsGetRequest, PlatformSkillsGetResponse> operation
-              = new PlatformSkillsGet.Async(sdkConfiguration, _headers);
+              = new PlatformSkillsGet.Async(sdkConfiguration, options, _headers);
         PlatformSkillsGetRequest request = buildRequest();
 
         return operation.doRequest(request)

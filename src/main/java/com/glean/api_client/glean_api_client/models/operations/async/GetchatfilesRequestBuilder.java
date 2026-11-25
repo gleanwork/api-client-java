@@ -11,9 +11,11 @@ import com.glean.api_client.glean_api_client.models.components.GetChatFilesReque
 import com.glean.api_client.glean_api_client.models.operations.GetchatfilesRequest;
 import com.glean.api_client.glean_api_client.operations.Getchatfiles;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -22,6 +24,7 @@ public class GetchatfilesRequestBuilder {
     private Optional<String> locale = Optional.empty();
     private Optional<Long> timezoneOffset = Optional.empty();
     private GetChatFilesRequest getChatFilesRequest;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -58,6 +61,18 @@ public class GetchatfilesRequestBuilder {
         this.getChatFilesRequest = getChatFilesRequest;
         return this;
     }
+                
+    public GetchatfilesRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public GetchatfilesRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private GetchatfilesRequest buildRequest() {
@@ -70,9 +85,12 @@ public class GetchatfilesRequestBuilder {
     }
 
     public CompletableFuture<GetchatfilesResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<GetchatfilesRequest, GetchatfilesResponse> operation
-              = new Getchatfiles.Async(sdkConfiguration, _headers);
+              = new Getchatfiles.Async(sdkConfiguration, options, _headers);
         GetchatfilesRequest request = buildRequest();
 
         return operation.doRequest(request)
