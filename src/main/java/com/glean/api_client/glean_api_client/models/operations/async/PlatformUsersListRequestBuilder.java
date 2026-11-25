@@ -14,9 +14,11 @@ import com.glean.api_client.glean_api_client.models.operations.PlatformUsersList
 import com.glean.api_client.glean_api_client.operations.PlatformUsersList;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.LazySingletonValue;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
 import java.lang.String;
+import java.time.Duration;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -30,6 +32,7 @@ public class PlatformUsersListRequestBuilder {
     private Optional<String> cursor = Optional.empty();
     private Optional<? extends List<PlatformUserFilter>> filters = Optional.empty();
     private Optional<? extends List<PlatformUserInclude>> include = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -84,6 +87,18 @@ public class PlatformUsersListRequestBuilder {
         this.include = include;
         return this;
     }
+                
+    public PlatformUsersListRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public PlatformUsersListRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private PlatformUsersListRequest buildRequest() {
@@ -100,9 +115,12 @@ public class PlatformUsersListRequestBuilder {
     }
 
     public CompletableFuture<PlatformUsersListResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<PlatformUsersListRequest, PlatformUsersListResponse> operation
-              = new PlatformUsersList.Async(sdkConfiguration, _headers);
+              = new PlatformUsersList.Async(sdkConfiguration, options, _headers);
         PlatformUsersListRequest request = buildRequest();
 
         return operation.doRequest(request)

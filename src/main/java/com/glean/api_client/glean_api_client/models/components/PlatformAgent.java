@@ -10,33 +10,93 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.Boolean;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.time.OffsetDateTime;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-
+/**
+ * PlatformAgent
+ * 
+ * <p>An agent available to the authenticated user.
+ */
 public class PlatformAgent {
     /**
-     * ID of the agent.
-     */
-    @JsonProperty("agent_id")
-    private String agentId;
-
-    /**
-     * Name of the agent.
+     * Human-readable name.
      */
     @JsonProperty("name")
     private String name;
 
     /**
-     * Description of the agent.
+     * Description of the agent's purpose and behavior.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
     private Optional<String> description;
+
+    /**
+     * System prompt the agent follows.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("instructions")
+    private Optional<String> instructions;
+
+    /**
+     * Skills defined inline.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("skills")
+    private Optional<? extends List<PlatformAgentSkill>> skills;
+
+    /**
+     * Published artifacts referenced by platform ID. Their content is not inlined in `skills` or
+     * `subagents`.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("dependencies")
+    private Optional<? extends List<PlatformAgentDependency>> dependencies;
+
+    /**
+     * Tool providers and the subset of their tools available to the agent.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("tools")
+    private Optional<? extends List<PlatformAgentToolset>> tools;
+
+    /**
+     * Glean Search configuration. When omitted, Glean Search is disabled for the agent. An empty object
+     * searches all company knowledge available to the invoking user.
+     * 
+     * <p>Populated lists restrict search to the union of the listed datasource instances and URLs.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("glean_search_config")
+    private Optional<? extends PlatformAgentGleanSearchConfig> gleanSearchConfig;
+
+    /**
+     * Agentic model the agent runs on and its reasoning effort.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("model")
+    private Optional<? extends PlatformAgentLlmModel> model;
+
+    /**
+     * Service credentials the agent uses to call tools.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("service_credentials")
+    private Optional<? extends List<PlatformAgentServiceCredential>> serviceCredentials;
+
+    /**
+     * ID of the agent.
+     */
+    @JsonProperty("agent_id")
+    private String agentId;
 
     /**
      * Agent metadata.
@@ -49,31 +109,220 @@ public class PlatformAgent {
     @JsonProperty("capabilities")
     private PlatformAgentCapabilities capabilities;
 
+    /**
+     * Whether the agent acts with its own identity instead of the invoking user's. Cannot be changed after
+     * the agent is created.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("use_agent_identity")
+    private Optional<Boolean> useAgentIdentity;
+
+    /**
+     * Messaging channels the agent is deployed to. Requires `use_agent_identity`.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("channels")
+    private Optional<? extends PlatformAgentChannels> channels;
+
+    /**
+     * Subagents the agent dispatches work to. Subagents cannot contain subagents.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("subagents")
+    private Optional<? extends List<PlatformSubagent>> subagents;
+
+    /**
+     * How the agent is invoked. Applies to top-level agents only.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("trigger")
+    private Optional<? extends PlatformAgentTrigger> trigger;
+
+    /**
+     * A lightweight reference to a person, used where a payload merely points at someone.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("created_by")
+    private Optional<? extends PlatformPersonReference> createdBy;
+
+    /**
+     * A lightweight reference to a person, used where a payload merely points at someone.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("updated_by")
+    private Optional<? extends PlatformPersonReference> updatedBy;
+
+    /**
+     * Time the agent was created.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("created_at")
+    private Optional<OffsetDateTime> createdAt;
+
+    /**
+     * Time the agent was last updated.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("updated_at")
+    private Optional<OffsetDateTime> updatedAt;
+
     @JsonCreator
     public PlatformAgent(
-            @JsonProperty("agent_id") String agentId,
             @JsonProperty("name") String name,
             @JsonProperty("description") Optional<String> description,
+            @JsonProperty("instructions") Optional<String> instructions,
+            @JsonProperty("skills") Optional<? extends List<PlatformAgentSkill>> skills,
+            @JsonProperty("dependencies") Optional<? extends List<PlatformAgentDependency>> dependencies,
+            @JsonProperty("tools") Optional<? extends List<PlatformAgentToolset>> tools,
+            @JsonProperty("glean_search_config") Optional<? extends PlatformAgentGleanSearchConfig> gleanSearchConfig,
+            @JsonProperty("model") Optional<? extends PlatformAgentLlmModel> model,
+            @JsonProperty("service_credentials") Optional<? extends List<PlatformAgentServiceCredential>> serviceCredentials,
+            @JsonProperty("agent_id") String agentId,
             @JsonProperty("metadata") Optional<? extends Map<String, Object>> metadata,
-            @JsonProperty("capabilities") PlatformAgentCapabilities capabilities) {
-        Utils.checkNotNull(agentId, "agentId");
+            @JsonProperty("capabilities") PlatformAgentCapabilities capabilities,
+            @JsonProperty("use_agent_identity") Optional<Boolean> useAgentIdentity,
+            @JsonProperty("channels") Optional<? extends PlatformAgentChannels> channels,
+            @JsonProperty("subagents") Optional<? extends List<PlatformSubagent>> subagents,
+            @JsonProperty("trigger") Optional<? extends PlatformAgentTrigger> trigger,
+            @JsonProperty("created_by") Optional<? extends PlatformPersonReference> createdBy,
+            @JsonProperty("updated_by") Optional<? extends PlatformPersonReference> updatedBy,
+            @JsonProperty("created_at") Optional<OffsetDateTime> createdAt,
+            @JsonProperty("updated_at") Optional<OffsetDateTime> updatedAt) {
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(description, "description");
+        Utils.checkNotNull(instructions, "instructions");
+        Utils.checkNotNull(skills, "skills");
+        Utils.checkNotNull(dependencies, "dependencies");
+        Utils.checkNotNull(tools, "tools");
+        Utils.checkNotNull(gleanSearchConfig, "gleanSearchConfig");
+        Utils.checkNotNull(model, "model");
+        Utils.checkNotNull(serviceCredentials, "serviceCredentials");
+        Utils.checkNotNull(agentId, "agentId");
         Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(capabilities, "capabilities");
-        this.agentId = agentId;
+        Utils.checkNotNull(useAgentIdentity, "useAgentIdentity");
+        Utils.checkNotNull(channels, "channels");
+        Utils.checkNotNull(subagents, "subagents");
+        Utils.checkNotNull(trigger, "trigger");
+        Utils.checkNotNull(createdBy, "createdBy");
+        Utils.checkNotNull(updatedBy, "updatedBy");
+        Utils.checkNotNull(createdAt, "createdAt");
+        Utils.checkNotNull(updatedAt, "updatedAt");
         this.name = name;
         this.description = description;
+        this.instructions = instructions;
+        this.skills = skills;
+        this.dependencies = dependencies;
+        this.tools = tools;
+        this.gleanSearchConfig = gleanSearchConfig;
+        this.model = model;
+        this.serviceCredentials = serviceCredentials;
+        this.agentId = agentId;
         this.metadata = metadata;
         this.capabilities = capabilities;
+        this.useAgentIdentity = useAgentIdentity;
+        this.channels = channels;
+        this.subagents = subagents;
+        this.trigger = trigger;
+        this.createdBy = createdBy;
+        this.updatedBy = updatedBy;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
     
     public PlatformAgent(
-            String agentId,
             String name,
+            String agentId,
             PlatformAgentCapabilities capabilities) {
-        this(agentId, name, Optional.empty(),
-            Optional.empty(), capabilities);
+        this(name, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            agentId, Optional.empty(), capabilities,
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
+    }
+
+    /**
+     * Human-readable name.
+     */
+    @JsonIgnore
+    public String name() {
+        return name;
+    }
+
+    /**
+     * Description of the agent's purpose and behavior.
+     */
+    @JsonIgnore
+    public Optional<String> description() {
+        return description;
+    }
+
+    /**
+     * System prompt the agent follows.
+     */
+    @JsonIgnore
+    public Optional<String> instructions() {
+        return instructions;
+    }
+
+    /**
+     * Skills defined inline.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<PlatformAgentSkill>> skills() {
+        return (Optional<List<PlatformAgentSkill>>) skills;
+    }
+
+    /**
+     * Published artifacts referenced by platform ID. Their content is not inlined in `skills` or
+     * `subagents`.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<PlatformAgentDependency>> dependencies() {
+        return (Optional<List<PlatformAgentDependency>>) dependencies;
+    }
+
+    /**
+     * Tool providers and the subset of their tools available to the agent.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<PlatformAgentToolset>> tools() {
+        return (Optional<List<PlatformAgentToolset>>) tools;
+    }
+
+    /**
+     * Glean Search configuration. When omitted, Glean Search is disabled for the agent. An empty object
+     * searches all company knowledge available to the invoking user.
+     * 
+     * <p>Populated lists restrict search to the union of the listed datasource instances and URLs.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<PlatformAgentGleanSearchConfig> gleanSearchConfig() {
+        return (Optional<PlatformAgentGleanSearchConfig>) gleanSearchConfig;
+    }
+
+    /**
+     * Agentic model the agent runs on and its reasoning effort.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<PlatformAgentLlmModel> model() {
+        return (Optional<PlatformAgentLlmModel>) model;
+    }
+
+    /**
+     * Service credentials the agent uses to call tools.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<PlatformAgentServiceCredential>> serviceCredentials() {
+        return (Optional<List<PlatformAgentServiceCredential>>) serviceCredentials;
     }
 
     /**
@@ -82,22 +331,6 @@ public class PlatformAgent {
     @JsonIgnore
     public String agentId() {
         return agentId;
-    }
-
-    /**
-     * Name of the agent.
-     */
-    @JsonIgnore
-    public String name() {
-        return name;
-    }
-
-    /**
-     * Description of the agent.
-     */
-    @JsonIgnore
-    public Optional<String> description() {
-        return description;
     }
 
     /**
@@ -114,22 +347,83 @@ public class PlatformAgent {
         return capabilities;
     }
 
+    /**
+     * Whether the agent acts with its own identity instead of the invoking user's. Cannot be changed after
+     * the agent is created.
+     */
+    @JsonIgnore
+    public Optional<Boolean> useAgentIdentity() {
+        return useAgentIdentity;
+    }
+
+    /**
+     * Messaging channels the agent is deployed to. Requires `use_agent_identity`.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<PlatformAgentChannels> channels() {
+        return (Optional<PlatformAgentChannels>) channels;
+    }
+
+    /**
+     * Subagents the agent dispatches work to. Subagents cannot contain subagents.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<PlatformSubagent>> subagents() {
+        return (Optional<List<PlatformSubagent>>) subagents;
+    }
+
+    /**
+     * How the agent is invoked. Applies to top-level agents only.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<PlatformAgentTrigger> trigger() {
+        return (Optional<PlatformAgentTrigger>) trigger;
+    }
+
+    /**
+     * A lightweight reference to a person, used where a payload merely points at someone.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<PlatformPersonReference> createdBy() {
+        return (Optional<PlatformPersonReference>) createdBy;
+    }
+
+    /**
+     * A lightweight reference to a person, used where a payload merely points at someone.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<PlatformPersonReference> updatedBy() {
+        return (Optional<PlatformPersonReference>) updatedBy;
+    }
+
+    /**
+     * Time the agent was created.
+     */
+    @JsonIgnore
+    public Optional<OffsetDateTime> createdAt() {
+        return createdAt;
+    }
+
+    /**
+     * Time the agent was last updated.
+     */
+    @JsonIgnore
+    public Optional<OffsetDateTime> updatedAt() {
+        return updatedAt;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
 
 
     /**
-     * ID of the agent.
-     */
-    public PlatformAgent withAgentId(String agentId) {
-        Utils.checkNotNull(agentId, "agentId");
-        this.agentId = agentId;
-        return this;
-    }
-
-    /**
-     * Name of the agent.
+     * Human-readable name.
      */
     public PlatformAgent withName(String name) {
         Utils.checkNotNull(name, "name");
@@ -138,7 +432,7 @@ public class PlatformAgent {
     }
 
     /**
-     * Description of the agent.
+     * Description of the agent's purpose and behavior.
      */
     public PlatformAgent withDescription(String description) {
         Utils.checkNotNull(description, "description");
@@ -148,11 +442,161 @@ public class PlatformAgent {
 
 
     /**
-     * Description of the agent.
+     * Description of the agent's purpose and behavior.
      */
     public PlatformAgent withDescription(Optional<String> description) {
         Utils.checkNotNull(description, "description");
         this.description = description;
+        return this;
+    }
+
+    /**
+     * System prompt the agent follows.
+     */
+    public PlatformAgent withInstructions(String instructions) {
+        Utils.checkNotNull(instructions, "instructions");
+        this.instructions = Optional.ofNullable(instructions);
+        return this;
+    }
+
+
+    /**
+     * System prompt the agent follows.
+     */
+    public PlatformAgent withInstructions(Optional<String> instructions) {
+        Utils.checkNotNull(instructions, "instructions");
+        this.instructions = instructions;
+        return this;
+    }
+
+    /**
+     * Skills defined inline.
+     */
+    public PlatformAgent withSkills(List<PlatformAgentSkill> skills) {
+        Utils.checkNotNull(skills, "skills");
+        this.skills = Optional.ofNullable(skills);
+        return this;
+    }
+
+
+    /**
+     * Skills defined inline.
+     */
+    public PlatformAgent withSkills(Optional<? extends List<PlatformAgentSkill>> skills) {
+        Utils.checkNotNull(skills, "skills");
+        this.skills = skills;
+        return this;
+    }
+
+    /**
+     * Published artifacts referenced by platform ID. Their content is not inlined in `skills` or
+     * `subagents`.
+     */
+    public PlatformAgent withDependencies(List<PlatformAgentDependency> dependencies) {
+        Utils.checkNotNull(dependencies, "dependencies");
+        this.dependencies = Optional.ofNullable(dependencies);
+        return this;
+    }
+
+
+    /**
+     * Published artifacts referenced by platform ID. Their content is not inlined in `skills` or
+     * `subagents`.
+     */
+    public PlatformAgent withDependencies(Optional<? extends List<PlatformAgentDependency>> dependencies) {
+        Utils.checkNotNull(dependencies, "dependencies");
+        this.dependencies = dependencies;
+        return this;
+    }
+
+    /**
+     * Tool providers and the subset of their tools available to the agent.
+     */
+    public PlatformAgent withTools(List<PlatformAgentToolset> tools) {
+        Utils.checkNotNull(tools, "tools");
+        this.tools = Optional.ofNullable(tools);
+        return this;
+    }
+
+
+    /**
+     * Tool providers and the subset of their tools available to the agent.
+     */
+    public PlatformAgent withTools(Optional<? extends List<PlatformAgentToolset>> tools) {
+        Utils.checkNotNull(tools, "tools");
+        this.tools = tools;
+        return this;
+    }
+
+    /**
+     * Glean Search configuration. When omitted, Glean Search is disabled for the agent. An empty object
+     * searches all company knowledge available to the invoking user.
+     * 
+     * <p>Populated lists restrict search to the union of the listed datasource instances and URLs.
+     */
+    public PlatformAgent withGleanSearchConfig(PlatformAgentGleanSearchConfig gleanSearchConfig) {
+        Utils.checkNotNull(gleanSearchConfig, "gleanSearchConfig");
+        this.gleanSearchConfig = Optional.ofNullable(gleanSearchConfig);
+        return this;
+    }
+
+
+    /**
+     * Glean Search configuration. When omitted, Glean Search is disabled for the agent. An empty object
+     * searches all company knowledge available to the invoking user.
+     * 
+     * <p>Populated lists restrict search to the union of the listed datasource instances and URLs.
+     */
+    public PlatformAgent withGleanSearchConfig(Optional<? extends PlatformAgentGleanSearchConfig> gleanSearchConfig) {
+        Utils.checkNotNull(gleanSearchConfig, "gleanSearchConfig");
+        this.gleanSearchConfig = gleanSearchConfig;
+        return this;
+    }
+
+    /**
+     * Agentic model the agent runs on and its reasoning effort.
+     */
+    public PlatformAgent withModel(PlatformAgentLlmModel model) {
+        Utils.checkNotNull(model, "model");
+        this.model = Optional.ofNullable(model);
+        return this;
+    }
+
+
+    /**
+     * Agentic model the agent runs on and its reasoning effort.
+     */
+    public PlatformAgent withModel(Optional<? extends PlatformAgentLlmModel> model) {
+        Utils.checkNotNull(model, "model");
+        this.model = model;
+        return this;
+    }
+
+    /**
+     * Service credentials the agent uses to call tools.
+     */
+    public PlatformAgent withServiceCredentials(List<PlatformAgentServiceCredential> serviceCredentials) {
+        Utils.checkNotNull(serviceCredentials, "serviceCredentials");
+        this.serviceCredentials = Optional.ofNullable(serviceCredentials);
+        return this;
+    }
+
+
+    /**
+     * Service credentials the agent uses to call tools.
+     */
+    public PlatformAgent withServiceCredentials(Optional<? extends List<PlatformAgentServiceCredential>> serviceCredentials) {
+        Utils.checkNotNull(serviceCredentials, "serviceCredentials");
+        this.serviceCredentials = serviceCredentials;
+        return this;
+    }
+
+    /**
+     * ID of the agent.
+     */
+    public PlatformAgent withAgentId(String agentId) {
+        Utils.checkNotNull(agentId, "agentId");
+        this.agentId = agentId;
         return this;
     }
 
@@ -181,6 +625,160 @@ public class PlatformAgent {
         return this;
     }
 
+    /**
+     * Whether the agent acts with its own identity instead of the invoking user's. Cannot be changed after
+     * the agent is created.
+     */
+    public PlatformAgent withUseAgentIdentity(boolean useAgentIdentity) {
+        Utils.checkNotNull(useAgentIdentity, "useAgentIdentity");
+        this.useAgentIdentity = Optional.ofNullable(useAgentIdentity);
+        return this;
+    }
+
+
+    /**
+     * Whether the agent acts with its own identity instead of the invoking user's. Cannot be changed after
+     * the agent is created.
+     */
+    public PlatformAgent withUseAgentIdentity(Optional<Boolean> useAgentIdentity) {
+        Utils.checkNotNull(useAgentIdentity, "useAgentIdentity");
+        this.useAgentIdentity = useAgentIdentity;
+        return this;
+    }
+
+    /**
+     * Messaging channels the agent is deployed to. Requires `use_agent_identity`.
+     */
+    public PlatformAgent withChannels(PlatformAgentChannels channels) {
+        Utils.checkNotNull(channels, "channels");
+        this.channels = Optional.ofNullable(channels);
+        return this;
+    }
+
+
+    /**
+     * Messaging channels the agent is deployed to. Requires `use_agent_identity`.
+     */
+    public PlatformAgent withChannels(Optional<? extends PlatformAgentChannels> channels) {
+        Utils.checkNotNull(channels, "channels");
+        this.channels = channels;
+        return this;
+    }
+
+    /**
+     * Subagents the agent dispatches work to. Subagents cannot contain subagents.
+     */
+    public PlatformAgent withSubagents(List<PlatformSubagent> subagents) {
+        Utils.checkNotNull(subagents, "subagents");
+        this.subagents = Optional.ofNullable(subagents);
+        return this;
+    }
+
+
+    /**
+     * Subagents the agent dispatches work to. Subagents cannot contain subagents.
+     */
+    public PlatformAgent withSubagents(Optional<? extends List<PlatformSubagent>> subagents) {
+        Utils.checkNotNull(subagents, "subagents");
+        this.subagents = subagents;
+        return this;
+    }
+
+    /**
+     * How the agent is invoked. Applies to top-level agents only.
+     */
+    public PlatformAgent withTrigger(PlatformAgentTrigger trigger) {
+        Utils.checkNotNull(trigger, "trigger");
+        this.trigger = Optional.ofNullable(trigger);
+        return this;
+    }
+
+
+    /**
+     * How the agent is invoked. Applies to top-level agents only.
+     */
+    public PlatformAgent withTrigger(Optional<? extends PlatformAgentTrigger> trigger) {
+        Utils.checkNotNull(trigger, "trigger");
+        this.trigger = trigger;
+        return this;
+    }
+
+    /**
+     * A lightweight reference to a person, used where a payload merely points at someone.
+     */
+    public PlatformAgent withCreatedBy(PlatformPersonReference createdBy) {
+        Utils.checkNotNull(createdBy, "createdBy");
+        this.createdBy = Optional.ofNullable(createdBy);
+        return this;
+    }
+
+
+    /**
+     * A lightweight reference to a person, used where a payload merely points at someone.
+     */
+    public PlatformAgent withCreatedBy(Optional<? extends PlatformPersonReference> createdBy) {
+        Utils.checkNotNull(createdBy, "createdBy");
+        this.createdBy = createdBy;
+        return this;
+    }
+
+    /**
+     * A lightweight reference to a person, used where a payload merely points at someone.
+     */
+    public PlatformAgent withUpdatedBy(PlatformPersonReference updatedBy) {
+        Utils.checkNotNull(updatedBy, "updatedBy");
+        this.updatedBy = Optional.ofNullable(updatedBy);
+        return this;
+    }
+
+
+    /**
+     * A lightweight reference to a person, used where a payload merely points at someone.
+     */
+    public PlatformAgent withUpdatedBy(Optional<? extends PlatformPersonReference> updatedBy) {
+        Utils.checkNotNull(updatedBy, "updatedBy");
+        this.updatedBy = updatedBy;
+        return this;
+    }
+
+    /**
+     * Time the agent was created.
+     */
+    public PlatformAgent withCreatedAt(OffsetDateTime createdAt) {
+        Utils.checkNotNull(createdAt, "createdAt");
+        this.createdAt = Optional.ofNullable(createdAt);
+        return this;
+    }
+
+
+    /**
+     * Time the agent was created.
+     */
+    public PlatformAgent withCreatedAt(Optional<OffsetDateTime> createdAt) {
+        Utils.checkNotNull(createdAt, "createdAt");
+        this.createdAt = createdAt;
+        return this;
+    }
+
+    /**
+     * Time the agent was last updated.
+     */
+    public PlatformAgent withUpdatedAt(OffsetDateTime updatedAt) {
+        Utils.checkNotNull(updatedAt, "updatedAt");
+        this.updatedAt = Optional.ofNullable(updatedAt);
+        return this;
+    }
+
+
+    /**
+     * Time the agent was last updated.
+     */
+    public PlatformAgent withUpdatedAt(Optional<OffsetDateTime> updatedAt) {
+        Utils.checkNotNull(updatedAt, "updatedAt");
+        this.updatedAt = updatedAt;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -191,42 +789,107 @@ public class PlatformAgent {
         }
         PlatformAgent other = (PlatformAgent) o;
         return 
-            Utils.enhancedDeepEquals(this.agentId, other.agentId) &&
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.instructions, other.instructions) &&
+            Utils.enhancedDeepEquals(this.skills, other.skills) &&
+            Utils.enhancedDeepEquals(this.dependencies, other.dependencies) &&
+            Utils.enhancedDeepEquals(this.tools, other.tools) &&
+            Utils.enhancedDeepEquals(this.gleanSearchConfig, other.gleanSearchConfig) &&
+            Utils.enhancedDeepEquals(this.model, other.model) &&
+            Utils.enhancedDeepEquals(this.serviceCredentials, other.serviceCredentials) &&
+            Utils.enhancedDeepEquals(this.agentId, other.agentId) &&
             Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
-            Utils.enhancedDeepEquals(this.capabilities, other.capabilities);
+            Utils.enhancedDeepEquals(this.capabilities, other.capabilities) &&
+            Utils.enhancedDeepEquals(this.useAgentIdentity, other.useAgentIdentity) &&
+            Utils.enhancedDeepEquals(this.channels, other.channels) &&
+            Utils.enhancedDeepEquals(this.subagents, other.subagents) &&
+            Utils.enhancedDeepEquals(this.trigger, other.trigger) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            agentId, name, description,
-            metadata, capabilities);
+            name, description, instructions,
+            skills, dependencies, tools,
+            gleanSearchConfig, model, serviceCredentials,
+            agentId, metadata, capabilities,
+            useAgentIdentity, channels, subagents,
+            trigger, createdBy, updatedBy,
+            createdAt, updatedAt);
     }
     
     @Override
     public String toString() {
         return Utils.toString(PlatformAgent.class,
-                "agentId", agentId,
                 "name", name,
                 "description", description,
+                "instructions", instructions,
+                "skills", skills,
+                "dependencies", dependencies,
+                "tools", tools,
+                "gleanSearchConfig", gleanSearchConfig,
+                "model", model,
+                "serviceCredentials", serviceCredentials,
+                "agentId", agentId,
                 "metadata", metadata,
-                "capabilities", capabilities);
+                "capabilities", capabilities,
+                "useAgentIdentity", useAgentIdentity,
+                "channels", channels,
+                "subagents", subagents,
+                "trigger", trigger,
+                "createdBy", createdBy,
+                "updatedBy", updatedBy,
+                "createdAt", createdAt,
+                "updatedAt", updatedAt);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String agentId;
-
         private String name;
 
         private Optional<String> description = Optional.empty();
 
+        private Optional<String> instructions = Optional.empty();
+
+        private Optional<? extends List<PlatformAgentSkill>> skills = Optional.empty();
+
+        private Optional<? extends List<PlatformAgentDependency>> dependencies = Optional.empty();
+
+        private Optional<? extends List<PlatformAgentToolset>> tools = Optional.empty();
+
+        private Optional<? extends PlatformAgentGleanSearchConfig> gleanSearchConfig = Optional.empty();
+
+        private Optional<? extends PlatformAgentLlmModel> model = Optional.empty();
+
+        private Optional<? extends List<PlatformAgentServiceCredential>> serviceCredentials = Optional.empty();
+
+        private String agentId;
+
         private Optional<? extends Map<String, Object>> metadata = Optional.empty();
 
         private PlatformAgentCapabilities capabilities;
+
+        private Optional<Boolean> useAgentIdentity = Optional.empty();
+
+        private Optional<? extends PlatformAgentChannels> channels = Optional.empty();
+
+        private Optional<? extends List<PlatformSubagent>> subagents = Optional.empty();
+
+        private Optional<? extends PlatformAgentTrigger> trigger = Optional.empty();
+
+        private Optional<? extends PlatformPersonReference> createdBy = Optional.empty();
+
+        private Optional<? extends PlatformPersonReference> updatedBy = Optional.empty();
+
+        private Optional<OffsetDateTime> createdAt = Optional.empty();
+
+        private Optional<OffsetDateTime> updatedAt = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -234,17 +897,7 @@ public class PlatformAgent {
 
 
         /**
-         * ID of the agent.
-         */
-        public Builder agentId(String agentId) {
-            Utils.checkNotNull(agentId, "agentId");
-            this.agentId = agentId;
-            return this;
-        }
-
-
-        /**
-         * Name of the agent.
+         * Human-readable name.
          */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
@@ -254,7 +907,7 @@ public class PlatformAgent {
 
 
         /**
-         * Description of the agent.
+         * Description of the agent's purpose and behavior.
          */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
@@ -263,11 +916,162 @@ public class PlatformAgent {
         }
 
         /**
-         * Description of the agent.
+         * Description of the agent's purpose and behavior.
          */
         public Builder description(Optional<String> description) {
             Utils.checkNotNull(description, "description");
             this.description = description;
+            return this;
+        }
+
+
+        /**
+         * System prompt the agent follows.
+         */
+        public Builder instructions(String instructions) {
+            Utils.checkNotNull(instructions, "instructions");
+            this.instructions = Optional.ofNullable(instructions);
+            return this;
+        }
+
+        /**
+         * System prompt the agent follows.
+         */
+        public Builder instructions(Optional<String> instructions) {
+            Utils.checkNotNull(instructions, "instructions");
+            this.instructions = instructions;
+            return this;
+        }
+
+
+        /**
+         * Skills defined inline.
+         */
+        public Builder skills(List<PlatformAgentSkill> skills) {
+            Utils.checkNotNull(skills, "skills");
+            this.skills = Optional.ofNullable(skills);
+            return this;
+        }
+
+        /**
+         * Skills defined inline.
+         */
+        public Builder skills(Optional<? extends List<PlatformAgentSkill>> skills) {
+            Utils.checkNotNull(skills, "skills");
+            this.skills = skills;
+            return this;
+        }
+
+
+        /**
+         * Published artifacts referenced by platform ID. Their content is not inlined in `skills` or
+         * `subagents`.
+         */
+        public Builder dependencies(List<PlatformAgentDependency> dependencies) {
+            Utils.checkNotNull(dependencies, "dependencies");
+            this.dependencies = Optional.ofNullable(dependencies);
+            return this;
+        }
+
+        /**
+         * Published artifacts referenced by platform ID. Their content is not inlined in `skills` or
+         * `subagents`.
+         */
+        public Builder dependencies(Optional<? extends List<PlatformAgentDependency>> dependencies) {
+            Utils.checkNotNull(dependencies, "dependencies");
+            this.dependencies = dependencies;
+            return this;
+        }
+
+
+        /**
+         * Tool providers and the subset of their tools available to the agent.
+         */
+        public Builder tools(List<PlatformAgentToolset> tools) {
+            Utils.checkNotNull(tools, "tools");
+            this.tools = Optional.ofNullable(tools);
+            return this;
+        }
+
+        /**
+         * Tool providers and the subset of their tools available to the agent.
+         */
+        public Builder tools(Optional<? extends List<PlatformAgentToolset>> tools) {
+            Utils.checkNotNull(tools, "tools");
+            this.tools = tools;
+            return this;
+        }
+
+
+        /**
+         * Glean Search configuration. When omitted, Glean Search is disabled for the agent. An empty object
+         * searches all company knowledge available to the invoking user.
+         * 
+         * <p>Populated lists restrict search to the union of the listed datasource instances and URLs.
+         */
+        public Builder gleanSearchConfig(PlatformAgentGleanSearchConfig gleanSearchConfig) {
+            Utils.checkNotNull(gleanSearchConfig, "gleanSearchConfig");
+            this.gleanSearchConfig = Optional.ofNullable(gleanSearchConfig);
+            return this;
+        }
+
+        /**
+         * Glean Search configuration. When omitted, Glean Search is disabled for the agent. An empty object
+         * searches all company knowledge available to the invoking user.
+         * 
+         * <p>Populated lists restrict search to the union of the listed datasource instances and URLs.
+         */
+        public Builder gleanSearchConfig(Optional<? extends PlatformAgentGleanSearchConfig> gleanSearchConfig) {
+            Utils.checkNotNull(gleanSearchConfig, "gleanSearchConfig");
+            this.gleanSearchConfig = gleanSearchConfig;
+            return this;
+        }
+
+
+        /**
+         * Agentic model the agent runs on and its reasoning effort.
+         */
+        public Builder model(PlatformAgentLlmModel model) {
+            Utils.checkNotNull(model, "model");
+            this.model = Optional.ofNullable(model);
+            return this;
+        }
+
+        /**
+         * Agentic model the agent runs on and its reasoning effort.
+         */
+        public Builder model(Optional<? extends PlatformAgentLlmModel> model) {
+            Utils.checkNotNull(model, "model");
+            this.model = model;
+            return this;
+        }
+
+
+        /**
+         * Service credentials the agent uses to call tools.
+         */
+        public Builder serviceCredentials(List<PlatformAgentServiceCredential> serviceCredentials) {
+            Utils.checkNotNull(serviceCredentials, "serviceCredentials");
+            this.serviceCredentials = Optional.ofNullable(serviceCredentials);
+            return this;
+        }
+
+        /**
+         * Service credentials the agent uses to call tools.
+         */
+        public Builder serviceCredentials(Optional<? extends List<PlatformAgentServiceCredential>> serviceCredentials) {
+            Utils.checkNotNull(serviceCredentials, "serviceCredentials");
+            this.serviceCredentials = serviceCredentials;
+            return this;
+        }
+
+
+        /**
+         * ID of the agent.
+         */
+        public Builder agentId(String agentId) {
+            Utils.checkNotNull(agentId, "agentId");
+            this.agentId = agentId;
             return this;
         }
 
@@ -297,11 +1101,170 @@ public class PlatformAgent {
             return this;
         }
 
+
+        /**
+         * Whether the agent acts with its own identity instead of the invoking user's. Cannot be changed after
+         * the agent is created.
+         */
+        public Builder useAgentIdentity(boolean useAgentIdentity) {
+            Utils.checkNotNull(useAgentIdentity, "useAgentIdentity");
+            this.useAgentIdentity = Optional.ofNullable(useAgentIdentity);
+            return this;
+        }
+
+        /**
+         * Whether the agent acts with its own identity instead of the invoking user's. Cannot be changed after
+         * the agent is created.
+         */
+        public Builder useAgentIdentity(Optional<Boolean> useAgentIdentity) {
+            Utils.checkNotNull(useAgentIdentity, "useAgentIdentity");
+            this.useAgentIdentity = useAgentIdentity;
+            return this;
+        }
+
+
+        /**
+         * Messaging channels the agent is deployed to. Requires `use_agent_identity`.
+         */
+        public Builder channels(PlatformAgentChannels channels) {
+            Utils.checkNotNull(channels, "channels");
+            this.channels = Optional.ofNullable(channels);
+            return this;
+        }
+
+        /**
+         * Messaging channels the agent is deployed to. Requires `use_agent_identity`.
+         */
+        public Builder channels(Optional<? extends PlatformAgentChannels> channels) {
+            Utils.checkNotNull(channels, "channels");
+            this.channels = channels;
+            return this;
+        }
+
+
+        /**
+         * Subagents the agent dispatches work to. Subagents cannot contain subagents.
+         */
+        public Builder subagents(List<PlatformSubagent> subagents) {
+            Utils.checkNotNull(subagents, "subagents");
+            this.subagents = Optional.ofNullable(subagents);
+            return this;
+        }
+
+        /**
+         * Subagents the agent dispatches work to. Subagents cannot contain subagents.
+         */
+        public Builder subagents(Optional<? extends List<PlatformSubagent>> subagents) {
+            Utils.checkNotNull(subagents, "subagents");
+            this.subagents = subagents;
+            return this;
+        }
+
+
+        /**
+         * How the agent is invoked. Applies to top-level agents only.
+         */
+        public Builder trigger(PlatformAgentTrigger trigger) {
+            Utils.checkNotNull(trigger, "trigger");
+            this.trigger = Optional.ofNullable(trigger);
+            return this;
+        }
+
+        /**
+         * How the agent is invoked. Applies to top-level agents only.
+         */
+        public Builder trigger(Optional<? extends PlatformAgentTrigger> trigger) {
+            Utils.checkNotNull(trigger, "trigger");
+            this.trigger = trigger;
+            return this;
+        }
+
+
+        /**
+         * A lightweight reference to a person, used where a payload merely points at someone.
+         */
+        public Builder createdBy(PlatformPersonReference createdBy) {
+            Utils.checkNotNull(createdBy, "createdBy");
+            this.createdBy = Optional.ofNullable(createdBy);
+            return this;
+        }
+
+        /**
+         * A lightweight reference to a person, used where a payload merely points at someone.
+         */
+        public Builder createdBy(Optional<? extends PlatformPersonReference> createdBy) {
+            Utils.checkNotNull(createdBy, "createdBy");
+            this.createdBy = createdBy;
+            return this;
+        }
+
+
+        /**
+         * A lightweight reference to a person, used where a payload merely points at someone.
+         */
+        public Builder updatedBy(PlatformPersonReference updatedBy) {
+            Utils.checkNotNull(updatedBy, "updatedBy");
+            this.updatedBy = Optional.ofNullable(updatedBy);
+            return this;
+        }
+
+        /**
+         * A lightweight reference to a person, used where a payload merely points at someone.
+         */
+        public Builder updatedBy(Optional<? extends PlatformPersonReference> updatedBy) {
+            Utils.checkNotNull(updatedBy, "updatedBy");
+            this.updatedBy = updatedBy;
+            return this;
+        }
+
+
+        /**
+         * Time the agent was created.
+         */
+        public Builder createdAt(OffsetDateTime createdAt) {
+            Utils.checkNotNull(createdAt, "createdAt");
+            this.createdAt = Optional.ofNullable(createdAt);
+            return this;
+        }
+
+        /**
+         * Time the agent was created.
+         */
+        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
+            Utils.checkNotNull(createdAt, "createdAt");
+            this.createdAt = createdAt;
+            return this;
+        }
+
+
+        /**
+         * Time the agent was last updated.
+         */
+        public Builder updatedAt(OffsetDateTime updatedAt) {
+            Utils.checkNotNull(updatedAt, "updatedAt");
+            this.updatedAt = Optional.ofNullable(updatedAt);
+            return this;
+        }
+
+        /**
+         * Time the agent was last updated.
+         */
+        public Builder updatedAt(Optional<OffsetDateTime> updatedAt) {
+            Utils.checkNotNull(updatedAt, "updatedAt");
+            this.updatedAt = updatedAt;
+            return this;
+        }
+
         public PlatformAgent build() {
 
             return new PlatformAgent(
-                agentId, name, description,
-                metadata, capabilities);
+                name, description, instructions,
+                skills, dependencies, tools,
+                gleanSearchConfig, model, serviceCredentials,
+                agentId, metadata, capabilities,
+                useAgentIdentity, channels, subagents,
+                trigger, createdBy, updatedBy,
+                createdAt, updatedAt);
         }
 
     }

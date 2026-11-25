@@ -10,14 +10,18 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.RotateDatasourceCredentialsRequest;
 import com.glean.api_client.glean_api_client.operations.RotateDatasourceCredentials;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class RotateDatasourceCredentialsRequestBuilder {
 
     private String datasourceInstanceId;
     private RotateDatasourceCredentialsRequest rotateDatasourceCredentialsRequest;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -36,6 +40,18 @@ public class RotateDatasourceCredentialsRequestBuilder {
         this.rotateDatasourceCredentialsRequest = rotateDatasourceCredentialsRequest;
         return this;
     }
+                
+    public RotateDatasourceCredentialsRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public RotateDatasourceCredentialsRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private com.glean.api_client.glean_api_client.models.operations.RotateDatasourceCredentialsRequest buildRequest() {
@@ -47,9 +63,12 @@ public class RotateDatasourceCredentialsRequestBuilder {
     }
 
     public CompletableFuture<RotateDatasourceCredentialsResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<com.glean.api_client.glean_api_client.models.operations.RotateDatasourceCredentialsRequest, RotateDatasourceCredentialsResponse> operation
-              = new RotateDatasourceCredentials.Async(sdkConfiguration, _headers);
+              = new RotateDatasourceCredentials.Async(sdkConfiguration, options, _headers);
         com.glean.api_client.glean_api_client.models.operations.RotateDatasourceCredentialsRequest request = buildRequest();
 
         return operation.doRequest(request)

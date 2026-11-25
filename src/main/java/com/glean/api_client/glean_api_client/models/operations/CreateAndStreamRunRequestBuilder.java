@@ -10,11 +10,15 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.AgentRunCreate;
 import com.glean.api_client.glean_api_client.operations.CreateAndStreamRun;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.time.Duration;
+import java.util.Optional;
 
 public class CreateAndStreamRunRequestBuilder {
 
     private AgentRunCreate request;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -27,11 +31,26 @@ public class CreateAndStreamRunRequestBuilder {
         this.request = request;
         return this;
     }
+                
+    public CreateAndStreamRunRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public CreateAndStreamRunRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
     public CreateAndStreamRunResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<AgentRunCreate, CreateAndStreamRunResponse> operation
-              = new CreateAndStreamRun.Sync(sdkConfiguration, _headers);
+              = new CreateAndStreamRun.Sync(sdkConfiguration, options, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

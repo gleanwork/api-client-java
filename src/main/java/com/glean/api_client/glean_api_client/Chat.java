@@ -7,19 +7,30 @@ package com.glean.api_client.glean_api_client;
 import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
 
 import com.glean.api_client.glean_api_client.models.components.PlatformChatUpdateRequest;
+import com.glean.api_client.glean_api_client.models.operations.PlatformChatCancelRequest;
+import com.glean.api_client.glean_api_client.models.operations.PlatformChatCancelRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.PlatformChatCancelResponse;
 import com.glean.api_client.glean_api_client.models.operations.PlatformChatCreateRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformChatCreateRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.PlatformChatCreateResponse;
 import com.glean.api_client.glean_api_client.models.operations.PlatformChatCreateStreamRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformChatCreateStreamRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.PlatformChatCreateStreamResponse;
+import com.glean.api_client.glean_api_client.models.operations.PlatformChatResumeRequest;
+import com.glean.api_client.glean_api_client.models.operations.PlatformChatResumeRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.PlatformChatResumeResponse;
 import com.glean.api_client.glean_api_client.models.operations.PlatformChatUpdateRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.PlatformChatUpdateResponse;
+import com.glean.api_client.glean_api_client.operations.PlatformChatCancel;
 import com.glean.api_client.glean_api_client.operations.PlatformChatCreate;
 import com.glean.api_client.glean_api_client.operations.PlatformChatCreateStream;
+import com.glean.api_client.glean_api_client.operations.PlatformChatResume;
 import com.glean.api_client.glean_api_client.operations.PlatformChatUpdate;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
+import java.lang.Long;
 import java.lang.String;
+import java.util.Optional;
 
 
 public class Chat {
@@ -68,8 +79,25 @@ public class Chat {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformChatCreateResponse create(PlatformChatCreateRequest request) {
+        return create(request, Optional.empty());
+    }
+
+    /**
+     * Create a chat response
+     * 
+     * <p>Run an assistant turn. The default response is JSON. HTTP clients request server-sent events by
+     * setting `stream` to true in the JSON body.
+     * 
+     * <p>An `Accept: text/event-stream` header does not replace `stream`.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformChatCreateResponse create(PlatformChatCreateRequest request, Optional<Options> options) {
         RequestOperation<PlatformChatCreateRequest, PlatformChatCreateResponse> operation
-              = new PlatformChatCreate.Sync(sdkConfiguration, _headers);
+              = new PlatformChatCreate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -95,6 +123,23 @@ public class Chat {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformChatUpdateResponse update(String chatId, PlatformChatUpdateRequest platformChatUpdateRequest) {
+        return update(chatId, platformChatUpdateRequest, Optional.empty());
+    }
+
+    /**
+     * Update a chat
+     * 
+     * <p>Update the name of a chat. Only the chat owner can update it.
+     * 
+     * @param chatId The ID of the chat to update.
+     * @param platformChatUpdateRequest The fields to update on a chat.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformChatUpdateResponse update(
+            String chatId, PlatformChatUpdateRequest platformChatUpdateRequest,
+            Optional<Options> options) {
         com.glean.api_client.glean_api_client.models.operations.PlatformChatUpdateRequest request =
             com.glean.api_client.glean_api_client.models.operations.PlatformChatUpdateRequest
                 .builder()
@@ -102,7 +147,148 @@ public class Chat {
                 .platformChatUpdateRequest(platformChatUpdateRequest)
                 .build();
         RequestOperation<com.glean.api_client.glean_api_client.models.operations.PlatformChatUpdateRequest, PlatformChatUpdateResponse> operation
-              = new PlatformChatUpdate.Sync(sdkConfiguration, _headers);
+              = new PlatformChatUpdate.Sync(sdkConfiguration, options, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Resume a chat stream
+     * 
+     * <p>Reconnect to a chat that is still running, or replay one that just finished. The response is
+     * server-sent events in the same format as the streaming response of the create endpoint. Pass the
+     * `sequence_id` of the last event you received as `last_seen_sequence_id`, or omit it to start from
+     * the beginning of the stream.
+     * 
+     * <p>The final event is `RESPONSE_COMPLETED` or `RESPONSE_FAILED`, and its text covers only the events
+     * sent on this connection. Streams are kept for a limited time, so a chat that finished long ago
+     * returns 404.
+     * 
+     * @return The call builder
+     */
+    public PlatformChatResumeRequestBuilder resume() {
+        return new PlatformChatResumeRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Resume a chat stream
+     * 
+     * <p>Reconnect to a chat that is still running, or replay one that just finished. The response is
+     * server-sent events in the same format as the streaming response of the create endpoint. Pass the
+     * `sequence_id` of the last event you received as `last_seen_sequence_id`, or omit it to start from
+     * the beginning of the stream.
+     * 
+     * <p>The final event is `RESPONSE_COMPLETED` or `RESPONSE_FAILED`, and its text covers only the events
+     * sent on this connection. Streams are kept for a limited time, so a chat that finished long ago
+     * returns 404.
+     * 
+     * @param chatId The ID of the chat to resume.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformChatResumeResponse resume(String chatId) {
+        return resume(chatId, Optional.empty(), Optional.empty());
+    }
+
+    /**
+     * Resume a chat stream
+     * 
+     * <p>Reconnect to a chat that is still running, or replay one that just finished. The response is
+     * server-sent events in the same format as the streaming response of the create endpoint. Pass the
+     * `sequence_id` of the last event you received as `last_seen_sequence_id`, or omit it to start from
+     * the beginning of the stream.
+     * 
+     * <p>The final event is `RESPONSE_COMPLETED` or `RESPONSE_FAILED`, and its text covers only the events
+     * sent on this connection. Streams are kept for a limited time, so a chat that finished long ago
+     * returns 404.
+     * 
+     * @param chatId The ID of the chat to resume.
+     * @param lastSeenSequenceId The `sequence_id` of the last event already received. The stream continues with the next event. Defaults to 0, which starts from the beginning.
+     *         
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformChatResumeResponse resume(String chatId, Optional<Long> lastSeenSequenceId) {
+        return resume(chatId, lastSeenSequenceId, Optional.empty());
+    }
+
+    /**
+     * Resume a chat stream
+     * 
+     * <p>Reconnect to a chat that is still running, or replay one that just finished. The response is
+     * server-sent events in the same format as the streaming response of the create endpoint. Pass the
+     * `sequence_id` of the last event you received as `last_seen_sequence_id`, or omit it to start from
+     * the beginning of the stream.
+     * 
+     * <p>The final event is `RESPONSE_COMPLETED` or `RESPONSE_FAILED`, and its text covers only the events
+     * sent on this connection. Streams are kept for a limited time, so a chat that finished long ago
+     * returns 404.
+     * 
+     * @param chatId The ID of the chat to resume.
+     * @param lastSeenSequenceId The `sequence_id` of the last event already received. The stream continues with the next event. Defaults to 0, which starts from the beginning.
+     *         
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformChatResumeResponse resume(
+            String chatId, Optional<Long> lastSeenSequenceId,
+            Optional<Options> options) {
+        PlatformChatResumeRequest request =
+            PlatformChatResumeRequest
+                .builder()
+                .chatId(chatId)
+                .lastSeenSequenceId(lastSeenSequenceId)
+                .build();
+        RequestOperation<PlatformChatResumeRequest, PlatformChatResumeResponse> operation
+              = new PlatformChatResume.Sync(sdkConfiguration, options, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Cancel a chat
+     * 
+     * <p>Stop a running chat. Only users who can edit the chat can cancel it. Cancelling a chat that is not
+     * running succeeds without effect.
+     * 
+     * @return The call builder
+     */
+    public PlatformChatCancelRequestBuilder cancel() {
+        return new PlatformChatCancelRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Cancel a chat
+     * 
+     * <p>Stop a running chat. Only users who can edit the chat can cancel it. Cancelling a chat that is not
+     * running succeeds without effect.
+     * 
+     * @param chatId The ID of the chat to cancel.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformChatCancelResponse cancel(String chatId) {
+        return cancel(chatId, Optional.empty());
+    }
+
+    /**
+     * Cancel a chat
+     * 
+     * <p>Stop a running chat. Only users who can edit the chat can cancel it. Cancelling a chat that is not
+     * running succeeds without effect.
+     * 
+     * @param chatId The ID of the chat to cancel.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformChatCancelResponse cancel(String chatId, Optional<Options> options) {
+        PlatformChatCancelRequest request =
+            PlatformChatCancelRequest
+                .builder()
+                .chatId(chatId)
+                .build();
+        RequestOperation<PlatformChatCancelRequest, PlatformChatCancelResponse> operation
+              = new PlatformChatCancel.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -133,8 +319,25 @@ public class Chat {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformChatCreateStreamResponse createStream(PlatformChatCreateStreamRequest request) {
+        return createStream(request, Optional.empty());
+    }
+
+    /**
+     * Create a streaming chat response
+     * 
+     * <p>SDK-only logical operation. HTTP clients must call the base path; the URL fragment is not sent. Run
+     * an assistant turn as server-sent events.
+     * 
+     * <p>HTTP clients request this mode by setting `stream` to true in the JSON body.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformChatCreateStreamResponse createStream(PlatformChatCreateStreamRequest request, Optional<Options> options) {
         RequestOperation<PlatformChatCreateStreamRequest, PlatformChatCreateStreamResponse> operation
-              = new PlatformChatCreateStream.Sync(sdkConfiguration, _headers);
+              = new PlatformChatCreateStream.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

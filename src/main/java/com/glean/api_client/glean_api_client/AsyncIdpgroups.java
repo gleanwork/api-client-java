@@ -16,6 +16,7 @@ import com.glean.api_client.glean_api_client.models.operations.async.PlatformAdm
 import com.glean.api_client.glean_api_client.operations.PlatformAdminIdpGroupsGet;
 import com.glean.api_client.glean_api_client.operations.PlatformAdminIdpGroupsList;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import java.lang.Long;
 import java.lang.String;
 import java.util.List;
@@ -90,7 +91,9 @@ public class AsyncIdpgroups {
      * @return {@code CompletableFuture<PlatformAdminIdpGroupsListResponse>} - The async response
      */
     public CompletableFuture<PlatformAdminIdpGroupsListResponse> listDirect() {
-        return list(Optional.empty(), Optional.empty(), Optional.empty());
+        return list(
+                Optional.empty(), Optional.empty(), Optional.empty(),
+                Optional.empty());
     }
 
     /**
@@ -121,6 +124,40 @@ public class AsyncIdpgroups {
     public CompletableFuture<PlatformAdminIdpGroupsListResponse> list(
             Optional<Long> pageSize, Optional<String> cursor,
             Optional<? extends List<PlatformIdpGroupFilter>> filters) {
+        return list(
+                pageSize, cursor, filters,
+                Optional.empty());
+    }
+
+    /**
+     * List IdP groups
+     * 
+     * <p>List the identity provider (IdP) groups that Glean loads from the directory, ordered by display_name
+     * and then by idp_group_id. Use idp_group_id to name a group in other Platform APIs, such as the usage
+     * limit evaluation and limit increase request APIs. Usage limits apply only to IdP groups from the
+     * datasource instance in usage_settings.user_grouping.idp_group_provider_instance of the get usage
+     * settings response, and this API always lists that instance's groups.
+     * 
+     * <p>To list only those groups, pass that value in a provider_instance filter of the filters parameter,
+     * for example `filters=[{"field":"provider_instance","operator":"EQUALS","values":["okta"]}]`,
+     * URL-encoded as
+     * `filters=%5B%7B%22field%22%3A%22provider_instance%22%2C%22operator%22%3A%22EQUALS%22%2C%22values%22%3A%5B%22okta%22%5D%7D%5D`.
+     * Send a provider filter to list only one provider's groups, and a name filter to list only the groups
+     * whose display_name contains a value. Internal O365 ownership groups and SharePoint groups are left
+     * out.
+     * 
+     * <p>The caller must be able to read the workspace configuration or the workspace billing.
+     * 
+     * @param pageSize Maximum number of IdP groups to return. Defaults to 50. Maximum is 100.
+     * @param cursor Opaque pagination cursor from a previous response. Send the same filters that the previous request used.
+     *         
+     * @param filters 
+     * @param options additional options
+     * @return {@code CompletableFuture<PlatformAdminIdpGroupsListResponse>} - The async response
+     */
+    public CompletableFuture<PlatformAdminIdpGroupsListResponse> list(
+            Optional<Long> pageSize, Optional<String> cursor,
+            Optional<? extends List<PlatformIdpGroupFilter>> filters, Optional<Options> options) {
         PlatformAdminIdpGroupsListRequest request =
             PlatformAdminIdpGroupsListRequest
                 .builder()
@@ -129,7 +166,7 @@ public class AsyncIdpgroups {
                 .filters(filters)
                 .build();
         AsyncRequestOperation<PlatformAdminIdpGroupsListRequest, PlatformAdminIdpGroupsListResponse> operation
-              = new PlatformAdminIdpGroupsList.Async(sdkConfiguration, _headers);
+              = new PlatformAdminIdpGroupsList.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -164,13 +201,31 @@ public class AsyncIdpgroups {
      * @return {@code CompletableFuture<PlatformAdminIdpGroupsGetResponse>} - The async response
      */
     public CompletableFuture<PlatformAdminIdpGroupsGetResponse> get(String idpGroupId) {
+        return get(idpGroupId, Optional.empty());
+    }
+
+    /**
+     * Get an IdP group
+     * 
+     * <p>Get one identity provider (IdP) group by its idp_group_id. An idp_group_id that is not valid, or
+     * that names no group that the list returns, returns 404 resource_not_found. A group that was removed
+     * from the identity provider returns 404 after Glean reloads the directory.
+     * 
+     * <p>The caller must be able to read the workspace configuration or the workspace billing.
+     * 
+     * @param idpGroupId The idp_group_id from a list IdP groups response or a usage API response. IDs are opaque. Do not parse or build them.
+     *         
+     * @param options additional options
+     * @return {@code CompletableFuture<PlatformAdminIdpGroupsGetResponse>} - The async response
+     */
+    public CompletableFuture<PlatformAdminIdpGroupsGetResponse> get(String idpGroupId, Optional<Options> options) {
         PlatformAdminIdpGroupsGetRequest request =
             PlatformAdminIdpGroupsGetRequest
                 .builder()
                 .idpGroupId(idpGroupId)
                 .build();
         AsyncRequestOperation<PlatformAdminIdpGroupsGetRequest, PlatformAdminIdpGroupsGetResponse> operation
-              = new PlatformAdminIdpGroupsGet.Async(sdkConfiguration, _headers);
+              = new PlatformAdminIdpGroupsGet.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

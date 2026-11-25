@@ -13,6 +13,8 @@ import com.glean.api_client.glean_api_client.models.operations.CreateauthtokenRe
 import com.glean.api_client.glean_api_client.operations.Checkdatasourceauth;
 import com.glean.api_client.glean_api_client.operations.Createauthtoken;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
+import java.util.Optional;
 
 
 public class ClientAuthentication {
@@ -66,8 +68,27 @@ public class ClientAuthentication {
      * @throws RuntimeException subclass if the API call fails
      */
     public CheckdatasourceauthResponse checkDatasourceAuthDirect() {
+        return checkDatasourceAuth(Optional.empty());
+    }
+
+    /**
+     * Check datasource authorization
+     * 
+     * <p>Returns all datasource instances that require per-user OAuth authorization
+     * for the authenticated user, along with a transient auth token that can be
+     * appended to auth URLs to complete OAuth flows.
+     * 
+     * <p>Clients construct the full OAuth URL by combining the backend base URL,
+     * the `authUrlRelativePath` from each instance, and the transient auth token:
+     * `<backend>/&lt;authUrlRelativePath&gt;?transient_auth_token=&lt;token&gt;`.
+     * 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CheckdatasourceauthResponse checkDatasourceAuth(Optional<Options> options) {
         RequestlessOperation<CheckdatasourceauthResponse> operation
-            = new Checkdatasourceauth.Sync(sdkConfiguration, _headers);
+            = new Checkdatasourceauth.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest());
     }
 
@@ -99,8 +120,25 @@ public class ClientAuthentication {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreateauthtokenResponse createTokenDirect() {
+        return createToken(Optional.empty());
+    }
+
+    /**
+     * Create authentication token
+     * 
+     * <p>Creates an authentication token for the authenticated user. These are
+     * specifically intended to be used with the [Web SDK](https://developers.glean.com/web).
+     * 
+     * <p>Note: The tokens generated from this endpoint are **not** valid tokens
+     * for use with the Client API (e.g. `/rest/api/v1/*`).
+     * 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreateauthtokenResponse createToken(Optional<Options> options) {
         RequestlessOperation<CreateauthtokenResponse> operation
-            = new Createauthtoken.Sync(sdkConfiguration, _headers);
+            = new Createauthtoken.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest());
     }
 

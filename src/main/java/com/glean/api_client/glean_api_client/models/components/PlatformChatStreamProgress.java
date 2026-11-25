@@ -6,10 +6,14 @@ package com.glean.api_client.glean_api_client.models.components;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Optional;
 
 
 public class PlatformChatStreamProgress {
@@ -31,17 +35,46 @@ public class PlatformChatStreamProgress {
     @JsonProperty("text")
     private String text;
 
+    /**
+     * The ID of the chat the event belongs to, when the chat is stored.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("conversation_id")
+    private Optional<String> conversationId;
+
+    /**
+     * Position of this event's source message in the chat stream. Pass the last one you received as
+     * `last_seen_sequence_id` when resuming.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("sequence_id")
+    private Optional<Long> sequenceId;
+
     @JsonCreator
     public PlatformChatStreamProgress(
             @JsonProperty("type") PlatformChatStreamProgressType type,
             @JsonProperty("response_id") String responseId,
-            @JsonProperty("text") String text) {
+            @JsonProperty("text") String text,
+            @JsonProperty("conversation_id") Optional<String> conversationId,
+            @JsonProperty("sequence_id") Optional<Long> sequenceId) {
         Utils.checkNotNull(type, "type");
         Utils.checkNotNull(responseId, "responseId");
         Utils.checkNotNull(text, "text");
+        Utils.checkNotNull(conversationId, "conversationId");
+        Utils.checkNotNull(sequenceId, "sequenceId");
         this.type = type;
         this.responseId = responseId;
         this.text = text;
+        this.conversationId = conversationId;
+        this.sequenceId = sequenceId;
+    }
+    
+    public PlatformChatStreamProgress(
+            PlatformChatStreamProgressType type,
+            String responseId,
+            String text) {
+        this(type, responseId, text,
+            Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -65,6 +98,23 @@ public class PlatformChatStreamProgress {
     @JsonIgnore
     public String text() {
         return text;
+    }
+
+    /**
+     * The ID of the chat the event belongs to, when the chat is stored.
+     */
+    @JsonIgnore
+    public Optional<String> conversationId() {
+        return conversationId;
+    }
+
+    /**
+     * Position of this event's source message in the chat stream. Pass the last one you received as
+     * `last_seen_sequence_id` when resuming.
+     */
+    @JsonIgnore
+    public Optional<Long> sequenceId() {
+        return sequenceId;
     }
 
     public static Builder builder() {
@@ -98,6 +148,46 @@ public class PlatformChatStreamProgress {
         return this;
     }
 
+    /**
+     * The ID of the chat the event belongs to, when the chat is stored.
+     */
+    public PlatformChatStreamProgress withConversationId(String conversationId) {
+        Utils.checkNotNull(conversationId, "conversationId");
+        this.conversationId = Optional.ofNullable(conversationId);
+        return this;
+    }
+
+
+    /**
+     * The ID of the chat the event belongs to, when the chat is stored.
+     */
+    public PlatformChatStreamProgress withConversationId(Optional<String> conversationId) {
+        Utils.checkNotNull(conversationId, "conversationId");
+        this.conversationId = conversationId;
+        return this;
+    }
+
+    /**
+     * Position of this event's source message in the chat stream. Pass the last one you received as
+     * `last_seen_sequence_id` when resuming.
+     */
+    public PlatformChatStreamProgress withSequenceId(long sequenceId) {
+        Utils.checkNotNull(sequenceId, "sequenceId");
+        this.sequenceId = Optional.ofNullable(sequenceId);
+        return this;
+    }
+
+
+    /**
+     * Position of this event's source message in the chat stream. Pass the last one you received as
+     * `last_seen_sequence_id` when resuming.
+     */
+    public PlatformChatStreamProgress withSequenceId(Optional<Long> sequenceId) {
+        Utils.checkNotNull(sequenceId, "sequenceId");
+        this.sequenceId = sequenceId;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -110,13 +200,16 @@ public class PlatformChatStreamProgress {
         return 
             Utils.enhancedDeepEquals(this.type, other.type) &&
             Utils.enhancedDeepEquals(this.responseId, other.responseId) &&
-            Utils.enhancedDeepEquals(this.text, other.text);
+            Utils.enhancedDeepEquals(this.text, other.text) &&
+            Utils.enhancedDeepEquals(this.conversationId, other.conversationId) &&
+            Utils.enhancedDeepEquals(this.sequenceId, other.sequenceId);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type, responseId, text);
+            type, responseId, text,
+            conversationId, sequenceId);
     }
     
     @Override
@@ -124,7 +217,9 @@ public class PlatformChatStreamProgress {
         return Utils.toString(PlatformChatStreamProgress.class,
                 "type", type,
                 "responseId", responseId,
-                "text", text);
+                "text", text,
+                "conversationId", conversationId,
+                "sequenceId", sequenceId);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -135,6 +230,10 @@ public class PlatformChatStreamProgress {
         private String responseId;
 
         private String text;
+
+        private Optional<String> conversationId = Optional.empty();
+
+        private Optional<Long> sequenceId = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -169,10 +268,51 @@ public class PlatformChatStreamProgress {
             return this;
         }
 
+
+        /**
+         * The ID of the chat the event belongs to, when the chat is stored.
+         */
+        public Builder conversationId(String conversationId) {
+            Utils.checkNotNull(conversationId, "conversationId");
+            this.conversationId = Optional.ofNullable(conversationId);
+            return this;
+        }
+
+        /**
+         * The ID of the chat the event belongs to, when the chat is stored.
+         */
+        public Builder conversationId(Optional<String> conversationId) {
+            Utils.checkNotNull(conversationId, "conversationId");
+            this.conversationId = conversationId;
+            return this;
+        }
+
+
+        /**
+         * Position of this event's source message in the chat stream. Pass the last one you received as
+         * `last_seen_sequence_id` when resuming.
+         */
+        public Builder sequenceId(long sequenceId) {
+            Utils.checkNotNull(sequenceId, "sequenceId");
+            this.sequenceId = Optional.ofNullable(sequenceId);
+            return this;
+        }
+
+        /**
+         * Position of this event's source message in the chat stream. Pass the last one you received as
+         * `last_seen_sequence_id` when resuming.
+         */
+        public Builder sequenceId(Optional<Long> sequenceId) {
+            Utils.checkNotNull(sequenceId, "sequenceId");
+            this.sequenceId = sequenceId;
+            return this;
+        }
+
         public PlatformChatStreamProgress build() {
 
             return new PlatformChatStreamProgress(
-                type, responseId, text);
+                type, responseId, text,
+                conversationId, sequenceId);
         }
 
     }

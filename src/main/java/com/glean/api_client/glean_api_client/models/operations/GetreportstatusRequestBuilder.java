@@ -9,12 +9,16 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.operations.Getreportstatus;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 
 public class GetreportstatusRequestBuilder {
 
     private String id;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -27,6 +31,18 @@ public class GetreportstatusRequestBuilder {
         this.id = id;
         return this;
     }
+                
+    public GetreportstatusRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public GetreportstatusRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private GetreportstatusRequest buildRequest() {
@@ -37,9 +53,12 @@ public class GetreportstatusRequestBuilder {
     }
 
     public GetreportstatusResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<GetreportstatusRequest, GetreportstatusResponse> operation
-              = new Getreportstatus.Sync(sdkConfiguration, _headers);
+              = new Getreportstatus.Sync(sdkConfiguration, options, _headers);
         GetreportstatusRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

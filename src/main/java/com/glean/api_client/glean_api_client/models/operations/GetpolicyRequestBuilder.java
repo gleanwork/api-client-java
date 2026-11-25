@@ -9,15 +9,18 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.operations.Getpolicy;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 
 public class GetpolicyRequestBuilder {
 
     private String id;
     private Optional<Long> version = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -42,6 +45,18 @@ public class GetpolicyRequestBuilder {
         this.version = version;
         return this;
     }
+                
+    public GetpolicyRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public GetpolicyRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private GetpolicyRequest buildRequest() {
@@ -53,9 +68,12 @@ public class GetpolicyRequestBuilder {
     }
 
     public GetpolicyResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<GetpolicyRequest, GetpolicyResponse> operation
-              = new Getpolicy.Sync(sdkConfiguration, _headers);
+              = new Getpolicy.Sync(sdkConfiguration, options, _headers);
         GetpolicyRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
