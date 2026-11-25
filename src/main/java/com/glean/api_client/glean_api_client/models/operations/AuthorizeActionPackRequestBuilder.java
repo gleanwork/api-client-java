@@ -10,13 +10,17 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.AuthorizeActionPackRequest;
 import com.glean.api_client.glean_api_client.operations.AuthorizeActionPack;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 
 public class AuthorizeActionPackRequestBuilder {
 
     private String actionPackId;
     private AuthorizeActionPackRequest authorizeActionPackRequest;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -35,6 +39,18 @@ public class AuthorizeActionPackRequestBuilder {
         this.authorizeActionPackRequest = authorizeActionPackRequest;
         return this;
     }
+                
+    public AuthorizeActionPackRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public AuthorizeActionPackRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private com.glean.api_client.glean_api_client.models.operations.AuthorizeActionPackRequest buildRequest() {
@@ -46,9 +62,12 @@ public class AuthorizeActionPackRequestBuilder {
     }
 
     public AuthorizeActionPackResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<com.glean.api_client.glean_api_client.models.operations.AuthorizeActionPackRequest, AuthorizeActionPackResponse> operation
-              = new AuthorizeActionPack.Sync(sdkConfiguration, _headers);
+              = new AuthorizeActionPack.Sync(sdkConfiguration, options, _headers);
         com.glean.api_client.glean_api_client.models.operations.AuthorizeActionPackRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

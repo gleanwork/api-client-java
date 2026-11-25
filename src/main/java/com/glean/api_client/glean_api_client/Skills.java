@@ -69,6 +69,7 @@ import com.glean.api_client.glean_api_client.operations.PlatformSkillsSync;
 import com.glean.api_client.glean_api_client.operations.PlatformSkillsUpdate;
 import com.glean.api_client.glean_api_client.operations.PlatformSkillsValidate;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Optional;
@@ -120,8 +121,25 @@ public class Skills {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformSkillsCreateResponse create(PlatformSkillCreateRequest request) {
+        return create(request, Optional.empty());
+    }
+
+    /**
+     * Create skill
+     * 
+     * <p>Create a skill from an uploaded SKILL.md, .zip, or .skill bundle. If the authenticated user already
+     * has a skill with the same name, the existing skill is superseded with a new version, unless it is
+     * source-managed: a same-name create over a GitHub-imported skill returns 409, and the caller syncs
+     * the existing skill instead. Two concurrent same-name creates can still produce two skills.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformSkillsCreateResponse create(PlatformSkillCreateRequest request, Optional<Options> options) {
         RequestOperation<PlatformSkillCreateRequest, PlatformSkillsCreateResponse> operation
-              = new PlatformSkillsCreate.Sync(sdkConfiguration, _headers);
+              = new PlatformSkillsCreate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -151,7 +169,7 @@ public class Skills {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformSkillsListResponse listDirect() {
-        return list(Optional.empty(), Optional.empty());
+        return list(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -168,6 +186,26 @@ public class Skills {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformSkillsListResponse list(Optional<Long> pageSize, Optional<String> cursor) {
+        return list(pageSize, cursor, Optional.empty());
+    }
+
+    /**
+     * List skills
+     * 
+     * <p>List every custom skill the authenticated caller can access. Built-in skills are excluded: they have
+     * no versions, content download, update, or delete, so their identifiers would fail most skill
+     * operations. Chat-authored skills shared with the caller without a listed grant are omitted: they
+     * stay retrievable by identifier when it is known, but this list does not discover them.
+     * 
+     * @param pageSize Maximum number of skills to return. Defaults to 20. Maximum is 100.
+     * @param cursor Opaque pagination cursor from a previous response.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformSkillsListResponse list(
+            Optional<Long> pageSize, Optional<String> cursor,
+            Optional<Options> options) {
         PlatformSkillsListRequest request =
             PlatformSkillsListRequest
                 .builder()
@@ -175,7 +213,7 @@ public class Skills {
                 .cursor(cursor)
                 .build();
         RequestOperation<PlatformSkillsListRequest, PlatformSkillsListResponse> operation
-              = new PlatformSkillsList.Sync(sdkConfiguration, _headers);
+              = new PlatformSkillsList.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -210,8 +248,27 @@ public class Skills {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformSkillsImportResponse import_(PlatformSkillImportRequest request) {
+        return import_(request, Optional.empty());
+    }
+
+    /**
+     * Import skills from GitHub
+     * 
+     * <p>Import one or more skills selected from a GitHub source preview. Each source URL is fetched and
+     * persisted as an independent skill with source provenance. This operation does not create a durable
+     * source resource.
+     * 
+     * <p>The import is atomic: if any source cannot be fetched, validated, or persisted, no skills are
+     * created.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformSkillsImportResponse import_(PlatformSkillImportRequest request, Optional<Options> options) {
         RequestOperation<PlatformSkillImportRequest, PlatformSkillsImportResponse> operation
-              = new PlatformSkillsImport.Sync(sdkConfiguration, _headers);
+              = new PlatformSkillsImport.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -238,8 +295,23 @@ public class Skills {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformSkillsValidateResponse validate(PlatformSkillValidationRequest request) {
+        return validate(request, Optional.empty());
+    }
+
+    /**
+     * Validate skill bundle
+     * 
+     * <p>Validate a skill bundle without persisting it. Accepts a SKILL.md, .zip, or .skill upload and
+     * returns parsed metadata plus the normalized file layout.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformSkillsValidateResponse validate(PlatformSkillValidationRequest request, Optional<Options> options) {
         RequestOperation<PlatformSkillValidationRequest, PlatformSkillsValidateResponse> operation
-              = new PlatformSkillsValidate.Sync(sdkConfiguration, _headers);
+              = new PlatformSkillsValidate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -268,8 +340,24 @@ public class Skills {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformSkillsPreviewSourceResponse previewSource(PlatformSkillsPreviewSourceRequest request) {
+        return previewSource(request, Optional.empty());
+    }
+
+    /**
+     * Preview a GitHub skill source
+     * 
+     * <p>Inspect a GitHub URL without persisting a source or any discovered skills. Set stream to true to
+     * receive repository scan progress as server-sent events; otherwise the response contains the
+     * completed preview.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformSkillsPreviewSourceResponse previewSource(PlatformSkillsPreviewSourceRequest request, Optional<Options> options) {
         RequestOperation<PlatformSkillsPreviewSourceRequest, PlatformSkillsPreviewSourceResponse> operation
-              = new PlatformSkillsPreviewSource.Sync(sdkConfiguration, _headers);
+              = new PlatformSkillsPreviewSource.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -297,6 +385,24 @@ public class Skills {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformSkillsUpdateResponse update(String skillId, PlatformSkillUpdateRequest platformSkillUpdateRequest) {
+        return update(skillId, platformSkillUpdateRequest, Optional.empty());
+    }
+
+    /**
+     * Update skill
+     * 
+     * <p>Enable or disable the skill for the authenticated caller without changing its content. The owner's
+     * update sets the skill's stored status. Any other caller's update applies only to that caller.
+     * 
+     * @param skillId Glean skill ID.
+     * @param platformSkillUpdateRequest 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformSkillsUpdateResponse update(
+            String skillId, PlatformSkillUpdateRequest platformSkillUpdateRequest,
+            Optional<Options> options) {
         PlatformSkillsUpdateRequest request =
             PlatformSkillsUpdateRequest
                 .builder()
@@ -304,7 +410,7 @@ public class Skills {
                 .platformSkillUpdateRequest(platformSkillUpdateRequest)
                 .build();
         RequestOperation<PlatformSkillsUpdateRequest, PlatformSkillsUpdateResponse> operation
-              = new PlatformSkillsUpdate.Sync(sdkConfiguration, _headers);
+              = new PlatformSkillsUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -331,13 +437,28 @@ public class Skills {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformSkillsDeleteResponse delete(String skillId) {
+        return delete(skillId, Optional.empty());
+    }
+
+    /**
+     * Delete skill
+     * 
+     * <p>Delete a skill the authenticated caller is allowed to manage. This operation permanently removes all
+     * versions of the skill.
+     * 
+     * @param skillId Glean skill ID.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformSkillsDeleteResponse delete(String skillId, Optional<Options> options) {
         PlatformSkillsDeleteRequest request =
             PlatformSkillsDeleteRequest
                 .builder()
                 .skillId(skillId)
                 .build();
         RequestOperation<PlatformSkillsDeleteRequest, PlatformSkillsDeleteResponse> operation
-              = new PlatformSkillsDelete.Sync(sdkConfiguration, _headers);
+              = new PlatformSkillsDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -362,13 +483,27 @@ public class Skills {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformSkillsGetResponse retrieve(String skillId) {
+        return retrieve(skillId, Optional.empty());
+    }
+
+    /**
+     * Retrieve skill
+     * 
+     * <p>Retrieve metadata for a skill available to the authenticated user.
+     * 
+     * @param skillId Glean skill ID.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformSkillsGetResponse retrieve(String skillId, Optional<Options> options) {
         PlatformSkillsGetRequest request =
             PlatformSkillsGetRequest
                 .builder()
                 .skillId(skillId)
                 .build();
         RequestOperation<PlatformSkillsGetRequest, PlatformSkillsGetResponse> operation
-              = new PlatformSkillsGet.Sync(sdkConfiguration, _headers);
+              = new PlatformSkillsGet.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -393,13 +528,27 @@ public class Skills {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformSkillsGetContentResponse retrieveContent(String skillId) {
+        return retrieveContent(skillId, Optional.empty());
+    }
+
+    /**
+     * Download skill content
+     * 
+     * <p>Download the latest installable bundle for a skill available to the authenticated user.
+     * 
+     * @param skillId Glean skill ID.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformSkillsGetContentResponse retrieveContent(String skillId, Optional<Options> options) {
         PlatformSkillsGetContentRequest request =
             PlatformSkillsGetContentRequest
                 .builder()
                 .skillId(skillId)
                 .build();
         RequestOperation<PlatformSkillsGetContentRequest, PlatformSkillsGetContentResponse> operation
-              = new PlatformSkillsGetContent.Sync(sdkConfiguration, _headers);
+              = new PlatformSkillsGetContent.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -428,13 +577,29 @@ public class Skills {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformSkillsSyncResponse sync(String skillId) {
+        return sync(skillId, Optional.empty());
+    }
+
+    /**
+     * Sync a GitHub-imported skill
+     * 
+     * <p>Refresh one GitHub-imported skill from its stored source URL. If the skill content has changed, this
+     * operation creates a new skill version. If the skill is no longer present upstream, the stored skill
+     * is left unchanged and must be deleted explicitly.
+     * 
+     * @param skillId ID of the GitHub-imported skill to sync.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformSkillsSyncResponse sync(String skillId, Optional<Options> options) {
         PlatformSkillsSyncRequest request =
             PlatformSkillsSyncRequest
                 .builder()
                 .skillId(skillId)
                 .build();
         RequestOperation<PlatformSkillsSyncRequest, PlatformSkillsSyncResponse> operation
-              = new PlatformSkillsSync.Sync(sdkConfiguration, _headers);
+              = new PlatformSkillsSync.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -464,6 +629,25 @@ public class Skills {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformSkillsCreateVersionResponse createVersion(String skillId, PlatformSkillVersionCreateRequest platformSkillVersionCreateRequest) {
+        return createVersion(skillId, platformSkillVersionCreateRequest, Optional.empty());
+    }
+
+    /**
+     * Create skill version
+     * 
+     * <p>Create a new immutable version for an existing caller-managed skill from an uploaded SKILL.md, .zip,
+     * or .skill bundle. A create-version over a GitHub-imported skill returns 409, and the caller syncs
+     * the existing skill instead.
+     * 
+     * @param skillId Glean skill ID.
+     * @param platformSkillVersionCreateRequest 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformSkillsCreateVersionResponse createVersion(
+            String skillId, PlatformSkillVersionCreateRequest platformSkillVersionCreateRequest,
+            Optional<Options> options) {
         PlatformSkillsCreateVersionRequest request =
             PlatformSkillsCreateVersionRequest
                 .builder()
@@ -471,7 +655,7 @@ public class Skills {
                 .platformSkillVersionCreateRequest(platformSkillVersionCreateRequest)
                 .build();
         RequestOperation<PlatformSkillsCreateVersionRequest, PlatformSkillsCreateVersionResponse> operation
-              = new PlatformSkillsCreateVersion.Sync(sdkConfiguration, _headers);
+              = new PlatformSkillsCreateVersion.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -496,7 +680,8 @@ public class Skills {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformSkillsListVersionsResponse listVersions(String skillId) {
-        return listVersions(skillId, Optional.empty(), Optional.empty());
+        return listVersions(skillId, Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -513,6 +698,25 @@ public class Skills {
     public PlatformSkillsListVersionsResponse listVersions(
             String skillId, Optional<Long> pageSize,
             Optional<String> cursor) {
+        return listVersions(skillId, pageSize, cursor,
+            Optional.empty());
+    }
+
+    /**
+     * List skill versions
+     * 
+     * <p>List versions for a skill available to the authenticated user.
+     * 
+     * @param skillId Glean skill ID.
+     * @param pageSize Maximum number of versions to return. Defaults to 20. Maximum is 100.
+     * @param cursor Opaque pagination cursor from a previous response.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformSkillsListVersionsResponse listVersions(
+            String skillId, Optional<Long> pageSize,
+            Optional<String> cursor, Optional<Options> options) {
         PlatformSkillsListVersionsRequest request =
             PlatformSkillsListVersionsRequest
                 .builder()
@@ -521,7 +725,7 @@ public class Skills {
                 .cursor(cursor)
                 .build();
         RequestOperation<PlatformSkillsListVersionsRequest, PlatformSkillsListVersionsResponse> operation
-              = new PlatformSkillsListVersions.Sync(sdkConfiguration, _headers);
+              = new PlatformSkillsListVersions.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -547,6 +751,23 @@ public class Skills {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformSkillsGetVersionResponse retrieveVersion(String skillId, long version) {
+        return retrieveVersion(skillId, version, Optional.empty());
+    }
+
+    /**
+     * Retrieve skill version
+     * 
+     * <p>Retrieve metadata for a skill version available to the authenticated user.
+     * 
+     * @param skillId Glean skill ID.
+     * @param version Major version number.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformSkillsGetVersionResponse retrieveVersion(
+            String skillId, long version,
+            Optional<Options> options) {
         PlatformSkillsGetVersionRequest request =
             PlatformSkillsGetVersionRequest
                 .builder()
@@ -554,7 +775,7 @@ public class Skills {
                 .version(version)
                 .build();
         RequestOperation<PlatformSkillsGetVersionRequest, PlatformSkillsGetVersionResponse> operation
-              = new PlatformSkillsGetVersion.Sync(sdkConfiguration, _headers);
+              = new PlatformSkillsGetVersion.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -580,6 +801,23 @@ public class Skills {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformSkillsGetVersionContentResponse retrieveVersionContent(String skillId, long version) {
+        return retrieveVersionContent(skillId, version, Optional.empty());
+    }
+
+    /**
+     * Download skill version content
+     * 
+     * <p>Download the installable bundle for a skill version available to the authenticated user.
+     * 
+     * @param skillId Glean skill ID.
+     * @param version Major version number.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformSkillsGetVersionContentResponse retrieveVersionContent(
+            String skillId, long version,
+            Optional<Options> options) {
         PlatformSkillsGetVersionContentRequest request =
             PlatformSkillsGetVersionContentRequest
                 .builder()
@@ -587,7 +825,7 @@ public class Skills {
                 .version(version)
                 .build();
         RequestOperation<PlatformSkillsGetVersionContentRequest, PlatformSkillsGetVersionContentResponse> operation
-              = new PlatformSkillsGetVersionContent.Sync(sdkConfiguration, _headers);
+              = new PlatformSkillsGetVersionContent.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -618,8 +856,25 @@ public class Skills {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformSkillsPreviewSourceStreamResponse previewSourceStream(PlatformSkillsPreviewSourceStreamRequest request) {
+        return previewSourceStream(request, Optional.empty());
+    }
+
+    /**
+     * Preview a GitHub skill source as events
+     * 
+     * <p>SDK-only logical operation. HTTP clients must call the base path; the URL fragment is not sent.
+     * Inspect a GitHub URL as server-sent events.
+     * 
+     * <p>HTTP clients request this mode by setting `stream` to true in the JSON body.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformSkillsPreviewSourceStreamResponse previewSourceStream(PlatformSkillsPreviewSourceStreamRequest request, Optional<Options> options) {
         RequestOperation<PlatformSkillsPreviewSourceStreamRequest, PlatformSkillsPreviewSourceStreamResponse> operation
-              = new PlatformSkillsPreviewSourceStream.Sync(sdkConfiguration, _headers);
+              = new PlatformSkillsPreviewSourceStream.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

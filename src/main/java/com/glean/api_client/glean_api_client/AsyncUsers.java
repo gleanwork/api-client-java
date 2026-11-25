@@ -17,6 +17,7 @@ import com.glean.api_client.glean_api_client.models.operations.async.PlatformUse
 import com.glean.api_client.glean_api_client.operations.PlatformUsersGet;
 import com.glean.api_client.glean_api_client.operations.PlatformUsersList;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import java.lang.Long;
 import java.lang.String;
 import java.util.List;
@@ -73,7 +74,7 @@ public class AsyncUsers {
     public CompletableFuture<PlatformUsersListResponse> listDirect() {
         return list(
                 Optional.empty(), Optional.empty(), Optional.empty(),
-                Optional.empty());
+                Optional.empty(), Optional.empty());
     }
 
     /**
@@ -96,6 +97,33 @@ public class AsyncUsers {
     public CompletableFuture<PlatformUsersListResponse> list(
             Optional<Long> pageSize, Optional<String> cursor,
             Optional<? extends List<PlatformUserFilter>> filters, Optional<? extends List<PlatformUserInclude>> include) {
+        return list(
+                pageSize, cursor, filters,
+                include, Optional.empty());
+    }
+
+    /**
+     * List users
+     * 
+     * <p>List the users in the Glean directory, ordered by display_name and then by user_id. The list
+     * includes the same people as the Glean People directory. Filter by name, email, manager_id, or
+     * department_id to find specific users.
+     * 
+     * <p>Use the returned user_id values with other Platform APIs, for example as usage limit targets.
+     * 
+     * @param pageSize Maximum number of users to return. Defaults to 50. Maximum is 100.
+     * @param cursor Opaque pagination cursor from a previous response. Send the same filters that the previous request used.
+     *         
+     * @param filters 
+     * @param include Optional fields to add to each user. Each value only adds fields; it does not change which users are returned.
+     *         
+     * @param options additional options
+     * @return {@code CompletableFuture<PlatformUsersListResponse>} - The async response
+     */
+    public CompletableFuture<PlatformUsersListResponse> list(
+            Optional<Long> pageSize, Optional<String> cursor,
+            Optional<? extends List<PlatformUserFilter>> filters, Optional<? extends List<PlatformUserInclude>> include,
+            Optional<Options> options) {
         PlatformUsersListRequest request =
             PlatformUsersListRequest
                 .builder()
@@ -105,7 +133,7 @@ public class AsyncUsers {
                 .include(include)
                 .build();
         AsyncRequestOperation<PlatformUsersListRequest, PlatformUsersListResponse> operation
-              = new PlatformUsersList.Async(sdkConfiguration, _headers);
+              = new PlatformUsersList.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -139,7 +167,7 @@ public class AsyncUsers {
      * @return {@code CompletableFuture<PlatformUsersGetResponse>} - The async response
      */
     public CompletableFuture<PlatformUsersGetResponse> get(String userId) {
-        return get(userId, Optional.empty());
+        return get(userId, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -157,6 +185,27 @@ public class AsyncUsers {
      * @return {@code CompletableFuture<PlatformUsersGetResponse>} - The async response
      */
     public CompletableFuture<PlatformUsersGetResponse> get(String userId, Optional<? extends List<PlatformUserInclude>> include) {
+        return get(userId, include, Optional.empty());
+    }
+
+    /**
+     * Get user
+     * 
+     * <p>Get one user in the Glean directory by user_id. The user can be any person that the list returns. A
+     * user_id that is not in the directory returns 404 resource_not_found.
+     * 
+     * <p>This includes a deleted user and a person that the People directory does not show. An alias ID of a
+     * merged person returns the person's canonical user_id.
+     * 
+     * @param userId Canonical Glean user ID, as the list returns it.
+     * @param include Optional fields to add to the user. Each value only adds fields.
+     *         
+     * @param options additional options
+     * @return {@code CompletableFuture<PlatformUsersGetResponse>} - The async response
+     */
+    public CompletableFuture<PlatformUsersGetResponse> get(
+            String userId, Optional<? extends List<PlatformUserInclude>> include,
+            Optional<Options> options) {
         PlatformUsersGetRequest request =
             PlatformUsersGetRequest
                 .builder()
@@ -164,7 +213,7 @@ public class AsyncUsers {
                 .include(include)
                 .build();
         AsyncRequestOperation<PlatformUsersGetRequest, PlatformUsersGetResponse> operation
-              = new PlatformUsersGet.Async(sdkConfiguration, _headers);
+              = new PlatformUsersGet.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

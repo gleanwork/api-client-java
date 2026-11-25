@@ -23,6 +23,7 @@ import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Hook.AfterErrorContextImpl;
 import com.glean.api_client.glean_api_client.utils.Hook.AfterSuccessContextImpl;
 import com.glean.api_client.glean_api_client.utils.Hook.BeforeRequestContextImpl;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.SerializedBody;
 import com.glean.api_client.glean_api_client.utils.Utils.JsonShape;
 import com.glean.api_client.glean_api_client.utils.Utils;
@@ -34,6 +35,8 @@ import java.lang.String;
 import java.lang.Throwable;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.time.Duration;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -53,12 +56,13 @@ public class PostRestApiIndexSubmissionsDatasourceInstanceType {
         final SDKConfiguration sdkConfiguration;
         final String baseUrl;
         final SecuritySource securitySource;
+        final Optional<Duration> timeout;
         final HTTPClient client;
         final Headers _headers;
 
         public Base(
                 SDKConfiguration sdkConfiguration, Optional<String> serverURL,
-                Headers _headers) {
+                Optional<Options> options, Headers _headers) {
             this.sdkConfiguration = sdkConfiguration;
             this._headers =_headers;
             this.baseUrl = serverURL
@@ -67,6 +71,9 @@ public class PostRestApiIndexSubmissionsDatasourceInstanceType {
                         POST_REST_API_INDEX_SUBMISSIONS_DATASOURCE_INSTANCE_TYPE_SERVERS[0], 
                         Map.of("instance", "instance-name")));
             this.securitySource = this.sdkConfiguration.securitySource();
+            options
+                    .ifPresent(o -> o.validate(List.of(Options.Option.TIMEOUT)));
+            this.timeout = options.flatMap(Options::timeout).or(sdkConfiguration::timeout);
             this.client = this.sdkConfiguration.client();
         }
 
@@ -106,7 +113,8 @@ public class PostRestApiIndexSubmissionsDatasourceInstanceType {
                     this.baseUrl,
                     "/rest/api/index/submissions/{datasourceInstance}/{type}",
                     request, null);
-            HTTPRequest req = new HTTPRequest(url, "POST");
+            HTTPRequest req = new HTTPRequest(url, "POST")
+                    .timeout(this.timeout);
             Object convertedRequest = Utils.convertToShape(
                     request,
                     JsonShape.DEFAULT,
@@ -134,9 +142,16 @@ public class PostRestApiIndexSubmissionsDatasourceInstanceType {
         public Sync(
                 SDKConfiguration sdkConfiguration, Optional<String> serverURL,
                 Headers _headers) {
+            this(sdkConfiguration, serverURL,
+                    Optional.empty(), _headers);
+        }
+
+        public Sync(
+                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
+                Optional<Options> options, Headers _headers) {
             super(
                   sdkConfiguration, serverURL,
-                  _headers);
+                  options, _headers);
         }
 
         private HttpRequest onBuildRequest(PostRestApiIndexSubmissionsDatasourceInstanceTypeRequest request) throws Exception {
@@ -223,13 +238,19 @@ public class PostRestApiIndexSubmissionsDatasourceInstanceType {
     }
     public static class Async extends Base
             implements AsyncRequestOperation<PostRestApiIndexSubmissionsDatasourceInstanceTypeRequest, com.glean.api_client.glean_api_client.models.operations.async.PostRestApiIndexSubmissionsDatasourceInstanceTypeResponse> {
-
         public Async(
                 SDKConfiguration sdkConfiguration, Optional<String> serverURL,
                 Headers _headers) {
+            this(sdkConfiguration, serverURL,
+                    Optional.empty(), _headers);
+        }
+
+        public Async(
+                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
+                Optional<Options> options, Headers _headers) {
             super(
                   sdkConfiguration, serverURL,
-                  _headers);
+                  options, _headers);
         }
 
         private CompletableFuture<HttpRequest> onBuildRequest(PostRestApiIndexSubmissionsDatasourceInstanceTypeRequest request) throws Exception {

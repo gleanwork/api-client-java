@@ -41,11 +41,6 @@ public class PlatformAgentsCreateRunResponse implements AsyncResponse {
     private Optional<? extends PlatformAgentRunWaitResponse> platformAgentRunWaitResponse;
 
     /**
-     * Successful response.
-     */
-    private Optional<String> res;
-
-    /**
      * Durable run persisted and started. The snapshot is immediately retrievable through GET
      * /api/agents/{agent_id}/runs/{run_id}. Execution failures appear in the run state.
      */
@@ -57,19 +52,16 @@ public class PlatformAgentsCreateRunResponse implements AsyncResponse {
             int statusCode,
             HttpResponse<Blob> rawResponse,
             Optional<? extends PlatformAgentRunWaitResponse> platformAgentRunWaitResponse,
-            Optional<String> res,
             Optional<? extends PlatformAgentRunResponse> platformAgentRunResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         Utils.checkNotNull(platformAgentRunWaitResponse, "platformAgentRunWaitResponse");
-        Utils.checkNotNull(res, "res");
         Utils.checkNotNull(platformAgentRunResponse, "platformAgentRunResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
         this.platformAgentRunWaitResponse = platformAgentRunWaitResponse;
-        this.res = res;
         this.platformAgentRunResponse = platformAgentRunResponse;
     }
     
@@ -78,7 +70,7 @@ public class PlatformAgentsCreateRunResponse implements AsyncResponse {
             int statusCode,
             HttpResponse<Blob> rawResponse) {
         this(contentType, statusCode, rawResponse,
-            Optional.empty(), Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -112,14 +104,6 @@ public class PlatformAgentsCreateRunResponse implements AsyncResponse {
     @JsonIgnore
     public Optional<PlatformAgentRunWaitResponse> platformAgentRunWaitResponse() {
         return (Optional<PlatformAgentRunWaitResponse>) platformAgentRunWaitResponse;
-    }
-
-    /**
-     * Successful response.
-     */
-    @JsonIgnore
-    public Optional<String> res() {
-        return res;
     }
 
     /**
@@ -184,25 +168,6 @@ public class PlatformAgentsCreateRunResponse implements AsyncResponse {
     }
 
     /**
-     * Successful response.
-     */
-    public PlatformAgentsCreateRunResponse withRes(String res) {
-        Utils.checkNotNull(res, "res");
-        this.res = Optional.ofNullable(res);
-        return this;
-    }
-
-
-    /**
-     * Successful response.
-     */
-    public PlatformAgentsCreateRunResponse withRes(Optional<String> res) {
-        Utils.checkNotNull(res, "res");
-        this.res = res;
-        return this;
-    }
-
-    /**
      * Durable run persisted and started. The snapshot is immediately retrievable through GET
      * /api/agents/{agent_id}/runs/{run_id}. Execution failures appear in the run state.
      */
@@ -237,7 +202,6 @@ public class PlatformAgentsCreateRunResponse implements AsyncResponse {
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
             Utils.enhancedDeepEquals(this.platformAgentRunWaitResponse, other.platformAgentRunWaitResponse) &&
-            Utils.enhancedDeepEquals(this.res, other.res) &&
             Utils.enhancedDeepEquals(this.platformAgentRunResponse, other.platformAgentRunResponse);
     }
     
@@ -245,7 +209,7 @@ public class PlatformAgentsCreateRunResponse implements AsyncResponse {
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            platformAgentRunWaitResponse, res, platformAgentRunResponse);
+            platformAgentRunWaitResponse, platformAgentRunResponse);
     }
     
     @Override
@@ -255,7 +219,6 @@ public class PlatformAgentsCreateRunResponse implements AsyncResponse {
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
                 "platformAgentRunWaitResponse", platformAgentRunWaitResponse,
-                "res", res,
                 "platformAgentRunResponse", platformAgentRunResponse);
     }
 
@@ -269,8 +232,6 @@ public class PlatformAgentsCreateRunResponse implements AsyncResponse {
         private HttpResponse<Blob> rawResponse;
 
         private Optional<? extends PlatformAgentRunWaitResponse> platformAgentRunWaitResponse = Optional.empty();
-
-        private Optional<String> res = Optional.empty();
 
         private Optional<? extends PlatformAgentRunResponse> platformAgentRunResponse = Optional.empty();
 
@@ -329,25 +290,6 @@ public class PlatformAgentsCreateRunResponse implements AsyncResponse {
 
 
         /**
-         * Successful response.
-         */
-        public Builder res(String res) {
-            Utils.checkNotNull(res, "res");
-            this.res = Optional.ofNullable(res);
-            return this;
-        }
-
-        /**
-         * Successful response.
-         */
-        public Builder res(Optional<String> res) {
-            Utils.checkNotNull(res, "res");
-            this.res = res;
-            return this;
-        }
-
-
-        /**
          * Durable run persisted and started. The snapshot is immediately retrievable through GET
          * /api/agents/{agent_id}/runs/{run_id}. Execution failures appear in the run state.
          */
@@ -371,7 +313,7 @@ public class PlatformAgentsCreateRunResponse implements AsyncResponse {
 
             return new PlatformAgentsCreateRunResponse(
                 contentType, statusCode, rawResponse,
-                platformAgentRunWaitResponse, res, platformAgentRunResponse);
+                platformAgentRunWaitResponse, platformAgentRunResponse);
         }
 
     }

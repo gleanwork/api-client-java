@@ -10,15 +10,19 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsGetVersionContentRequest;
 import com.glean.api_client.glean_api_client.operations.PlatformSkillsGetVersionContent;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class PlatformSkillsGetVersionContentRequestBuilder {
 
     private String skillId;
     private Long version;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -37,6 +41,18 @@ public class PlatformSkillsGetVersionContentRequestBuilder {
         this.version = version;
         return this;
     }
+                
+    public PlatformSkillsGetVersionContentRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public PlatformSkillsGetVersionContentRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private PlatformSkillsGetVersionContentRequest buildRequest() {
@@ -48,9 +64,12 @@ public class PlatformSkillsGetVersionContentRequestBuilder {
     }
 
     public CompletableFuture<PlatformSkillsGetVersionContentResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<PlatformSkillsGetVersionContentRequest, PlatformSkillsGetVersionContentResponse> operation
-              = new PlatformSkillsGetVersionContent.Async(sdkConfiguration, _headers);
+              = new PlatformSkillsGetVersionContent.Async(sdkConfiguration, options, _headers);
         PlatformSkillsGetVersionContentRequest request = buildRequest();
 
         return operation.doRequest(request)

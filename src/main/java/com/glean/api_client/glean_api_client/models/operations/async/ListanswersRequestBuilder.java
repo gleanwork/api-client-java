@@ -11,8 +11,10 @@ import com.glean.api_client.glean_api_client.models.components.ListAnswersReques
 import com.glean.api_client.glean_api_client.models.operations.ListanswersRequest;
 import com.glean.api_client.glean_api_client.operations.Listanswers;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -20,6 +22,7 @@ public class ListanswersRequestBuilder {
 
     private Optional<String> locale = Optional.empty();
     private ListAnswersRequest listAnswersRequest;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -44,6 +47,18 @@ public class ListanswersRequestBuilder {
         this.listAnswersRequest = listAnswersRequest;
         return this;
     }
+                
+    public ListanswersRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public ListanswersRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private ListanswersRequest buildRequest() {
@@ -55,9 +70,12 @@ public class ListanswersRequestBuilder {
     }
 
     public CompletableFuture<ListanswersResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<ListanswersRequest, ListanswersResponse> operation
-              = new Listanswers.Async(sdkConfiguration, _headers);
+              = new Listanswers.Async(sdkConfiguration, options, _headers);
         ListanswersRequest request = buildRequest();
 
         return operation.doRequest(request)

@@ -6,6 +6,8 @@
 
 * [create](#create) - Create a chat response
 * [update](#update) - Update a chat
+* [resume](#resume) - Resume a chat stream
+* [cancel](#cancel) - Cancel a chat
 * [createStream](#createstream) - Create a streaming chat response
 
 ## create
@@ -120,6 +122,126 @@ public class Application {
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | models/errors/PlatformProblemDetailException | 400, 401, 403, 404, 405, 413, 429            | application/problem+json                     |
 | models/errors/PlatformProblemDetailException | 500                                          | application/problem+json                     |
+| models/errors/APIException                   | 4XX, 5XX                                     | \*/\*                                        |
+
+## resume
+
+Reconnect to a chat that is still running, or replay one that just finished. The response is server-sent events in the same format as the streaming response of the create endpoint. Pass the `sequence_id` of the last event you received as `last_seen_sequence_id`, or omit it to start from the beginning of the stream. The final event is `RESPONSE_COMPLETED` or `RESPONSE_FAILED`, and its text covers only the events sent on this connection. Streams are kept for a limited time, so a chat that finished long ago returns 404.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="platform-chat-resume" method="get" path="/api/chats/{chat_id}/resume" -->
+```java
+package hello.world;
+
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.PlatformChatStreamEventServerSentEvent;
+import com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException;
+import com.glean.api_client.glean_api_client.models.operations.PlatformChatResumeResponse;
+import com.glean.api_client.glean_api_client.utils.EventStream;
+import java.lang.Exception;
+import java.util.stream.Stream;
+
+public class Application {
+
+    public static void main(String[] args) throws PlatformProblemDetailException, Exception {
+
+        Glean sdk = Glean.builder()
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
+            .build();
+
+        PlatformChatResumeResponse res = sdk.chat().resume()
+                .chatId("{chat_id}")
+                .lastSeenSequenceId(0L)
+                .call();
+
+        // handle event stream, must be closed after use!
+        try (EventStream<PlatformChatStreamEventServerSentEvent> events = res.events()) {
+            // Option 1: Use for-each loop
+            for (PlatformChatStreamEventServerSentEvent event : events) {
+                System.out.println(event);
+            }
+
+            // Option 2: Use Stream API
+            try (Stream<PlatformChatStreamEventServerSentEvent> stream = events.stream()) {
+                 stream.forEach(System.out::println);
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                                        | Type                                                                                                                                             | Required                                                                                                                                         | Description                                                                                                                                      | Example                                                                                                                                          |
+| ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `chatId`                                                                                                                                         | *String*                                                                                                                                         | :heavy_check_mark:                                                                                                                               | The ID of the chat to resume.                                                                                                                    | {chat_id}                                                                                                                                        |
+| `lastSeenSequenceId`                                                                                                                             | *Optional\<Long>*                                                                                                                                | :heavy_minus_sign:                                                                                                                               | The `sequence_id` of the last event already received. The stream continues with the next event. Defaults to 0, which starts from the beginning.<br/> | 0                                                                                                                                                |
+
+### Response
+
+**[PlatformChatResumeResponse](../../models/operations/PlatformChatResumeResponse.md)**
+
+### Errors
+
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| models/errors/PlatformProblemDetailException | 400, 401, 403, 404, 429                      | application/problem+json                     |
+| models/errors/PlatformProblemDetailException | 500, 503                                     | application/problem+json                     |
+| models/errors/APIException                   | 4XX, 5XX                                     | \*/\*                                        |
+
+## cancel
+
+Stop a running chat. Only users who can edit the chat can cancel it. Cancelling a chat that is not running succeeds without effect.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="platform-chat-cancel" method="post" path="/api/chats/{chat_id}/cancellations" -->
+```java
+package hello.world;
+
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException;
+import com.glean.api_client.glean_api_client.models.operations.PlatformChatCancelResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws PlatformProblemDetailException, Exception {
+
+        Glean sdk = Glean.builder()
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
+            .build();
+
+        PlatformChatCancelResponse res = sdk.chat().cancel()
+                .chatId("{chat_id}")
+                .call();
+
+        if (res.platformChatCancelResponse().isPresent()) {
+            System.out.println(res.platformChatCancelResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                     | Type                          | Required                      | Description                   | Example                       |
+| ----------------------------- | ----------------------------- | ----------------------------- | ----------------------------- | ----------------------------- |
+| `chatId`                      | *String*                      | :heavy_check_mark:            | The ID of the chat to cancel. | {chat_id}                     |
+
+### Response
+
+**[PlatformChatCancelResponse](../../models/operations/PlatformChatCancelResponse.md)**
+
+### Errors
+
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| models/errors/PlatformProblemDetailException | 400, 401, 403, 404, 429                      | application/problem+json                     |
+| models/errors/PlatformProblemDetailException | 500, 503                                     | application/problem+json                     |
 | models/errors/APIException                   | 4XX, 5XX                                     | \*/\*                                        |
 
 ## createStream
