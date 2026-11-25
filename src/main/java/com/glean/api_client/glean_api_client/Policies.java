@@ -28,6 +28,7 @@ import com.glean.api_client.glean_api_client.operations.Getpolicy;
 import com.glean.api_client.glean_api_client.operations.Listpolicies;
 import com.glean.api_client.glean_api_client.operations.Updatepolicy;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
@@ -74,7 +75,7 @@ public class Policies {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetpolicyResponse retrieve(String id) {
-        return retrieve(id, Optional.empty());
+        return retrieve(id, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -88,6 +89,23 @@ public class Policies {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetpolicyResponse retrieve(String id, Optional<Long> version) {
+        return retrieve(id, version, Optional.empty());
+    }
+
+    /**
+     * Gets specified policy
+     * 
+     * <p>Fetches the specified policy version, or the latest if no version is provided.
+     * 
+     * @param id The id of the policy to fetch.
+     * @param version The version of the policy to fetch. Each time a policy is updated, the older version is still stored. If this is left empty, the latest policy is fetched.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetpolicyResponse retrieve(
+            String id, Optional<Long> version,
+            Optional<Options> options) {
         GetpolicyRequest request =
             GetpolicyRequest
                 .builder()
@@ -95,7 +113,7 @@ public class Policies {
                 .version(version)
                 .build();
         RequestOperation<GetpolicyRequest, GetpolicyResponse> operation
-              = new Getpolicy.Sync(sdkConfiguration, _headers);
+              = new Getpolicy.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -121,6 +139,23 @@ public class Policies {
      * @throws RuntimeException subclass if the API call fails
      */
     public UpdatepolicyResponse update(String id, UpdateDlpReportRequest updateDlpReportRequest) {
+        return update(id, updateDlpReportRequest, Optional.empty());
+    }
+
+    /**
+     * Updates an existing policy
+     * 
+     * <p>Updates an existing policy.
+     * 
+     * @param id The id of the policy to fetch.
+     * @param updateDlpReportRequest 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public UpdatepolicyResponse update(
+            String id, UpdateDlpReportRequest updateDlpReportRequest,
+            Optional<Options> options) {
         UpdatepolicyRequest request =
             UpdatepolicyRequest
                 .builder()
@@ -128,7 +163,7 @@ public class Policies {
                 .updateDlpReportRequest(updateDlpReportRequest)
                 .build();
         RequestOperation<UpdatepolicyRequest, UpdatepolicyResponse> operation
-              = new Updatepolicy.Sync(sdkConfiguration, _headers);
+              = new Updatepolicy.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -152,7 +187,7 @@ public class Policies {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListpoliciesResponse listDirect() {
-        return list(Optional.empty(), Optional.empty());
+        return list(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -166,6 +201,23 @@ public class Policies {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListpoliciesResponse list(Optional<Boolean> autoHide, Optional<String> frequency) {
+        return list(autoHide, frequency, Optional.empty());
+    }
+
+    /**
+     * Lists policies
+     * 
+     * <p>Lists policies with filtering.
+     * 
+     * @param autoHide Filter to return reports with a given value of auto-hide.
+     * @param frequency Filter to return reports with a given frequency.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ListpoliciesResponse list(
+            Optional<Boolean> autoHide, Optional<String> frequency,
+            Optional<Options> options) {
         ListpoliciesRequest request =
             ListpoliciesRequest
                 .builder()
@@ -173,7 +225,7 @@ public class Policies {
                 .frequency(frequency)
                 .build();
         RequestOperation<ListpoliciesRequest, ListpoliciesResponse> operation
-              = new Listpolicies.Sync(sdkConfiguration, _headers);
+              = new Listpolicies.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -198,8 +250,22 @@ public class Policies {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreatepolicyResponse create(CreateDlpReportRequest request) {
+        return create(request, Optional.empty());
+    }
+
+    /**
+     * Creates new policy
+     * 
+     * <p>Creates a new policy with specified specifications and returns its id.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreatepolicyResponse create(CreateDlpReportRequest request, Optional<Options> options) {
         RequestOperation<CreateDlpReportRequest, CreatepolicyResponse> operation
-              = new Createpolicy.Sync(sdkConfiguration, _headers);
+              = new Createpolicy.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -224,13 +290,27 @@ public class Policies {
      * @throws RuntimeException subclass if the API call fails
      */
     public DownloadpolicycsvResponse download(String id) {
+        return download(id, Optional.empty());
+    }
+
+    /**
+     * Downloads violations CSV for policy
+     * 
+     * <p>Downloads CSV violations report for a specific policy id. This does not support continuous policies.
+     * 
+     * @param id The id of the policy to download violations for.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public DownloadpolicycsvResponse download(String id, Optional<Options> options) {
         DownloadpolicycsvRequest request =
             DownloadpolicycsvRequest
                 .builder()
                 .id(id)
                 .build();
         RequestOperation<DownloadpolicycsvRequest, DownloadpolicycsvResponse> operation
-              = new Downloadpolicycsv.Sync(sdkConfiguration, _headers);
+              = new Downloadpolicycsv.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -11,8 +11,10 @@ import com.glean.api_client.glean_api_client.models.components.DeleteCollectionI
 import com.glean.api_client.glean_api_client.models.operations.DeletecollectionitemRequest;
 import com.glean.api_client.glean_api_client.operations.Deletecollectionitem;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -20,6 +22,7 @@ public class DeletecollectionitemRequestBuilder {
 
     private Optional<String> locale = Optional.empty();
     private DeleteCollectionItemRequest deleteCollectionItemRequest;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -44,6 +47,18 @@ public class DeletecollectionitemRequestBuilder {
         this.deleteCollectionItemRequest = deleteCollectionItemRequest;
         return this;
     }
+                
+    public DeletecollectionitemRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public DeletecollectionitemRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private DeletecollectionitemRequest buildRequest() {
@@ -55,9 +70,12 @@ public class DeletecollectionitemRequestBuilder {
     }
 
     public CompletableFuture<DeletecollectionitemResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<DeletecollectionitemRequest, DeletecollectionitemResponse> operation
-              = new Deletecollectionitem.Async(sdkConfiguration, _headers);
+              = new Deletecollectionitem.Async(sdkConfiguration, options, _headers);
         DeletecollectionitemRequest request = buildRequest();
 
         return operation.doRequest(request)

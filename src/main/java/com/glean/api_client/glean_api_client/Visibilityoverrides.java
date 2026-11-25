@@ -15,6 +15,7 @@ import com.glean.api_client.glean_api_client.models.operations.SetdocvisibilityR
 import com.glean.api_client.glean_api_client.operations.Getdocvisibility;
 import com.glean.api_client.glean_api_client.operations.Setdocvisibility;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -59,7 +60,7 @@ public class Visibilityoverrides {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetdocvisibilityResponse listDirect() {
-        return list(Optional.empty());
+        return list(Optional.empty(), Optional.empty());
     }
 
     /**
@@ -72,13 +73,27 @@ public class Visibilityoverrides {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetdocvisibilityResponse list(Optional<? extends List<String>> docIds) {
+        return list(docIds, Optional.empty());
+    }
+
+    /**
+     * Fetches documents visibility
+     * 
+     * <p>Fetches the visibility override status of the documents passed.
+     * 
+     * @param docIds List of doc-ids which will have their hide status fetched.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetdocvisibilityResponse list(Optional<? extends List<String>> docIds, Optional<Options> options) {
         GetdocvisibilityRequest request =
             GetdocvisibilityRequest
                 .builder()
                 .docIds(docIds)
                 .build();
         RequestOperation<GetdocvisibilityRequest, GetdocvisibilityResponse> operation
-              = new Getdocvisibility.Sync(sdkConfiguration, _headers);
+              = new Getdocvisibility.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -105,8 +120,23 @@ public class Visibilityoverrides {
      * @throws RuntimeException subclass if the API call fails
      */
     public SetdocvisibilityResponse create(UpdateDocumentVisibilityOverridesRequest request) {
+        return create(request, Optional.empty());
+    }
+
+    /**
+     * Hide or unhide docs
+     * 
+     * <p>Sets the visibility-override state of the documents specified, effectively hiding or un-hiding
+     * documents.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public SetdocvisibilityResponse create(UpdateDocumentVisibilityOverridesRequest request, Optional<Options> options) {
         RequestOperation<UpdateDocumentVisibilityOverridesRequest, SetdocvisibilityResponse> operation
-              = new Setdocvisibility.Sync(sdkConfiguration, _headers);
+              = new Setdocvisibility.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

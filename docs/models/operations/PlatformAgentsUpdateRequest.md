@@ -1,0 +1,9 @@
+# PlatformAgentsUpdateRequest
+
+
+## Fields
+
+| Field                                                                               | Type                                                                                | Required                                                                            | Description                                                                         | Example                                                                             |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `agentId`                                                                           | *String*                                                                            | :heavy_check_mark:                                                                  | The ID of the agent to update.                                                      | {agent_id}                                                                          |
+| `platformAgentUpdateRequest`                                                        | [PlatformAgentUpdateRequest](../../models/components/PlatformAgentUpdateRequest.md) | :heavy_check_mark:                                                                  | N/A                                                                                 | {<br/>"instructions": "Answer questions using the latest HR policies."<br/>}        |

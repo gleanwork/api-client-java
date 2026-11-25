@@ -10,6 +10,7 @@ import com.glean.api_client.glean_api_client.models.components.InsightsRequest;
 import com.glean.api_client.glean_api_client.models.operations.InsightsRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.InsightsResponse;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import java.lang.String;
 import java.util.Optional;
 
@@ -54,7 +55,7 @@ public class Insights {
      * @throws RuntimeException subclass if the API call fails
      */
     public InsightsResponse retrieve(InsightsRequest insightsRequest) {
-        return retrieve(Optional.empty(), insightsRequest);
+        return retrieve(Optional.empty(), insightsRequest, Optional.empty());
     }
 
     /**
@@ -68,6 +69,23 @@ public class Insights {
      * @throws RuntimeException subclass if the API call fails
      */
     public InsightsResponse retrieve(Optional<String> locale, InsightsRequest insightsRequest) {
+        return retrieve(locale, insightsRequest, Optional.empty());
+    }
+
+    /**
+     * Get insights
+     * 
+     * <p>Gets the aggregate usage insights data displayed in the Insights Dashboards.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param insightsRequest 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public InsightsResponse retrieve(
+            Optional<String> locale, InsightsRequest insightsRequest,
+            Optional<Options> options) {
         com.glean.api_client.glean_api_client.models.operations.InsightsRequest request =
             com.glean.api_client.glean_api_client.models.operations.InsightsRequest
                 .builder()
@@ -75,7 +93,7 @@ public class Insights {
                 .insightsRequest(insightsRequest)
                 .build();
         RequestOperation<com.glean.api_client.glean_api_client.models.operations.InsightsRequest, InsightsResponse> operation
-              = new com.glean.api_client.glean_api_client.operations.Insights.Sync(sdkConfiguration, _headers);
+              = new com.glean.api_client.glean_api_client.operations.Insights.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

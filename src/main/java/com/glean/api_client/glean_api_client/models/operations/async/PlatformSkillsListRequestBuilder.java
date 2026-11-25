@@ -12,9 +12,11 @@ import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsLis
 import com.glean.api_client.glean_api_client.operations.PlatformSkillsList;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.LazySingletonValue;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -25,6 +27,7 @@ public class PlatformSkillsListRequestBuilder {
                             "20",
                             new TypeReference<Optional<Long>>() {});
     private Optional<String> cursor = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -55,6 +58,18 @@ public class PlatformSkillsListRequestBuilder {
         this.cursor = cursor;
         return this;
     }
+                
+    public PlatformSkillsListRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public PlatformSkillsListRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private PlatformSkillsListRequest buildRequest() {
@@ -69,9 +84,12 @@ public class PlatformSkillsListRequestBuilder {
     }
 
     public CompletableFuture<PlatformSkillsListResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<PlatformSkillsListRequest, PlatformSkillsListResponse> operation
-              = new PlatformSkillsList.Async(sdkConfiguration, _headers);
+              = new PlatformSkillsList.Async(sdkConfiguration, options, _headers);
         PlatformSkillsListRequest request = buildRequest();
 
         return operation.doRequest(request)

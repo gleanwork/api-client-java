@@ -10,8 +10,10 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.operations.GetPersonPhotoRequest;
 import com.glean.api_client.glean_api_client.operations.GetPersonPhoto;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -19,6 +21,7 @@ public class GetPersonPhotoRequestBuilder {
 
     private String personId;
     private Optional<String> ds = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -43,6 +46,18 @@ public class GetPersonPhotoRequestBuilder {
         this.ds = ds;
         return this;
     }
+                
+    public GetPersonPhotoRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public GetPersonPhotoRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private GetPersonPhotoRequest buildRequest() {
@@ -54,9 +69,12 @@ public class GetPersonPhotoRequestBuilder {
     }
 
     public CompletableFuture<GetPersonPhotoResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<GetPersonPhotoRequest, GetPersonPhotoResponse> operation
-              = new GetPersonPhoto.Async(sdkConfiguration, _headers);
+              = new GetPersonPhoto.Async(sdkConfiguration, options, _headers);
         GetPersonPhotoRequest request = buildRequest();
 
         return operation.doRequest(request)

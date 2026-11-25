@@ -6,22 +6,36 @@ package com.glean.api_client.glean_api_client;
 
 import static com.glean.api_client.glean_api_client.operations.Operations.AsyncRequestOperation;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.glean.api_client.glean_api_client.models.components.PlatformAgentCreateRequest;
 import com.glean.api_client.glean_api_client.models.components.PlatformAgentRunCancellationRequest;
-import com.glean.api_client.glean_api_client.models.components.PlatformAgentRunCreateRequest;
 import com.glean.api_client.glean_api_client.models.components.PlatformAgentRunResponsesRequest;
+import com.glean.api_client.glean_api_client.models.components.PlatformAgentRunStreamEvent;
+import com.glean.api_client.glean_api_client.models.components.PlatformAgentUpdateRequest;
 import com.glean.api_client.glean_api_client.models.components.PlatformAgentsSearchRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsCancelRunRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsCreateRunRequest;
+import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsCreateRunRequestBody;
 import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsCreateRunResponsesRequest;
+import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsCreateRunStreamRequest;
+import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsCreateRunStreamRequestBody;
+import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsDeleteRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsGetRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsGetRunRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsGetSchemasRequest;
+import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsUpdateRequest;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformAgentsCancelRunRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformAgentsCancelRunResponse;
+import com.glean.api_client.glean_api_client.models.operations.async.PlatformAgentsCreateRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.async.PlatformAgentsCreateResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformAgentsCreateRunRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformAgentsCreateRunResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformAgentsCreateRunResponsesRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformAgentsCreateRunResponsesResponse;
+import com.glean.api_client.glean_api_client.models.operations.async.PlatformAgentsCreateRunStreamRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.async.PlatformAgentsCreateRunStreamResponse;
+import com.glean.api_client.glean_api_client.models.operations.async.PlatformAgentsDeleteRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.async.PlatformAgentsDeleteResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformAgentsGetRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformAgentsGetResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformAgentsGetRunRequestBuilder;
@@ -30,14 +44,23 @@ import com.glean.api_client.glean_api_client.models.operations.async.PlatformAge
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformAgentsGetSchemasResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformAgentsSearchRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformAgentsSearchResponse;
+import com.glean.api_client.glean_api_client.models.operations.async.PlatformAgentsUpdateRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.async.PlatformAgentsUpdateResponse;
 import com.glean.api_client.glean_api_client.operations.PlatformAgentsCancelRun;
+import com.glean.api_client.glean_api_client.operations.PlatformAgentsCreate;
 import com.glean.api_client.glean_api_client.operations.PlatformAgentsCreateRun;
 import com.glean.api_client.glean_api_client.operations.PlatformAgentsCreateRunResponses;
+import com.glean.api_client.glean_api_client.operations.PlatformAgentsCreateRunStream;
+import com.glean.api_client.glean_api_client.operations.PlatformAgentsDelete;
 import com.glean.api_client.glean_api_client.operations.PlatformAgentsGet;
 import com.glean.api_client.glean_api_client.operations.PlatformAgentsGetRun;
 import com.glean.api_client.glean_api_client.operations.PlatformAgentsGetSchemas;
 import com.glean.api_client.glean_api_client.operations.PlatformAgentsSearch;
+import com.glean.api_client.glean_api_client.operations.PlatformAgentsUpdate;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
+import com.glean.api_client.glean_api_client.utils.Utils;
+import com.glean.api_client.glean_api_client.utils.reactive.EventStream;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Optional;
@@ -65,6 +88,46 @@ public class AsyncAgents {
 
 
     /**
+     * Create agent
+     * 
+     * <p>Create and publish an agent from its complete definition.
+     * 
+     * @return The async call builder
+     */
+    public PlatformAgentsCreateRequestBuilder create() {
+        return new PlatformAgentsCreateRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Create agent
+     * 
+     * <p>Create and publish an agent from its complete definition.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return {@code CompletableFuture<PlatformAgentsCreateResponse>} - The async response
+     */
+    public CompletableFuture<PlatformAgentsCreateResponse> create(PlatformAgentCreateRequest request) {
+        return create(request, Optional.empty());
+    }
+
+    /**
+     * Create agent
+     * 
+     * <p>Create and publish an agent from its complete definition.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return {@code CompletableFuture<PlatformAgentsCreateResponse>} - The async response
+     */
+    public CompletableFuture<PlatformAgentsCreateResponse> create(PlatformAgentCreateRequest request, Optional<Options> options) {
+        AsyncRequestOperation<PlatformAgentCreateRequest, PlatformAgentsCreateResponse> operation
+              = new PlatformAgentsCreate.Async(sdkConfiguration, options, _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
      * Search agents
      * 
      * <p>Search agents available to the authenticated user by agent name.
@@ -84,8 +147,21 @@ public class AsyncAgents {
      * @return {@code CompletableFuture<PlatformAgentsSearchResponse>} - The async response
      */
     public CompletableFuture<PlatformAgentsSearchResponse> search(PlatformAgentsSearchRequest request) {
+        return search(request, Optional.empty());
+    }
+
+    /**
+     * Search agents
+     * 
+     * <p>Search agents available to the authenticated user by agent name.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return {@code CompletableFuture<PlatformAgentsSearchResponse>} - The async response
+     */
+    public CompletableFuture<PlatformAgentsSearchResponse> search(PlatformAgentsSearchRequest request, Optional<Options> options) {
         AsyncRequestOperation<PlatformAgentsSearchRequest, PlatformAgentsSearchResponse> operation
-              = new PlatformAgentsSearch.Async(sdkConfiguration, _headers);
+              = new PlatformAgentsSearch.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -111,13 +187,123 @@ public class AsyncAgents {
      * @return {@code CompletableFuture<PlatformAgentsGetResponse>} - The async response
      */
     public CompletableFuture<PlatformAgentsGetResponse> get(String agentId) {
+        return get(agentId, Optional.empty());
+    }
+
+    /**
+     * Get agent
+     * 
+     * <p>Retrieve details for an agent available to the authenticated user.
+     * 
+     * @param agentId ID of the agent to retrieve.
+     * @param options additional options
+     * @return {@code CompletableFuture<PlatformAgentsGetResponse>} - The async response
+     */
+    public CompletableFuture<PlatformAgentsGetResponse> get(String agentId, Optional<Options> options) {
         PlatformAgentsGetRequest request =
             PlatformAgentsGetRequest
                 .builder()
                 .agentId(agentId)
                 .build();
         AsyncRequestOperation<PlatformAgentsGetRequest, PlatformAgentsGetResponse> operation
-              = new PlatformAgentsGet.Async(sdkConfiguration, _headers);
+              = new PlatformAgentsGet.Async(sdkConfiguration, options, _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Update agent
+     * 
+     * <p>Update and publish an agent. Supplied fields replace their saved values and omitted fields are kept.
+     * 
+     * @return The async call builder
+     */
+    public PlatformAgentsUpdateRequestBuilder update() {
+        return new PlatformAgentsUpdateRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Update agent
+     * 
+     * <p>Update and publish an agent. Supplied fields replace their saved values and omitted fields are kept.
+     * 
+     * @param agentId The ID of the agent to update.
+     * @param platformAgentUpdateRequest Agent fields to change. At least one field is required. Each supplied field replaces its saved value, and arrays and objects are replaced whole. Omitted fields keep their saved values. Send an empty string or array to clear a field, `{}` to clear `channels` or reset `model` to defaults, and `null` to turn off Glean Search. `use_agent_identity` is set at creation and cannot be changed.
+     *         
+     * @return {@code CompletableFuture<PlatformAgentsUpdateResponse>} - The async response
+     */
+    public CompletableFuture<PlatformAgentsUpdateResponse> update(String agentId, PlatformAgentUpdateRequest platformAgentUpdateRequest) {
+        return update(agentId, platformAgentUpdateRequest, Optional.empty());
+    }
+
+    /**
+     * Update agent
+     * 
+     * <p>Update and publish an agent. Supplied fields replace their saved values and omitted fields are kept.
+     * 
+     * @param agentId The ID of the agent to update.
+     * @param platformAgentUpdateRequest Agent fields to change. At least one field is required. Each supplied field replaces its saved value, and arrays and objects are replaced whole. Omitted fields keep their saved values. Send an empty string or array to clear a field, `{}` to clear `channels` or reset `model` to defaults, and `null` to turn off Glean Search. `use_agent_identity` is set at creation and cannot be changed.
+     *         
+     * @param options additional options
+     * @return {@code CompletableFuture<PlatformAgentsUpdateResponse>} - The async response
+     */
+    public CompletableFuture<PlatformAgentsUpdateResponse> update(
+            String agentId, PlatformAgentUpdateRequest platformAgentUpdateRequest,
+            Optional<Options> options) {
+        PlatformAgentsUpdateRequest request =
+            PlatformAgentsUpdateRequest
+                .builder()
+                .agentId(agentId)
+                .platformAgentUpdateRequest(platformAgentUpdateRequest)
+                .build();
+        AsyncRequestOperation<PlatformAgentsUpdateRequest, PlatformAgentsUpdateResponse> operation
+              = new PlatformAgentsUpdate.Async(sdkConfiguration, options, _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Delete agent
+     * 
+     * <p>Delete an agent.
+     * 
+     * @return The async call builder
+     */
+    public PlatformAgentsDeleteRequestBuilder delete() {
+        return new PlatformAgentsDeleteRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Delete agent
+     * 
+     * <p>Delete an agent.
+     * 
+     * @param agentId The ID of the agent to delete.
+     * @return {@code CompletableFuture<PlatformAgentsDeleteResponse>} - The async response
+     */
+    public CompletableFuture<PlatformAgentsDeleteResponse> delete(String agentId) {
+        return delete(agentId, Optional.empty());
+    }
+
+    /**
+     * Delete agent
+     * 
+     * <p>Delete an agent.
+     * 
+     * @param agentId The ID of the agent to delete.
+     * @param options additional options
+     * @return {@code CompletableFuture<PlatformAgentsDeleteResponse>} - The async response
+     */
+    public CompletableFuture<PlatformAgentsDeleteResponse> delete(String agentId, Optional<Options> options) {
+        PlatformAgentsDeleteRequest request =
+            PlatformAgentsDeleteRequest
+                .builder()
+                .agentId(agentId)
+                .build();
+        AsyncRequestOperation<PlatformAgentsDeleteRequest, PlatformAgentsDeleteResponse> operation
+              = new PlatformAgentsDelete.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -143,7 +329,7 @@ public class AsyncAgents {
      * @return {@code CompletableFuture<PlatformAgentsGetSchemasResponse>} - The async response
      */
     public CompletableFuture<PlatformAgentsGetSchemasResponse> getSchemas(String agentId) {
-        return getSchemas(agentId, Optional.empty());
+        return getSchemas(agentId, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -156,6 +342,22 @@ public class AsyncAgents {
      * @return {@code CompletableFuture<PlatformAgentsGetSchemasResponse>} - The async response
      */
     public CompletableFuture<PlatformAgentsGetSchemasResponse> getSchemas(String agentId, Optional<Boolean> includeTools) {
+        return getSchemas(agentId, includeTools, Optional.empty());
+    }
+
+    /**
+     * Get agent schemas
+     * 
+     * <p>Retrieve an agent's input and output JSON schemas.
+     * 
+     * @param agentId ID of the agent whose schemas should be retrieved.
+     * @param includeTools Whether to include tool metadata in the response.
+     * @param options additional options
+     * @return {@code CompletableFuture<PlatformAgentsGetSchemasResponse>} - The async response
+     */
+    public CompletableFuture<PlatformAgentsGetSchemasResponse> getSchemas(
+            String agentId, Optional<Boolean> includeTools,
+            Optional<Options> options) {
         PlatformAgentsGetSchemasRequest request =
             PlatformAgentsGetSchemasRequest
                 .builder()
@@ -163,7 +365,7 @@ public class AsyncAgents {
                 .includeTools(includeTools)
                 .build();
         AsyncRequestOperation<PlatformAgentsGetSchemasRequest, PlatformAgentsGetSchemasResponse> operation
-              = new PlatformAgentsGetSchemas.Async(sdkConfiguration, _headers);
+              = new PlatformAgentsGetSchemas.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -224,19 +426,55 @@ public class AsyncAgents {
      * executions, not continuations tracked by this run ID.
      * 
      * @param agentId ID of the agent to run.
-     * @param platformAgentRunCreateRequest Request to run an agent. A request MUST supply either `messages` (a non-empty conversation) or `input` (for input-form triggered agents).
+     * @param requestBody Request to run an agent. A request MUST supply either `messages` (a non-empty conversation) or `input` (for input-form triggered agents).
      *         
      * @return {@code CompletableFuture<PlatformAgentsCreateRunResponse>} - The async response
      */
-    public CompletableFuture<PlatformAgentsCreateRunResponse> createRun(String agentId, PlatformAgentRunCreateRequest platformAgentRunCreateRequest) {
+    public CompletableFuture<PlatformAgentsCreateRunResponse> createRun(String agentId, PlatformAgentsCreateRunRequestBody requestBody) {
+        return createRun(agentId, requestBody, Optional.empty());
+    }
+
+    /**
+     * Create agent run
+     * 
+     * <p>Execute an agent run. By default, set `stream` to true to receive server-sent events; otherwise the
+     * response contains the final agent messages. Set `execution_mode` to `DURABLE` to persist a new run
+     * and return its initial snapshot with HTTP 201 without waiting for execution.
+     * 
+     * <p>Poll the agent-scoped GET run endpoint for progress. Durable execution continues after an HTTP
+     * disconnect, but is not automatically resumed after a QE restart or crash. An active turn becomes
+     * overdue more than 40 minutes after acceptance (a 30-minute execution timeout plus 10 minutes of
+     * grace).
+     * 
+     * <p>The next GET of the run marks the overdue turn FAILED without replay; there is no periodic sweep.
+     * Without a GET, the stored run can remain RUNNING. Failure does not prove that external tool work has
+     * stopped.
+     * 
+     * <p>Paused runs are not expired; an accepted approval continuation starts a fresh deadline. Each POST
+     * creates a new run; retrying a POST can create another execution. Submit pending approval decisions
+     * through the run responses endpoint, and cancellation can be requested through the run cancellations
+     * endpoint.
+     * 
+     * <p>A run tracks one workflow execution; automatic background-subagent wake turns are separate
+     * executions, not continuations tracked by this run ID.
+     * 
+     * @param agentId ID of the agent to run.
+     * @param requestBody Request to run an agent. A request MUST supply either `messages` (a non-empty conversation) or `input` (for input-form triggered agents).
+     *         
+     * @param options additional options
+     * @return {@code CompletableFuture<PlatformAgentsCreateRunResponse>} - The async response
+     */
+    public CompletableFuture<PlatformAgentsCreateRunResponse> createRun(
+            String agentId, PlatformAgentsCreateRunRequestBody requestBody,
+            Optional<Options> options) {
         PlatformAgentsCreateRunRequest request =
             PlatformAgentsCreateRunRequest
                 .builder()
                 .agentId(agentId)
-                .platformAgentRunCreateRequest(platformAgentRunCreateRequest)
+                .requestBody(requestBody)
                 .build();
         AsyncRequestOperation<PlatformAgentsCreateRunRequest, PlatformAgentsCreateRunResponse> operation
-              = new PlatformAgentsCreateRun.Async(sdkConfiguration, _headers);
+              = new PlatformAgentsCreateRun.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -273,6 +511,27 @@ public class AsyncAgents {
      * @return {@code CompletableFuture<PlatformAgentsGetRunResponse>} - The async response
      */
     public CompletableFuture<PlatformAgentsGetRunResponse> getRun(String agentId, String runId) {
+        return getRun(agentId, runId, Optional.empty());
+    }
+
+    /**
+     * Get agent run
+     * 
+     * <p>Retrieve a persisted workflow execution owned by the authenticated user. The run must belong to the
+     * specified agent, and the user must still have access to that agent. Unknown runs, runs owned by
+     * another user, and mismatched agent/run identifiers return 404.
+     * 
+     * <p>Requires the agents.run scope. Executions without a persisted workflow record are not available
+     * through this endpoint.
+     * 
+     * @param agentId ID of the agent that owns the run.
+     * @param runId ID of the durable run to retrieve.
+     * @param options additional options
+     * @return {@code CompletableFuture<PlatformAgentsGetRunResponse>} - The async response
+     */
+    public CompletableFuture<PlatformAgentsGetRunResponse> getRun(
+            String agentId, String runId,
+            Optional<Options> options) {
         PlatformAgentsGetRunRequest request =
             PlatformAgentsGetRunRequest
                 .builder()
@@ -280,7 +539,7 @@ public class AsyncAgents {
                 .runId(runId)
                 .build();
         AsyncRequestOperation<PlatformAgentsGetRunRequest, PlatformAgentsGetRunResponse> operation
-              = new PlatformAgentsGetRun.Async(sdkConfiguration, _headers);
+              = new PlatformAgentsGetRun.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -331,6 +590,34 @@ public class AsyncAgents {
      * @return {@code CompletableFuture<PlatformAgentsCancelRunResponse>} - The async response
      */
     public CompletableFuture<PlatformAgentsCancelRunResponse> cancelRun(String agentId, PlatformAgentRunCancellationRequest platformAgentRunCancellationRequest) {
+        return cancelRun(agentId, platformAgentRunCancellationRequest, Optional.empty());
+    }
+
+    /**
+     * Cancel an agent run
+     * 
+     * <p>Request cooperative cancellation of the durable agent run identified by `run_id` in the JSON body.
+     * Requires ownership, current agent access, and the agents.run scope. Sending a cancellation signal
+     * does not itself change an active run from RUNNING; poll GET run for the final state.
+     * 
+     * <p>Paused runs become CANCELLED without resuming execution. Repeated requests and requests for terminal
+     * runs return the current snapshot. Completion may win a race with cancellation.
+     * 
+     * <p>Completed tool side effects cannot be undone, and external work may continue if a tool does not
+     * support cancellation. Cancellation targets this run, not separate background-subagent executions. An
+     * active run without a cancellation registration returns 409.
+     * 
+     * <p>Cancellation signaling requires Redis. An interrupted active run can instead become FAILED through
+     * deadline cleanup; this does not verify that external tool work has stopped.
+     * 
+     * @param agentId ID of the agent that owns the run.
+     * @param platformAgentRunCancellationRequest Request cooperative cancellation of a run owned by the caller.
+     * @param options additional options
+     * @return {@code CompletableFuture<PlatformAgentsCancelRunResponse>} - The async response
+     */
+    public CompletableFuture<PlatformAgentsCancelRunResponse> cancelRun(
+            String agentId, PlatformAgentRunCancellationRequest platformAgentRunCancellationRequest,
+            Optional<Options> options) {
         PlatformAgentsCancelRunRequest request =
             PlatformAgentsCancelRunRequest
                 .builder()
@@ -338,7 +625,7 @@ public class AsyncAgents {
                 .platformAgentRunCancellationRequest(platformAgentRunCancellationRequest)
                 .build();
         AsyncRequestOperation<PlatformAgentsCancelRunRequest, PlatformAgentsCancelRunResponse> operation
-              = new PlatformAgentsCancelRun.Async(sdkConfiguration, _headers);
+              = new PlatformAgentsCancelRun.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -407,6 +694,43 @@ public class AsyncAgents {
      * @return {@code CompletableFuture<PlatformAgentsCreateRunResponsesResponse>} - The async response
      */
     public CompletableFuture<PlatformAgentsCreateRunResponsesResponse> respondToRun(String agentId, PlatformAgentRunResponsesRequest platformAgentRunResponsesRequest) {
+        return respondToRun(agentId, platformAgentRunResponsesRequest, Optional.empty());
+    }
+
+    /**
+     * Respond to agent run approvals
+     * 
+     * <p>Submit decisions for every pending tool approval in the paused run's current batch. The run is
+     * identified by `run_id` in the JSON body. Decisions apply only to the stored invocations and
+     * arguments; argument edits, authentication responses, and session-wide grants are not supported.
+     * 
+     * <p>The caller must own the run, still have agent access, and have the agents.run scope. Acceptance
+     * persists the decisions before resuming the same run and chat session. Identical accepted decisions
+     * return the current snapshot without another continuation.
+     * 
+     * <p>Conflicting, stale, incomplete, or non-pending decisions return 409. Cancellation registration
+     * failure returns 503 without accepting the decisions; retry the same approval batch. This retry
+     * guarantee does not cover an indeterminate database commit outcome.
+     * 
+     * <p>Go workflow approval resumes currently support one tool invocation and one approval response.
+     * Unsupported multi-tool or multi-decision Go resumes fail without executing tools. The resumed action
+     * must resolve to the tool identified by the stored approval request and paused checkpoint.
+     * 
+     * <p>Missing or inconsistent identity fails without executing tools. Execution continues after HTTP
+     * disconnects, but is not automatically resumed after a QE crash. Each accepted continuation starts a
+     * fresh 30-minute execution timeout and 40-minute cleanup deadline.
+     * 
+     * <p>Identical retries do not extend that deadline. Waiting for approval does not expire a run. The next
+     * GET marks an overdue active turn FAILED without replaying execution.
+     * 
+     * @param agentId ID of the agent that owns the run.
+     * @param platformAgentRunResponsesRequest Invocation-scoped decisions for the complete pending approval batch.
+     * @param options additional options
+     * @return {@code CompletableFuture<PlatformAgentsCreateRunResponsesResponse>} - The async response
+     */
+    public CompletableFuture<PlatformAgentsCreateRunResponsesResponse> respondToRun(
+            String agentId, PlatformAgentRunResponsesRequest platformAgentRunResponsesRequest,
+            Optional<Options> options) {
         PlatformAgentsCreateRunResponsesRequest request =
             PlatformAgentsCreateRunResponsesRequest
                 .builder()
@@ -414,9 +738,78 @@ public class AsyncAgents {
                 .platformAgentRunResponsesRequest(platformAgentRunResponsesRequest)
                 .build();
         AsyncRequestOperation<PlatformAgentsCreateRunResponsesRequest, PlatformAgentsCreateRunResponsesResponse> operation
-              = new PlatformAgentsCreateRunResponses.Async(sdkConfiguration, _headers);
+              = new PlatformAgentsCreateRunResponses.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Create a streaming agent run
+     * 
+     * <p>SDK-only logical operation. HTTP clients must call the base path; the URL fragment is not sent.
+     * Execute an agent run as server-sent events.
+     * 
+     * <p>HTTP clients request this mode by setting `stream` to true in the JSON body. Streaming is not
+     * supported in DURABLE mode.
+     * 
+     * @return The async call builder
+     */
+    public PlatformAgentsCreateRunStreamRequestBuilder createRunStream() {
+        return new PlatformAgentsCreateRunStreamRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Create a streaming agent run
+     * 
+     * <p>SDK-only logical operation. HTTP clients must call the base path; the URL fragment is not sent.
+     * Execute an agent run as server-sent events.
+     * 
+     * <p>HTTP clients request this mode by setting `stream` to true in the JSON body. Streaming is not
+     * supported in DURABLE mode.
+     * 
+     * @param agentId ID of the agent to run.
+     * @param requestBody Request to run an agent. A request MUST supply either `messages` (a non-empty conversation) or `input` (for input-form triggered agents).
+     *         
+     * @return {@code EventStream<PlatformAgentsCreateRunStreamResponse, PlatformAgentRunStreamEvent>} - The async response
+     */
+    public EventStream<PlatformAgentsCreateRunStreamResponse, PlatformAgentRunStreamEvent> createRunStream(String agentId, PlatformAgentsCreateRunStreamRequestBody requestBody) {
+        return createRunStream(agentId, requestBody, Optional.empty());
+    }
+
+    /**
+     * Create a streaming agent run
+     * 
+     * <p>SDK-only logical operation. HTTP clients must call the base path; the URL fragment is not sent.
+     * Execute an agent run as server-sent events.
+     * 
+     * <p>HTTP clients request this mode by setting `stream` to true in the JSON body. Streaming is not
+     * supported in DURABLE mode.
+     * 
+     * @param agentId ID of the agent to run.
+     * @param requestBody Request to run an agent. A request MUST supply either `messages` (a non-empty conversation) or `input` (for input-form triggered agents).
+     *         
+     * @param options additional options
+     * @return A reactive SSE publisher that emits events from the server.
+     * Can be consumed using reactive streams toolkits such as RxJava, Project Reactor, or Java 9+ Flow API.
+     */
+    public EventStream<PlatformAgentsCreateRunStreamResponse, PlatformAgentRunStreamEvent> createRunStream(
+            String agentId, PlatformAgentsCreateRunStreamRequestBody requestBody,
+            Optional<Options> options) {
+        PlatformAgentsCreateRunStreamRequest request =
+            PlatformAgentsCreateRunStreamRequest
+                .builder()
+                .agentId(agentId)
+                .requestBody(requestBody)
+                .build();
+        AsyncRequestOperation<PlatformAgentsCreateRunStreamRequest, PlatformAgentsCreateRunStreamResponse> operation
+              = new PlatformAgentsCreateRunStream.Async(sdkConfiguration, options, _headers);
+        return EventStream.forSSE(
+                operation.doRequest(request).thenCompose(operation::handleResponse),
+                new TypeReference<>() {
+                },
+                Utils.mapper(),
+                null);
     }
 
 }

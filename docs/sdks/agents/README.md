@@ -4,13 +4,76 @@
 
 ### Available Operations
 
+* [create](#create) - Create agent
 * [search](#search) - Search agents
 * [get](#get) - Get agent
+* [update](#update) - Update agent
+* [delete](#delete) - Delete agent
 * [getSchemas](#getschemas) - Get agent schemas
 * [createRun](#createrun) - Create agent run
 * [getRun](#getrun) - Get agent run
 * [cancelRun](#cancelrun) - Cancel an agent run
 * [respondToRun](#respondtorun) - Respond to agent run approvals
+* [createRunStream](#createrunstream) - Create a streaming agent run
+
+## create
+
+Create and publish an agent from its complete definition.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="platform-agents-create" method="post" path="/api/agents" -->
+```java
+package hello.world;
+
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.PlatformAgentCreateRequest;
+import com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException;
+import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsCreateResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws PlatformProblemDetailException, Exception {
+
+        Glean sdk = Glean.builder()
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
+            .build();
+
+        PlatformAgentCreateRequest req = PlatformAgentCreateRequest.builder()
+                .name("HR Policy Agent")
+                .instructions("Answer employee questions about HR policies and benefits.")
+                .build();
+
+        PlatformAgentsCreateResponse res = sdk.agents().create()
+                .request(req)
+                .call();
+
+        if (res.platformAgentGetResponse().isPresent()) {
+            System.out.println(res.platformAgentGetResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `request`                                                                       | [PlatformAgentCreateRequest](../../models/shared/PlatformAgentCreateRequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
+
+### Response
+
+**[PlatformAgentsCreateResponse](../../models/operations/PlatformAgentsCreateResponse.md)**
+
+### Errors
+
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| models/errors/PlatformProblemDetailException | 400, 401, 403, 404, 408, 409, 413, 422, 429  | application/problem+json                     |
+| models/errors/PlatformProblemDetailException | 500, 503                                     | application/problem+json                     |
+| models/errors/APIException                   | 4XX, 5XX                                     | \*/\*                                        |
 
 ## search
 
@@ -123,6 +186,115 @@ public class Application {
 | models/errors/PlatformProblemDetailException | 500, 503                                     | application/problem+json                     |
 | models/errors/APIException                   | 4XX, 5XX                                     | \*/\*                                        |
 
+## update
+
+Update and publish an agent. Supplied fields replace their saved values and omitted fields are kept.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="platform-agents-update" method="patch" path="/api/agents/{agent_id}" -->
+```java
+package hello.world;
+
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.PlatformAgentUpdateRequest;
+import com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException;
+import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsUpdateResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws PlatformProblemDetailException, Exception {
+
+        Glean sdk = Glean.builder()
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
+            .build();
+
+        PlatformAgentsUpdateResponse res = sdk.agents().update()
+                .agentId("{agent_id}")
+                .platformAgentUpdateRequest(PlatformAgentUpdateRequest.builder()
+                    .instructions("Answer questions using the latest HR policies.")
+                    .build())
+                .call();
+
+        if (res.platformAgentGetResponse().isPresent()) {
+            System.out.println(res.platformAgentGetResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         | Example                                                                             |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `agentId`                                                                           | *String*                                                                            | :heavy_check_mark:                                                                  | The ID of the agent to update.                                                      | {agent_id}                                                                          |
+| `platformAgentUpdateRequest`                                                        | [PlatformAgentUpdateRequest](../../models/components/PlatformAgentUpdateRequest.md) | :heavy_check_mark:                                                                  | N/A                                                                                 | {<br/>"instructions": "Answer questions using the latest HR policies."<br/>}        |
+
+### Response
+
+**[PlatformAgentsUpdateResponse](../../models/operations/PlatformAgentsUpdateResponse.md)**
+
+### Errors
+
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| models/errors/PlatformProblemDetailException | 400, 401, 403, 404, 408, 409, 413, 422, 429  | application/problem+json                     |
+| models/errors/PlatformProblemDetailException | 500, 503                                     | application/problem+json                     |
+| models/errors/APIException                   | 4XX, 5XX                                     | \*/\*                                        |
+
+## delete
+
+Delete an agent.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="platform-agents-delete" method="delete" path="/api/agents/{agent_id}" -->
+```java
+package hello.world;
+
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException;
+import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsDeleteResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws PlatformProblemDetailException, Exception {
+
+        Glean sdk = Glean.builder()
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
+            .build();
+
+        PlatformAgentsDeleteResponse res = sdk.agents().delete()
+                .agentId("{agent_id}")
+                .call();
+
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `agentId`                      | *String*                       | :heavy_check_mark:             | The ID of the agent to delete. | {agent_id}                     |
+
+### Response
+
+**[PlatformAgentsDeleteResponse](../../models/operations/PlatformAgentsDeleteResponse.md)**
+
+### Errors
+
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| models/errors/PlatformProblemDetailException | 400, 401, 403, 404, 408, 429                 | application/problem+json                     |
+| models/errors/PlatformProblemDetailException | 500, 503                                     | application/problem+json                     |
+| models/errors/APIException                   | 4XX, 5XX                                     | \*/\*                                        |
+
 ## getSchemas
 
 Retrieve an agent's input and output JSON schemas.
@@ -193,6 +365,7 @@ import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.*;
 import com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException;
 import com.glean.api_client.glean_api_client.models.errors.PlatformUnauthorizedAgentToolsProblemException;
+import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsCreateRunRequestBody;
 import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsCreateRunResponse;
 import java.lang.Exception;
 import java.util.List;
@@ -207,7 +380,7 @@ public class Application {
 
         PlatformAgentsCreateRunResponse res = sdk.agents().createRun()
                 .agentId("{agent_id}")
-                .platformAgentRunCreateRequest(PlatformAgentRunCreateRequest.builder()
+                .requestBody(PlatformAgentsCreateRunRequestBody.builder()
                     .messages(List.of(
                         PlatformMessageInput.builder()
                             .role(PlatformMessageRole.USER)
@@ -232,7 +405,7 @@ public class Application {
 | Parameter                                                                                                               | Type                                                                                                                    | Required                                                                                                                | Description                                                                                                             | Example                                                                                                                 |
 | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
 | `agentId`                                                                                                               | *String*                                                                                                                | :heavy_check_mark:                                                                                                      | ID of the agent to run.                                                                                                 | {agent_id}                                                                                                              |
-| `platformAgentRunCreateRequest`                                                                                         | [PlatformAgentRunCreateRequest](../../models/components/PlatformAgentRunCreateRequest.md)                               | :heavy_check_mark:                                                                                                      | N/A                                                                                                                     | {<br/>"messages": [<br/>{<br/>"role": "USER",<br/>"content": [<br/>{<br/>"text": "What is our parental leave policy?",<br/>"type": "text"<br/>}<br/>]<br/>}<br/>]<br/>} |
+| `requestBody`                                                                                                           | [PlatformAgentsCreateRunRequestBody](../../models/operations/PlatformAgentsCreateRunRequestBody.md)                     | :heavy_check_mark:                                                                                                      | N/A                                                                                                                     | {<br/>"messages": [<br/>{<br/>"role": "USER",<br/>"content": [<br/>{<br/>"text": "What is our parental leave policy?",<br/>"type": "text"<br/>}<br/>]<br/>}<br/>]<br/>} |
 
 ### Response
 
@@ -423,3 +596,84 @@ public class Application {
 | models/errors/PlatformProblemDetailException | 400, 401, 403, 404, 408, 409, 413, 429       | application/problem+json                     |
 | models/errors/PlatformProblemDetailException | 500, 503                                     | application/problem+json                     |
 | models/errors/APIException                   | 4XX, 5XX                                     | \*/\*                                        |
+
+## createRunStream
+
+SDK-only logical operation. HTTP clients must call the base path; the URL fragment is not sent. Execute an agent run as server-sent events. HTTP clients request this mode by setting `stream` to true in the JSON body. Streaming is not supported in DURABLE mode.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="platform-agents-create-run-stream" method="post" path="/api/agents/{agent_id}/runs#stream" -->
+```java
+package hello.world;
+
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException;
+import com.glean.api_client.glean_api_client.models.errors.PlatformUnauthorizedAgentToolsProblemException;
+import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsCreateRunStreamRequestBody;
+import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsCreateRunStreamResponse;
+import com.glean.api_client.glean_api_client.utils.EventStream;
+import java.lang.Exception;
+import java.util.List;
+import java.util.stream.Stream;
+
+public class Application {
+
+    public static void main(String[] args) throws PlatformUnauthorizedAgentToolsProblemException, PlatformProblemDetailException, Exception {
+
+        Glean sdk = Glean.builder()
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
+            .build();
+
+        PlatformAgentsCreateRunStreamResponse res = sdk.agents().createRunStream()
+                .agentId("{agent_id}")
+                .requestBody(PlatformAgentsCreateRunStreamRequestBody.builder()
+                    .messages(List.of(
+                        PlatformMessageInput.builder()
+                            .role(PlatformMessageRole.USER)
+                            .content(List.of(
+                                PlatformMessageTextBlockInput.builder()
+                                    .text("What is our parental leave policy?")
+                                    .type(PlatformContentType.TEXT)
+                                    .build()))
+                            .build()))
+                    .build())
+                .call();
+
+        // handle event stream, must be closed after use!
+        try (EventStream<PlatformAgentRunStreamEvent> events = res.events()) {
+            // Option 1: Use for-each loop
+            for (PlatformAgentRunStreamEvent event : events) {
+                System.out.println(event);
+            }
+
+            // Option 2: Use Stream API
+            try (Stream<PlatformAgentRunStreamEvent> stream = events.stream()) {
+                 stream.forEach(System.out::println);
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                               | Type                                                                                                                    | Required                                                                                                                | Description                                                                                                             | Example                                                                                                                 |
+| ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `agentId`                                                                                                               | *String*                                                                                                                | :heavy_check_mark:                                                                                                      | ID of the agent to run.                                                                                                 | {agent_id}                                                                                                              |
+| `requestBody`                                                                                                           | [PlatformAgentsCreateRunStreamRequestBody](../../models/operations/PlatformAgentsCreateRunStreamRequestBody.md)         | :heavy_check_mark:                                                                                                      | N/A                                                                                                                     | {<br/>"messages": [<br/>{<br/>"role": "USER",<br/>"content": [<br/>{<br/>"text": "What is our parental leave policy?",<br/>"type": "text"<br/>}<br/>]<br/>}<br/>]<br/>} |
+
+### Response
+
+**[PlatformAgentsCreateRunStreamResponse](../../models/operations/PlatformAgentsCreateRunStreamResponse.md)**
+
+### Errors
+
+| Error Type                                                   | Status Code                                                  | Content Type                                                 |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| models/errors/PlatformUnauthorizedAgentToolsProblemException | 422                                                          | application/problem+json                                     |
+| models/errors/PlatformProblemDetailException                 | 400, 401, 403, 404, 408, 409, 413, 429                       | application/problem+json                                     |
+| models/errors/PlatformProblemDetailException                 | 500, 503                                                     | application/problem+json                                     |
+| models/errors/APIException                                   | 4XX, 5XX                                                     | \*/\*                                                        |

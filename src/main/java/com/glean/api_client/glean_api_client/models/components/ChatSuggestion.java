@@ -33,6 +33,14 @@ public class ChatSuggestion {
     private Optional<String> cta;
 
     /**
+     * A shorter version of the suggestion's title for one-line lists. Fall back to the entry's title when
+     * empty.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("shortTitle")
+    private Optional<String> shortTitle;
+
+    /**
      * Targeted Glean Chat feature for the suggestion.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -57,16 +65,19 @@ public class ChatSuggestion {
     public ChatSuggestion(
             @JsonProperty("query") Optional<String> query,
             @JsonProperty("cta") Optional<String> cta,
+            @JsonProperty("shortTitle") Optional<String> shortTitle,
             @JsonProperty("feature") Optional<String> feature,
             @JsonProperty("artifactType") Optional<? extends ArtifactType> artifactType,
             @JsonProperty("sourceDocumentIds") Optional<? extends List<String>> sourceDocumentIds) {
         Utils.checkNotNull(query, "query");
         Utils.checkNotNull(cta, "cta");
+        Utils.checkNotNull(shortTitle, "shortTitle");
         Utils.checkNotNull(feature, "feature");
         Utils.checkNotNull(artifactType, "artifactType");
         Utils.checkNotNull(sourceDocumentIds, "sourceDocumentIds");
         this.query = query;
         this.cta = cta;
+        this.shortTitle = shortTitle;
         this.feature = feature;
         this.artifactType = artifactType;
         this.sourceDocumentIds = sourceDocumentIds;
@@ -74,7 +85,7 @@ public class ChatSuggestion {
     
     public ChatSuggestion() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -91,6 +102,15 @@ public class ChatSuggestion {
     @JsonIgnore
     public Optional<String> cta() {
         return cta;
+    }
+
+    /**
+     * A shorter version of the suggestion's title for one-line lists. Fall back to the entry's title when
+     * empty.
+     */
+    @JsonIgnore
+    public Optional<String> shortTitle() {
+        return shortTitle;
     }
 
     /**
@@ -163,6 +183,27 @@ public class ChatSuggestion {
     }
 
     /**
+     * A shorter version of the suggestion's title for one-line lists. Fall back to the entry's title when
+     * empty.
+     */
+    public ChatSuggestion withShortTitle(String shortTitle) {
+        Utils.checkNotNull(shortTitle, "shortTitle");
+        this.shortTitle = Optional.ofNullable(shortTitle);
+        return this;
+    }
+
+
+    /**
+     * A shorter version of the suggestion's title for one-line lists. Fall back to the entry's title when
+     * empty.
+     */
+    public ChatSuggestion withShortTitle(Optional<String> shortTitle) {
+        Utils.checkNotNull(shortTitle, "shortTitle");
+        this.shortTitle = shortTitle;
+        return this;
+    }
+
+    /**
      * Targeted Glean Chat feature for the suggestion.
      */
     public ChatSuggestion withFeature(String feature) {
@@ -231,6 +272,7 @@ public class ChatSuggestion {
         return 
             Utils.enhancedDeepEquals(this.query, other.query) &&
             Utils.enhancedDeepEquals(this.cta, other.cta) &&
+            Utils.enhancedDeepEquals(this.shortTitle, other.shortTitle) &&
             Utils.enhancedDeepEquals(this.feature, other.feature) &&
             Utils.enhancedDeepEquals(this.artifactType, other.artifactType) &&
             Utils.enhancedDeepEquals(this.sourceDocumentIds, other.sourceDocumentIds);
@@ -239,8 +281,8 @@ public class ChatSuggestion {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            query, cta, feature,
-            artifactType, sourceDocumentIds);
+            query, cta, shortTitle,
+            feature, artifactType, sourceDocumentIds);
     }
     
     @Override
@@ -248,6 +290,7 @@ public class ChatSuggestion {
         return Utils.toString(ChatSuggestion.class,
                 "query", query,
                 "cta", cta,
+                "shortTitle", shortTitle,
                 "feature", feature,
                 "artifactType", artifactType,
                 "sourceDocumentIds", sourceDocumentIds);
@@ -259,6 +302,8 @@ public class ChatSuggestion {
         private Optional<String> query = Optional.empty();
 
         private Optional<String> cta = Optional.empty();
+
+        private Optional<String> shortTitle = Optional.empty();
 
         private Optional<String> feature = Optional.empty();
 
@@ -305,6 +350,27 @@ public class ChatSuggestion {
         public Builder cta(Optional<String> cta) {
             Utils.checkNotNull(cta, "cta");
             this.cta = cta;
+            return this;
+        }
+
+
+        /**
+         * A shorter version of the suggestion's title for one-line lists. Fall back to the entry's title when
+         * empty.
+         */
+        public Builder shortTitle(String shortTitle) {
+            Utils.checkNotNull(shortTitle, "shortTitle");
+            this.shortTitle = Optional.ofNullable(shortTitle);
+            return this;
+        }
+
+        /**
+         * A shorter version of the suggestion's title for one-line lists. Fall back to the entry's title when
+         * empty.
+         */
+        public Builder shortTitle(Optional<String> shortTitle) {
+            Utils.checkNotNull(shortTitle, "shortTitle");
+            this.shortTitle = shortTitle;
             return this;
         }
 
@@ -368,8 +434,8 @@ public class ChatSuggestion {
         public ChatSuggestion build() {
 
             return new ChatSuggestion(
-                query, cta, feature,
-                artifactType, sourceDocumentIds);
+                query, cta, shortTitle,
+                feature, artifactType, sourceDocumentIds);
         }
 
     }
