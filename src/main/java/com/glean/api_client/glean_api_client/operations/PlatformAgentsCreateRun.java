@@ -19,13 +19,13 @@ import com.glean.api_client.glean_api_client.models.errors.PlatformUnauthorizedA
 import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsCreateRunRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsCreateRunResponse;
 import com.glean.api_client.glean_api_client.utils.Blob;
-import com.glean.api_client.glean_api_client.utils.Exceptions;
 import com.glean.api_client.glean_api_client.utils.HTTPClient;
 import com.glean.api_client.glean_api_client.utils.HTTPRequest;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Hook.AfterErrorContextImpl;
 import com.glean.api_client.glean_api_client.utils.Hook.AfterSuccessContextImpl;
 import com.glean.api_client.glean_api_client.utils.Hook.BeforeRequestContextImpl;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.SerializedBody;
 import com.glean.api_client.glean_api_client.utils.Utils.JsonShape;
 import com.glean.api_client.glean_api_client.utils.Utils;
@@ -37,7 +37,8 @@ import java.lang.String;
 import java.lang.Throwable;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
+import java.time.Duration;
+import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
@@ -49,15 +50,21 @@ public class PlatformAgentsCreateRun {
         final SDKConfiguration sdkConfiguration;
         final String baseUrl;
         final SecuritySource securitySource;
+        final Optional<Duration> timeout;
         final HTTPClient client;
         final Headers _headers;
 
-        public Base(SDKConfiguration sdkConfiguration, Headers _headers) {
+        public Base(
+                SDKConfiguration sdkConfiguration, Optional<Options> options,
+                Headers _headers) {
             this.sdkConfiguration = sdkConfiguration;
             this._headers =_headers;
             this.baseUrl = Utils.templateUrl(
                     this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
             this.securitySource = this.sdkConfiguration.securitySource();
+            options
+                    .ifPresent(o -> o.validate(List.of(Options.Option.TIMEOUT)));
+            this.timeout = options.flatMap(Options::timeout).or(sdkConfiguration::timeout);
             this.client = this.sdkConfiguration.client();
         }
 
@@ -97,21 +104,22 @@ public class PlatformAgentsCreateRun {
                     this.baseUrl,
                     "/api/agents/{agent_id}/runs",
                     request, null);
-            HTTPRequest req = new HTTPRequest(url, "POST");
+            HTTPRequest req = new HTTPRequest(url, "POST")
+                    .timeout(this.timeout);
             Object convertedRequest = Utils.convertToShape(
                     request,
                     JsonShape.DEFAULT,
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "platformAgentRunCreateRequest",
+                    "requestBody",
                     "json",
                     false);
             if (serializedRequestBody == null) {
                 throw new IllegalArgumentException("Request body is required");
             }
             req.setBody(Optional.ofNullable(serializedRequestBody));
-            req.addHeader("Accept", "application/json;q=1, text/event-stream;q=0")
+            req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
@@ -123,7 +131,16 @@ public class PlatformAgentsCreateRun {
     public static class Sync extends Base
             implements RequestOperation<PlatformAgentsCreateRunRequest, PlatformAgentsCreateRunResponse> {
         public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
-            super(sdkConfiguration, _headers);
+            this(sdkConfiguration, Optional.empty(),
+                    _headers);
+        }
+
+        public Sync(
+                SDKConfiguration sdkConfiguration, Optional<Options> options,
+                Headers _headers) {
+            super(
+                  sdkConfiguration, options,
+                  _headers);
         }
 
         private HttpRequest onBuildRequest(PlatformAgentsCreateRunRequest request) throws Exception {
@@ -179,10 +196,6 @@ public class PlatformAgentsCreateRun {
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     return res.withPlatformAgentRunWaitResponse(Utils.unmarshal(response, new TypeReference<PlatformAgentRunWaitResponse>() {}));
-                } else if (Utils.contentTypeMatches(contentType, "text/event-stream")) {
-                    String out = unchecked(() -> Utils.toUtf8AndClose(response.body())).get();
-                    res.withRes(out);
-                    return res;
                 } else {
                     throw APIException.from("Unexpected content-type received: " + contentType, response);
                 }
@@ -228,9 +241,17 @@ public class PlatformAgentsCreateRun {
     }
     public static class Async extends Base
             implements AsyncRequestOperation<PlatformAgentsCreateRunRequest, com.glean.api_client.glean_api_client.models.operations.async.PlatformAgentsCreateRunResponse> {
-
         public Async(SDKConfiguration sdkConfiguration, Headers _headers) {
-            super(sdkConfiguration, _headers);
+            this(sdkConfiguration, Optional.empty(),
+                    _headers);
+        }
+
+        public Async(
+                SDKConfiguration sdkConfiguration, Optional<Options> options,
+                Headers _headers) {
+            super(
+                  sdkConfiguration, options,
+                  _headers);
         }
 
         private CompletableFuture<HttpRequest> onBuildRequest(PlatformAgentsCreateRunRequest request) throws Exception {
@@ -282,16 +303,6 @@ public class PlatformAgentsCreateRun {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     return Utils.unmarshalAsync(response, new TypeReference<PlatformAgentRunWaitResponse>() {})
                             .thenApply(res::withPlatformAgentRunWaitResponse);
-                } else if (Utils.contentTypeMatches(contentType, "text/event-stream")) {
-                    return response.body().toByteArray().thenApply(bodyBytes -> {
-                        try {
-                            String out = new String(bodyBytes, StandardCharsets.UTF_8);
-                            res.withRes(out);
-                            return res;
-                        } catch (Exception e) {
-                            return Exceptions.rethrow(e);
-                        }
-                    });
                 } else {
                     return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
                 }

@@ -11,9 +11,11 @@ import com.glean.api_client.glean_api_client.models.components.UploadChatFilesRe
 import com.glean.api_client.glean_api_client.models.operations.UploadchatfilesRequest;
 import com.glean.api_client.glean_api_client.operations.Uploadchatfiles;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -22,6 +24,7 @@ public class UploadchatfilesRequestBuilder {
     private Optional<String> locale = Optional.empty();
     private Optional<Long> timezoneOffset = Optional.empty();
     private UploadChatFilesRequest uploadChatFilesRequest;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -58,6 +61,18 @@ public class UploadchatfilesRequestBuilder {
         this.uploadChatFilesRequest = uploadChatFilesRequest;
         return this;
     }
+                
+    public UploadchatfilesRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public UploadchatfilesRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private UploadchatfilesRequest buildRequest() {
@@ -70,9 +85,12 @@ public class UploadchatfilesRequestBuilder {
     }
 
     public CompletableFuture<UploadchatfilesResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<UploadchatfilesRequest, UploadchatfilesResponse> operation
-              = new Uploadchatfiles.Async(sdkConfiguration, _headers);
+              = new Uploadchatfiles.Async(sdkConfiguration, options, _headers);
         UploadchatfilesRequest request = buildRequest();
 
         return operation.doRequest(request)

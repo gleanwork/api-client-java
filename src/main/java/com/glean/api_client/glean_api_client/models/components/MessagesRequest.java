@@ -45,7 +45,7 @@ public class MessagesRequest {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("direction")
-    private Optional<? extends Direction> direction;
+    private Optional<? extends MessagesRequestDirection> direction;
 
     /**
      * Timestamp in millis of the reference message. Only applicable when using a message_id.
@@ -80,7 +80,7 @@ public class MessagesRequest {
             @JsonProperty("idType") IdType idType,
             @JsonProperty("id") String id,
             @JsonProperty("workspaceId") Optional<String> workspaceId,
-            @JsonProperty("direction") Optional<? extends Direction> direction,
+            @JsonProperty("direction") Optional<? extends MessagesRequestDirection> direction,
             @JsonProperty("timestampMillis") Optional<Long> timestampMillis,
             @JsonProperty("includeRootMessage") Optional<Boolean> includeRootMessage,
             @JsonProperty("datasource") Datasource datasource,
@@ -143,8 +143,8 @@ public class MessagesRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Direction> direction() {
-        return (Optional<Direction>) direction;
+    public Optional<MessagesRequestDirection> direction() {
+        return (Optional<MessagesRequestDirection>) direction;
     }
 
     /**
@@ -227,7 +227,7 @@ public class MessagesRequest {
      * The direction of the results asked with respect to the reference timestamp. Missing field defaults
      * to OLDER. Only applicable when using a message_id.
      */
-    public MessagesRequest withDirection(Direction direction) {
+    public MessagesRequest withDirection(MessagesRequestDirection direction) {
         Utils.checkNotNull(direction, "direction");
         this.direction = Optional.ofNullable(direction);
         return this;
@@ -238,7 +238,7 @@ public class MessagesRequest {
      * The direction of the results asked with respect to the reference timestamp. Missing field defaults
      * to OLDER. Only applicable when using a message_id.
      */
-    public MessagesRequest withDirection(Optional<? extends Direction> direction) {
+    public MessagesRequest withDirection(Optional<? extends MessagesRequestDirection> direction) {
         Utils.checkNotNull(direction, "direction");
         this.direction = direction;
         return this;
@@ -362,7 +362,7 @@ public class MessagesRequest {
 
         private Optional<String> workspaceId = Optional.empty();
 
-        private Optional<? extends Direction> direction = Optional.empty();
+        private Optional<? extends MessagesRequestDirection> direction = Optional.empty();
 
         private Optional<Long> timestampMillis = Optional.empty();
 
@@ -421,7 +421,7 @@ public class MessagesRequest {
          * The direction of the results asked with respect to the reference timestamp. Missing field defaults
          * to OLDER. Only applicable when using a message_id.
          */
-        public Builder direction(Direction direction) {
+        public Builder direction(MessagesRequestDirection direction) {
             Utils.checkNotNull(direction, "direction");
             this.direction = Optional.ofNullable(direction);
             return this;
@@ -431,7 +431,7 @@ public class MessagesRequest {
          * The direction of the results asked with respect to the reference timestamp. Missing field defaults
          * to OLDER. Only applicable when using a message_id.
          */
-        public Builder direction(Optional<? extends Direction> direction) {
+        public Builder direction(Optional<? extends MessagesRequestDirection> direction) {
             Utils.checkNotNull(direction, "direction");
             this.direction = direction;
             return this;

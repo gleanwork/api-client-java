@@ -42,7 +42,7 @@ public class AgentConfig {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mode")
-    private Optional<? extends Mode> mode;
+    private Optional<? extends AgentConfigMode> mode;
 
     /**
      * Whether the agent should create an image.
@@ -55,7 +55,7 @@ public class AgentConfig {
     public AgentConfig(
             @JsonProperty("agent") Optional<? extends AgentEnum> agent,
             @JsonProperty("toolSets") Optional<? extends ToolSets> toolSets,
-            @JsonProperty("mode") Optional<? extends Mode> mode,
+            @JsonProperty("mode") Optional<? extends AgentConfigMode> mode,
             @JsonProperty("useImageGeneration") Optional<Boolean> useImageGeneration) {
         Utils.checkNotNull(agent, "agent");
         Utils.checkNotNull(toolSets, "toolSets");
@@ -96,8 +96,8 @@ public class AgentConfig {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Mode> mode() {
-        return (Optional<Mode>) mode;
+    public Optional<AgentConfigMode> mode() {
+        return (Optional<AgentConfigMode>) mode;
     }
 
     /**
@@ -156,7 +156,7 @@ public class AgentConfig {
     /**
      * Top level modes to run GleanChat in.
      */
-    public AgentConfig withMode(Mode mode) {
+    public AgentConfig withMode(AgentConfigMode mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = Optional.ofNullable(mode);
         return this;
@@ -166,7 +166,7 @@ public class AgentConfig {
     /**
      * Top level modes to run GleanChat in.
      */
-    public AgentConfig withMode(Optional<? extends Mode> mode) {
+    public AgentConfig withMode(Optional<? extends AgentConfigMode> mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = mode;
         return this;
@@ -230,7 +230,7 @@ public class AgentConfig {
 
         private Optional<? extends ToolSets> toolSets = Optional.empty();
 
-        private Optional<? extends Mode> mode = Optional.empty();
+        private Optional<? extends AgentConfigMode> mode = Optional.empty();
 
         private Optional<Boolean> useImageGeneration = Optional.empty();
 
@@ -282,7 +282,7 @@ public class AgentConfig {
         /**
          * Top level modes to run GleanChat in.
          */
-        public Builder mode(Mode mode) {
+        public Builder mode(AgentConfigMode mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = Optional.ofNullable(mode);
             return this;
@@ -291,7 +291,7 @@ public class AgentConfig {
         /**
          * Top level modes to run GleanChat in.
          */
-        public Builder mode(Optional<? extends Mode> mode) {
+        public Builder mode(Optional<? extends AgentConfigMode> mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = mode;
             return this;

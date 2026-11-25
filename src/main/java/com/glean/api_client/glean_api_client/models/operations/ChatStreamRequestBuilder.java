@@ -10,14 +10,17 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.ChatRequest;
 import com.glean.api_client.glean_api_client.operations.ChatStream;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
+import java.time.Duration;
 import java.util.Optional;
 
 public class ChatStreamRequestBuilder {
 
     private Optional<Long> timezoneOffset = Optional.empty();
     private ChatRequest chatRequest;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -42,6 +45,18 @@ public class ChatStreamRequestBuilder {
         this.chatRequest = chatRequest;
         return this;
     }
+                
+    public ChatStreamRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public ChatStreamRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private ChatStreamRequest buildRequest() {
@@ -53,9 +68,12 @@ public class ChatStreamRequestBuilder {
     }
 
     public ChatStreamResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<ChatStreamRequest, ChatStreamResponse> operation
-              = new ChatStream.Sync(sdkConfiguration, _headers);
+              = new ChatStream.Sync(sdkConfiguration, options, _headers);
         ChatStreamRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

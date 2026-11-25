@@ -29,6 +29,7 @@ import com.glean.api_client.glean_api_client.operations.GetRestApiIndexCustomMet
 import com.glean.api_client.glean_api_client.operations.PutRestApiIndexCustomMetadataSchemaGroupName;
 import com.glean.api_client.glean_api_client.operations.PutRestApiIndexDocumentDocIdCustomMetadataGroupName;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import java.lang.String;
 import java.util.Optional;
 
@@ -80,7 +81,7 @@ public class CustomMetadata {
             String docId, String groupName,
             CustomMetadataPutRequest customMetadataPutRequest) {
         return upsert(docId, groupName, customMetadataPutRequest,
-            Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -99,6 +100,28 @@ public class CustomMetadata {
     public PutRestApiIndexDocumentDocIdCustomMetadataGroupNameResponse upsert(
             String docId, String groupName,
             CustomMetadataPutRequest customMetadataPutRequest, Optional<String> serverURL) {
+        return upsert(docId, groupName, customMetadataPutRequest,
+            serverURL, Optional.empty());
+    }
+
+    /**
+     * Add or update custom metadata
+     * 
+     * <p>Associates custom metadata with a specific document. Custom metadata enables you to enrich documents
+     * with additional structured information that can be used for search, filtering, and faceting.
+     * 
+     * @param docId Unique Glean identifier of the document
+     * @param groupName Name of the metadata group as specified while adding schema
+     * @param customMetadataPutRequest Request body for adding or updating custom metadata on a document
+     * @param serverURL Overrides the server URL.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PutRestApiIndexDocumentDocIdCustomMetadataGroupNameResponse upsert(
+            String docId, String groupName,
+            CustomMetadataPutRequest customMetadataPutRequest, Optional<String> serverURL,
+            Optional<Options> options) {
         PutRestApiIndexDocumentDocIdCustomMetadataGroupNameRequest request =
             PutRestApiIndexDocumentDocIdCustomMetadataGroupNameRequest
                 .builder()
@@ -107,7 +130,9 @@ public class CustomMetadata {
                 .customMetadataPutRequest(customMetadataPutRequest)
                 .build();
         RequestOperation<PutRestApiIndexDocumentDocIdCustomMetadataGroupNameRequest, PutRestApiIndexDocumentDocIdCustomMetadataGroupNameResponse> operation
-              = new PutRestApiIndexDocumentDocIdCustomMetadataGroupName.Sync(sdkConfiguration, serverURL, _headers);
+              = new PutRestApiIndexDocumentDocIdCustomMetadataGroupName.Sync(
+                                    sdkConfiguration, serverURL, options,
+                                    _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -133,7 +158,8 @@ public class CustomMetadata {
      * @throws RuntimeException subclass if the API call fails
      */
     public DeleteRestApiIndexDocumentDocIdCustomMetadataGroupNameResponse delete(String docId, String groupName) {
-        return delete(docId, groupName, Optional.empty());
+        return delete(docId, groupName, Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -150,6 +176,25 @@ public class CustomMetadata {
     public DeleteRestApiIndexDocumentDocIdCustomMetadataGroupNameResponse delete(
             String docId, String groupName,
             Optional<String> serverURL) {
+        return delete(docId, groupName, serverURL,
+            Optional.empty());
+    }
+
+    /**
+     * Remove custom metadata
+     * 
+     * <p>Removes all custom metadata for the specified metadata group from a document.
+     * 
+     * @param docId Unique Glean identifier of the document
+     * @param groupName Name of the metadata group as specified while adding schema
+     * @param serverURL Overrides the server URL.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public DeleteRestApiIndexDocumentDocIdCustomMetadataGroupNameResponse delete(
+            String docId, String groupName,
+            Optional<String> serverURL, Optional<Options> options) {
         DeleteRestApiIndexDocumentDocIdCustomMetadataGroupNameRequest request =
             DeleteRestApiIndexDocumentDocIdCustomMetadataGroupNameRequest
                 .builder()
@@ -157,7 +202,9 @@ public class CustomMetadata {
                 .groupName(groupName)
                 .build();
         RequestOperation<DeleteRestApiIndexDocumentDocIdCustomMetadataGroupNameRequest, DeleteRestApiIndexDocumentDocIdCustomMetadataGroupNameResponse> operation
-              = new DeleteRestApiIndexDocumentDocIdCustomMetadataGroupName.Sync(sdkConfiguration, serverURL, _headers);
+              = new DeleteRestApiIndexDocumentDocIdCustomMetadataGroupName.Sync(
+                                    sdkConfiguration, serverURL, options,
+                                    _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -182,7 +229,7 @@ public class CustomMetadata {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetRestApiIndexCustomMetadataSchemaGroupNameResponse getSchema(String groupName) {
-        return getSchema(groupName, Optional.empty());
+        return getSchema(groupName, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -196,13 +243,32 @@ public class CustomMetadata {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetRestApiIndexCustomMetadataSchemaGroupNameResponse getSchema(String groupName, Optional<String> serverURL) {
+        return getSchema(groupName, serverURL, Optional.empty());
+    }
+
+    /**
+     * Retrieve metadata schema
+     * 
+     * <p>Retrieves the current schema definition for a metadata group.
+     * 
+     * @param groupName Name of the metadata group schema
+     * @param serverURL Overrides the server URL.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetRestApiIndexCustomMetadataSchemaGroupNameResponse getSchema(
+            String groupName, Optional<String> serverURL,
+            Optional<Options> options) {
         GetRestApiIndexCustomMetadataSchemaGroupNameRequest request =
             GetRestApiIndexCustomMetadataSchemaGroupNameRequest
                 .builder()
                 .groupName(groupName)
                 .build();
         RequestOperation<GetRestApiIndexCustomMetadataSchemaGroupNameRequest, GetRestApiIndexCustomMetadataSchemaGroupNameResponse> operation
-              = new GetRestApiIndexCustomMetadataSchemaGroupName.Sync(sdkConfiguration, serverURL, _headers);
+              = new GetRestApiIndexCustomMetadataSchemaGroupName.Sync(
+                                    sdkConfiguration, serverURL, options,
+                                    _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -230,7 +296,8 @@ public class CustomMetadata {
      * @throws RuntimeException subclass if the API call fails
      */
     public PutRestApiIndexCustomMetadataSchemaGroupNameResponse upsertSchema(String groupName, CustomMetadataSchema customMetadataSchema) {
-        return upsertSchema(groupName, customMetadataSchema, Optional.empty());
+        return upsertSchema(groupName, customMetadataSchema, Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -248,6 +315,26 @@ public class CustomMetadata {
     public PutRestApiIndexCustomMetadataSchemaGroupNameResponse upsertSchema(
             String groupName, CustomMetadataSchema customMetadataSchema,
             Optional<String> serverURL) {
+        return upsertSchema(groupName, customMetadataSchema, serverURL,
+            Optional.empty());
+    }
+
+    /**
+     * Create or update metadata schema
+     * 
+     * <p>Defines or updates the schema for a metadata group. Schemas should be defined before indexing
+     * metadata.
+     * 
+     * @param groupName Name of the metadata group schema
+     * @param customMetadataSchema Schema for custom metadata containing metadata key definitions
+     * @param serverURL Overrides the server URL.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PutRestApiIndexCustomMetadataSchemaGroupNameResponse upsertSchema(
+            String groupName, CustomMetadataSchema customMetadataSchema,
+            Optional<String> serverURL, Optional<Options> options) {
         PutRestApiIndexCustomMetadataSchemaGroupNameRequest request =
             PutRestApiIndexCustomMetadataSchemaGroupNameRequest
                 .builder()
@@ -255,7 +342,9 @@ public class CustomMetadata {
                 .customMetadataSchema(customMetadataSchema)
                 .build();
         RequestOperation<PutRestApiIndexCustomMetadataSchemaGroupNameRequest, PutRestApiIndexCustomMetadataSchemaGroupNameResponse> operation
-              = new PutRestApiIndexCustomMetadataSchemaGroupName.Sync(sdkConfiguration, serverURL, _headers);
+              = new PutRestApiIndexCustomMetadataSchemaGroupName.Sync(
+                                    sdkConfiguration, serverURL, options,
+                                    _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -282,7 +371,7 @@ public class CustomMetadata {
      * @throws RuntimeException subclass if the API call fails
      */
     public DeleteRestApiIndexCustomMetadataSchemaGroupNameResponse deleteSchema(String groupName) {
-        return deleteSchema(groupName, Optional.empty());
+        return deleteSchema(groupName, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -297,13 +386,33 @@ public class CustomMetadata {
      * @throws RuntimeException subclass if the API call fails
      */
     public DeleteRestApiIndexCustomMetadataSchemaGroupNameResponse deleteSchema(String groupName, Optional<String> serverURL) {
+        return deleteSchema(groupName, serverURL, Optional.empty());
+    }
+
+    /**
+     * Remove metadata schema
+     * 
+     * <p>Deletes the schema definition for a metadata group. This does not delete existing metadata values on
+     * documents.
+     * 
+     * @param groupName Name of the metadata group schema
+     * @param serverURL Overrides the server URL.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public DeleteRestApiIndexCustomMetadataSchemaGroupNameResponse deleteSchema(
+            String groupName, Optional<String> serverURL,
+            Optional<Options> options) {
         DeleteRestApiIndexCustomMetadataSchemaGroupNameRequest request =
             DeleteRestApiIndexCustomMetadataSchemaGroupNameRequest
                 .builder()
                 .groupName(groupName)
                 .build();
         RequestOperation<DeleteRestApiIndexCustomMetadataSchemaGroupNameRequest, DeleteRestApiIndexCustomMetadataSchemaGroupNameResponse> operation
-              = new DeleteRestApiIndexCustomMetadataSchemaGroupName.Sync(sdkConfiguration, serverURL, _headers);
+              = new DeleteRestApiIndexCustomMetadataSchemaGroupName.Sync(
+                                    sdkConfiguration, serverURL, options,
+                                    _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

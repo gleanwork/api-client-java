@@ -10,13 +10,17 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.operations.PlatformAdminOauthClientsGetRequest;
 import com.glean.api_client.glean_api_client.operations.PlatformAdminOauthClientsGet;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class PlatformAdminOauthClientsGetRequestBuilder {
 
     private String clientId;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -29,6 +33,18 @@ public class PlatformAdminOauthClientsGetRequestBuilder {
         this.clientId = clientId;
         return this;
     }
+                
+    public PlatformAdminOauthClientsGetRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public PlatformAdminOauthClientsGetRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private PlatformAdminOauthClientsGetRequest buildRequest() {
@@ -39,9 +55,12 @@ public class PlatformAdminOauthClientsGetRequestBuilder {
     }
 
     public CompletableFuture<PlatformAdminOauthClientsGetResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<PlatformAdminOauthClientsGetRequest, PlatformAdminOauthClientsGetResponse> operation
-              = new PlatformAdminOauthClientsGet.Async(sdkConfiguration, _headers);
+              = new PlatformAdminOauthClientsGet.Async(sdkConfiguration, options, _headers);
         PlatformAdminOauthClientsGetRequest request = buildRequest();
 
         return operation.doRequest(request)
